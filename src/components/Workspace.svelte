@@ -1,8 +1,8 @@
 <script>
-import Sidebar from "./Sidebar.svelte";
-import Canvas from "./Canvas.svelte";
-import CreateNew from "./CreateNew.svelte";
 import { onMount } from "svelte";
+import Navbar from "./Navbar.svelte";
+import Layout from "./Layout.svelte";
+import Controls from "./Controls.svelte";
 
 // A function is used for dragging and moving
 function dragElement(element, direction) {
@@ -66,26 +66,33 @@ onMount(() => {
 </script>
 
 <main>
-  <div id="first">
-    <Sidebar />
-    <Canvas />
-    <CreateNew />
+  <Navbar />
+  <div class="pane">
+    <div id="first">
+      <Layout />
+    </div>
+    <div id="separator"></div>
+    <div id="second">
+      <Controls />
+    </div>
   </div>
-  <div id="separator"></div>
-  <div id="second">Side</div>
 </main>
 
 <style>
 main {
-  width: 100vw;
-  height: 100vh;
   display: flex;
+  flex-direction: column;
+}
+.pane {
+  width: 100vw;
+  height: calc(100vh - 50px);
+  display: flex;
+  position: relative;
 }
 
 #separator {
   cursor: col-resize;
   background-color: #aaa;
-  /* background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='3'><path d='M2 30 0 M5 0 v30 M8 0 v30' fill='none' stroke='black'/></svg>");  this is for vertical */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='30'><path d='M2 0 v30 M5 0 v30 M8 0 v30' fill='none' stroke='black'/></svg>");
   background-repeat: no-repeat;
   background-position: center;

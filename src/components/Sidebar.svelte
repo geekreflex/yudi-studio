@@ -8,9 +8,9 @@ import Tools from "./Tools.svelte";
 
 <style>
 main {
-  position: fixed;
+  position: absolute;
   width: 50px;
-  height: 100vh;
+  height: 100%;
   left: 0;
   bottom: 0;
   z-index: 9;
