@@ -5,3 +5,15 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: "Ubuntu";
+}
+
+.tool-icon {
+  stroke: #ccc !important;
+}
+
+.tool-icon path {
+  stroke: #ccc;
+}
