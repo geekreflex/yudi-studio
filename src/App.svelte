@@ -1,7 +1,7 @@
 <script>
-import Workspace from "./components/Workspace.svelte";
+import Layout from "./components/Layout.svelte";
 </script>
 
 <main>
-  <Workspace />
+  <Layout />
 </main>

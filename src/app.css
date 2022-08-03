@@ -10,10 +10,7 @@ body {
   font-family: "Ubuntu";
 }
 
-.tool-icon {
-  stroke: #ccc !important;
-}
-
-.tool-icon path {
-  stroke: #ccc;
+svg {
+  fill: #fff;
+  width: 25px;
 }

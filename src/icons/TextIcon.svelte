@@ -1,23 +1,9 @@
 <svg
-  class="tool-icon"
+  xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
   viewBox="0 0 24 24"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg">
-  <path
-    d="M2.66992 7.17003V5.35003C2.66992 4.20003 3.59992 3.28003 4.73992 3.28003H19.2599C20.4099 3.28003 21.3299 4.21003 21.3299 5.35003V7.17003"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"></path>
-  <path
-    d="M12 20.7201V4.11011"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"></path>
-  <path
-    d="M8.06006 20.72H15.9401"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"></path>
-</svg>
+  ><path
+    d="M22 0h-20v6h1.999c0-1.174.397-3 2.001-3h4v16.874c0 1.174-.825 2.126-2 2.126h-1v2h9.999v-2h-.999c-1.174 0-2-.952-2-2.126v-16.874h4c1.649 0 2.02 1.826 2.02 3h1.98v-6z"
+  ></path
+  ></svg>

@@ -1,0 +1,1 @@
+<main>Control panel</main>
