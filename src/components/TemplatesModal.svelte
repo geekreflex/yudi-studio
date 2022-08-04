@@ -3,6 +3,7 @@ import { templatesModal, editor } from "../store/store";
 import templates from "../templates/list";
 import { fabric } from "fabric";
 import { toDataURL } from "../utils/toDataUrl";
+import Modal from "./Modal.svelte";
 
 const renderTemplate = (temp) => {
   $editor.clear();
@@ -75,9 +76,8 @@ const renderBlank = () => {
 };
 </script>
 
-<main class="{$templatesModal ? 'visible' : 'hidden'}">
-  <div class="overlay" on:click="{closeModal}"></div>
-  <div class="wrap">
+<Modal visible="{$templatesModal}" close="{closeModal}" title="Templates">
+  <main>
     <div class="template-list">
       <div class="template" on:click="{renderBlank}">Blank</div>
       <div class="template" on:click="{() => renderTemplate('pyramid')}">
@@ -87,43 +87,12 @@ const renderBlank = () => {
         Birthday
       </div>
     </div>
-    <button on:click="{closeModal}">Close Modal</button>
-  </div>
-</main>
+  </main>
+</Modal>
 
 <style>
 main {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9998;
-  justify-content: center;
-  align-items: center;
-}
-
-.visible {
-  display: flex;
-}
-
-.hidden {
-  display: none;
-}
-
-.overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-.wrap {
-  width: 800px;
-  background-color: #fff;
-  padding: 30px;
-  position: relative;
-  border-radius: 10px;
+  width: 750px;
 }
 
 .template-list {
@@ -138,5 +107,6 @@ main {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  color: #fff;
 }
 </style>
