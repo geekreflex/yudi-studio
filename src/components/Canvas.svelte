@@ -5,10 +5,19 @@ import { editor } from "../store/store";
 
 onMount(() => {
   const canvas = new fabric.Canvas("canvas-elem", {
-    backgroundColor: "blue",
+    backgroundColor: "white",
     preserveObjectStacking: true,
+    width: 500,
+    height: 500,
   });
   editor.set(canvas);
+
+  canvas.on("selection:created", () => {
+    console.log($editor.getActiveObject().type);
+  });
+  canvas.on("selection:updated", () => {
+    console.log($editor.getActiveObject().type);
+  });
 });
 </script>
 
