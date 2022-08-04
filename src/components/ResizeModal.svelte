@@ -5,7 +5,9 @@ import Modal from "./Modal.svelte";
 let width;
 let height;
 
-const onResize = (e) => {
+const onResize = () => {
+  width = width || $editor.getWidth();
+  height = height || $editor.getHeight();
   $editor.setDimensions({ width, height });
   onClose();
 };
