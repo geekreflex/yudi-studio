@@ -1,6 +1,6 @@
 <script>
 import Modal from "./Modal.svelte";
-import { publishModal, preview, editor } from "../store/store";
+import { publishModal, editor, currentTemplate } from "../store/store";
 import SmallPreview from "./SmallPreview.svelte";
 
 let name;
@@ -40,14 +40,15 @@ const onPublish = () => {
         <input
           class="input-form"
           id="name"
-          value=""
+          value="{$currentTemplate ? $currentTemplate.name : ''}"
           on:input="{(e) => onNameInput(e.target)}"
           required />
       </div>
       <SmallPreview />
     </div>
     <div class="btn-wrap btn-left">
-      <button class="btn-form" on:click="{onPublish}">Publish</button>
+      <button class="btn-form" on:click="{onPublish}"
+        >{$currentTemplate.id ? "Update" : "Publish"}</button>
     </div>
   </main>
 </Modal>

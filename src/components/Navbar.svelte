@@ -1,5 +1,11 @@
 <script>
-import { publishModal, preview, editor, previewModal } from "../store/store";
+import {
+  publishModal,
+  preview,
+  editor,
+  previewModal,
+  currentTemplate,
+} from "../store/store";
 
 import Toolbar from "./Toolbar.svelte";
 
@@ -10,6 +16,7 @@ const onPreview = () => {
 const onPublish = () => {
   publishModal.update(() => true);
   preview.set($editor.toDataURL("png"));
+  console.log($currentTemplate);
 };
 </script>
 
