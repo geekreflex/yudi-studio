@@ -1,11 +1,14 @@
 <script>
-import { onMount } from "svelte";
-import { preview } from "../store/store";
+import { preview, previewModal } from "../store/store";
+
+const onClick = () => {
+  previewModal.update(() => true);
+};
 </script>
 
 <main>
   <label for="preview">Preview</label>
-  <div id="preview" class="preview">
+  <div id="preview" class="preview" on:click="{onClick}">
     <img class="preview-img" src="{$preview}" alt="Preivew" />
   </div>
 </main>
