@@ -1,10 +1,34 @@
 <script>
 import Modal from "./Modal.svelte";
-import { publishModal } from "../store/store";
+import { publishModal, preview, editor } from "../store/store";
 import SmallPreview from "./SmallPreview.svelte";
+
+let name;
 
 const onClose = () => {
   publishModal.update(() => false);
+};
+
+const onNameInput = (val) => {
+  name = val.value;
+};
+
+const onPublish = () => {
+  const payload = {
+    name,
+    template: JSON.stringify($editor),
+  };
+
+  fetch("http://localhost:8400/api/templates", {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
 };
 </script>
 
@@ -13,12 +37,17 @@ const onClose = () => {
     <div class="input-group">
       <div class="input-wrap">
         <label for="name">Design Name</label>
-        <input class="input-form" id="name" value="" />
+        <input
+          class="input-form"
+          id="name"
+          value=""
+          on:input="{(e) => onNameInput(e.target)}"
+          required />
       </div>
       <SmallPreview />
     </div>
     <div class="btn-wrap btn-left">
-      <button class="btn-form">Publish</button>
+      <button class="btn-form" on:click="{onPublish}">Publish</button>
     </div>
   </main>
 </Modal>

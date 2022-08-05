@@ -74,6 +74,10 @@ const renderBlank = () => {
   $editor.set({ backgroundColor: "white" });
   closeModal();
 };
+
+fetch("http://localhost:8400/api/templates")
+  .then((res) => res.json())
+  .then((data) => console.log(data));
 </script>
 
 <Modal visible="{$templatesModal}" close="{closeModal}" title="Templates">
