@@ -13,12 +13,7 @@ const onNameInput = (val) => {
   name = val.value;
 };
 
-const onPublish = () => {
-  const payload = {
-    name,
-    template: JSON.stringify($editor),
-  };
-
+const publishNew = (payload) => {
   fetch("http://localhost:8400/api/templates", {
     method: "POST",
     body: JSON.stringify(payload),
@@ -29,6 +24,23 @@ const onPublish = () => {
     .then((res) => res.json())
     .then((data) => console.log(data))
     .catch((error) => console.error(error));
+};
+
+const updateTemplate = (payload) => {
+  console.log(payload);
+};
+
+const onPublish = () => {
+  const payload = {
+    name,
+    template: JSON.stringify($editor),
+  };
+
+  if ($currentTemplate.id) {
+    publishNew(payload);
+  } else {
+    updateTemplate(payload);
+  }
 };
 </script>
 
