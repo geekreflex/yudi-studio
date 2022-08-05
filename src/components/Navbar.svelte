@@ -1,7 +1,6 @@
 <script>
 import { publishModal, preview, editor, previewModal } from "../store/store";
-
-import Toolbar from "./Toolbar.svelte";
+import TextWidget from "./widgets/TextWidget.svelte";
 
 const onPreview = () => {
   preview.set($editor.toDataURL("png"));
@@ -15,7 +14,7 @@ const onPublish = () => {
 
 <main>
   <div class="left">
-    <p>more options coming</p>
+    <TextWidget />
   </div>
   <div class="right">
     <button on:click="{onPreview}">Preview</button>
