@@ -22,12 +22,15 @@ const publishNew = (payload) => {
     },
   })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      console.log(data);
+      onClose();
+    })
     .catch((error) => console.error(error));
 };
 
 const updateTemplate = (payload) => {
-  fetch("http://localhost:8400/api/templates", {
+  fetch(`http://localhost:8400/api/templates/${$currentTemplate.id}`, {
     method: "PUT",
     body: JSON.stringify(payload),
     headers: {
@@ -37,13 +40,14 @@ const updateTemplate = (payload) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      onClose();
     })
     .catch((error) => console.error(error));
 };
 
 const onPublish = () => {
   const props = {
-    $editor,
+    data: $editor,
     width: $editor.getWidth(),
     height: $editor.getHeight(),
   };

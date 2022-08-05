@@ -6,9 +6,14 @@ let templates = [];
 
 const renderTemplate = (template) => {
   let data = JSON.parse(template.template);
+
   currentTemplate.set({ name: template.name, id: template._id });
-  $editor.loadFromJSON(data, $editor.renderAll.bind($editor));
-  console.log(data);
+  $editor.setDimensions({
+    width: parseFloat(data.width),
+    height: parseFloat(data.height),
+  });
+  $editor.loadFromJSON(data.data, $editor.renderAll.bind($editor));
+  console.log($editor.getWidth());
   closeModal();
 };
 
@@ -28,7 +33,6 @@ fetch("http://localhost:8400/api/templates")
   .then((res) => res.json())
   .then((data) => {
     templates = data.payload;
-    console.log(data.payload);
   });
 </script>
 
