@@ -19,7 +19,7 @@ const activeBtn = () => {
     if (btn["dataset"].name === $selectedObj?.textAlign) {
       btn.classList.add("active");
       // @ts-ignore
-      btn.style.backgroundColor = "#222";
+      btn.style.backgroundColor = "#333";
     }
   });
 };
