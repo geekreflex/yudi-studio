@@ -27,20 +27,30 @@ const publishNew = (payload) => {
 };
 
 const updateTemplate = (payload) => {
-  console.log(payload);
+  fetch("http://localhost:8400/api/templates", {
+    method: "PUT",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => console.error(error));
 };
 
 const onPublish = () => {
   const props = {
+    $editor,
     width: $editor.getWidth(),
     height: $editor.getHeight(),
   };
 
-  console.log($editor);
-
   const payload = {
     name,
-    template: JSON.stringify($editor),
+    template: JSON.stringify(props),
   };
 
   if ($currentTemplate.id) {
