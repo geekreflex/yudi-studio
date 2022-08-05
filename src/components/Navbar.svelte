@@ -1,9 +1,20 @@
 <script>
+import { publishModal } from "../store/store";
+
 import Toolbar from "./Toolbar.svelte";
+
+const onPublish = () => {
+  publishModal.update(() => true);
+};
 </script>
 
 <main>
-  <Toolbar />
+  <div class="left">
+    <Toolbar />
+  </div>
+  <div class="right">
+    <button on:click="{onPublish}">Publish</button>
+  </div>
 </main>
 
 <style>
@@ -13,5 +24,8 @@ main {
   background-color: #111;
   border-bottom: 1px solid #333;
   padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

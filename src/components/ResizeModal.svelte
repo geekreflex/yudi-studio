@@ -27,19 +27,27 @@ const onClose = () => {
 
 <Modal visible="{$resizeModal}" close="{onClose}" title="Resize Canvas">
   <main>
-    <div class="input-wrap">
-      <input
-        name="width"
-        value="{$editor?.getWidth()}"
-        type="number"
-        on:input="{(e) => onWidth(e.target)}" />
-      <input
-        name="height"
-        value="{$editor?.getHeight()}"
-        type="number"
-        on:input="{(e) => onHeight(e.target)}" />
+    <div class="input-group">
+      <div class="input-wrap">
+        <label for="width">Width</label>
+        <input
+          class="input-form"
+          id="width"
+          value="{$editor?.getWidth()}"
+          type="number"
+          on:input="{(e) => onWidth(e.target)}" />
+      </div>
+      <div class="input-wrap">
+        <label for="height">Height</label>
+        <input
+          class="input-form"
+          id="height"
+          value="{$editor?.getHeight()}"
+          type="number"
+          on:input="{(e) => onHeight(e.target)}" />
+      </div>
     </div>
-    <button style="button" on:click="{onResize}">Resize</button>
+    <button class="btn-form" type="button" on:click="{onResize}">Resize</button>
   </main>
 </Modal>
 
@@ -47,34 +55,5 @@ const onClose = () => {
 main {
   width: 500px;
   color: white;
-}
-
-.input-wrap {
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-}
-
-input {
-  height: 40px;
-  margin-bottom: 10px;
-  padding: 0 20px;
-  background-color: #111;
-  border: none;
-  outline: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #444;
-  border: 1px solid #555;
-}
-
-button {
-  border: none;
-  outline: none;
-  padding: 10px 30px;
-  border-radius: 5px;
-  font-weight: 600;
-  cursor: pointer;
 }
 </style>

@@ -1,5 +1,6 @@
 <script>
 import Layout from "./components/Layout.svelte";
+import PublishModal from "./components/PublishModal.svelte";
 import ResizeModal from "./components/ResizeModal.svelte";
 import TemplatesModal from "./components/TemplatesModal.svelte";
 </script>
@@ -8,4 +9,5 @@ import TemplatesModal from "./components/TemplatesModal.svelte";
   <Layout />
   <ResizeModal />
   <TemplatesModal />
+  <PublishModal />
 </main>

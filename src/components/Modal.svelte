@@ -45,12 +45,14 @@ main {
   background-color: #08080a;
   border: 1px solid #555;
   border-radius: 10px;
-  max-width: 800px;
+  min-width: 300px;
+  box-shadow: 0 9px 18px rgba(0, 0, 0, 0.5);
 }
 
 .children {
   overflow-y: auto;
   padding: 20px;
+  color: #fff;
 }
 
 .header {
@@ -61,7 +63,8 @@ main {
 }
 
 .title {
-  font-size: 25px;
+  font-size: 20px;
   color: #fff;
+  font-weight: 600;
 }
 </style>
