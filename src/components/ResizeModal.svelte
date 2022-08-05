@@ -9,6 +9,8 @@ const onResize = () => {
   width = width || $editor.getWidth();
   height = height || $editor.getHeight();
   $editor.setDimensions({ width, height });
+  $editor.set({ backgroundColor: "blue" });
+  $editor.renderAll();
   onClose();
 };
 

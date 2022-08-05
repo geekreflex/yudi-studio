@@ -31,15 +31,22 @@ const updateTemplate = (payload) => {
 };
 
 const onPublish = () => {
+  const props = {
+    width: $editor.getWidth(),
+    height: $editor.getHeight(),
+  };
+
+  console.log($editor);
+
   const payload = {
     name,
     template: JSON.stringify($editor),
   };
 
   if ($currentTemplate.id) {
-    publishNew(payload);
-  } else {
     updateTemplate(payload);
+  } else {
+    publishNew(payload);
   }
 };
 </script>

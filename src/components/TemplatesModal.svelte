@@ -8,6 +8,7 @@ const renderTemplate = (template) => {
   let data = JSON.parse(template.template);
   currentTemplate.set({ name: template.name, id: template._id });
   $editor.loadFromJSON(data, $editor.renderAll.bind($editor));
+  console.log(data);
   closeModal();
 };
 
@@ -15,6 +16,7 @@ const renderBlank = () => {
   $editor.clear();
   $editor.setDimensions({ width: 600, height: 500 });
   $editor.set({ backgroundColor: "white" });
+  currentTemplate.set({ name: null, id: null });
   closeModal();
 };
 

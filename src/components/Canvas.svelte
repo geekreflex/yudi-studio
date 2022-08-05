@@ -7,10 +7,10 @@ onMount(() => {
   const canvas = new fabric.Canvas("canvas-elem", {
     backgroundColor: "white",
     preserveObjectStacking: true,
-    width: 500,
-    height: 500,
   });
   editor.set(canvas);
+
+  canvas.setDimensions({ width: 500, height: 500 });
 
   canvas.on("selection:created", () => {
     console.log($editor.getActiveObject().type);
