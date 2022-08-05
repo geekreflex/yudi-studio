@@ -1,5 +1,6 @@
 <script>
 import { publishModal, preview, editor, previewModal } from "../store/store";
+import ObjectActions from "./widgets/ObjectActions.svelte";
 import TextWidget from "./widgets/TextWidget.svelte";
 
 const onPreview = () => {
@@ -15,6 +16,7 @@ const onPublish = () => {
 <main>
   <div class="left">
     <TextWidget />
+    <ObjectActions />
   </div>
   <div class="right">
     <button on:click="{onPreview}">Preview</button>
@@ -33,5 +35,9 @@ main {
   justify-content: space-between;
   align-items: center;
   color: #fff;
+}
+
+.left {
+  display: flex;
 }
 </style>

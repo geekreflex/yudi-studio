@@ -65,5 +65,23 @@ label {
 }
 
 svg {
-  fill: #fff;
+  fill: #ccc;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.action-btn svg {
+  width: 18px;
 }
