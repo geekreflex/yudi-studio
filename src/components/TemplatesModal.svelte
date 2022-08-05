@@ -51,11 +51,14 @@ main {
 }
 
 .template-list {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 .template {
-  width: 300px;
+  /* width: 300px; */
+  min-height: 100px;
   border: 1px solid #666;
   display: flex;
   justify-content: center;
@@ -63,5 +66,11 @@ main {
   cursor: pointer;
   color: #fff;
   padding: 30px;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.template:hover {
+  background-color: #ffffff50;
 }
 </style>

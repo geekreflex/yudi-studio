@@ -63,3 +63,7 @@ label {
 .btn-wrap {
   display: flex;
 }
+
+svg {
+  fill: #fff;
+}

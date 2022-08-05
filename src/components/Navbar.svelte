@@ -15,7 +15,7 @@ const onPublish = () => {
 
 <main>
   <div class="left">
-    <Toolbar />
+    <p>more options coming</p>
   </div>
   <div class="right">
     <button on:click="{onPreview}">Preview</button>
@@ -33,5 +33,6 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #fff;
 }
 </style>

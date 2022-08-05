@@ -1,11 +1,11 @@
 <script>
 import { fabric } from "fabric";
 import { onMount } from "svelte";
-import { editor } from "../store/store";
+import { editor, selectedObj } from "../store/store";
 
 onMount(() => {
   const canvas = new fabric.Canvas("canvas-elem", {
-    backgroundColor: "white",
+    backgroundColor: "#ffffff",
     preserveObjectStacking: true,
   });
   editor.set(canvas);
@@ -13,10 +13,14 @@ onMount(() => {
   canvas.setDimensions({ width: 500, height: 500 });
 
   canvas.on("selection:created", () => {
-    console.log($editor.getActiveObject().type);
+    $selectedObj = $editor.getActiveObject();
+    console.log($selectedObj);
   });
   canvas.on("selection:updated", () => {
-    console.log($editor.getActiveObject().type);
+    $selectedObj = $editor.getActiveObject();
+  });
+  canvas.on("selection:cleared", () => {
+    $selectedObj = null;
   });
 });
 </script>

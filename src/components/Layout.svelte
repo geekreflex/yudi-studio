@@ -3,6 +3,7 @@ import Navbar from "./Navbar.svelte";
 import Canvas from "./Canvas.svelte";
 import ControlPanel from "./ControlPanel.svelte";
 import { onMount } from "svelte";
+import Toolbar from "./Toolbar.svelte";
 
 // A function is used for dragging and moving
 function dragElement(element, direction) {
@@ -76,6 +77,7 @@ onMount(() => {
       <ControlPanel />
     </div>
   </div>
+  <Toolbar />
 </main>
 
 <style>
