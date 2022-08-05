@@ -1,6 +1,6 @@
 <script>
 import { fabric } from "fabric";
-import { editor, resizeModal, templatesModal } from "../store/store";
+import { editor, resizeModal, templatesModal, templates } from "../store/store";
 
 const addText = () => {
   const text = new fabric.Textbox("Click to edit");
@@ -10,6 +10,14 @@ const addText = () => {
 const addTriangle = () => {
   const triangle = new fabric.Triangle();
   $editor.add(triangle);
+};
+
+const addRectangle = () => {
+  const square = new fabric.Rect({
+    width: 100,
+    height: 100,
+  });
+  $editor.add(square);
 };
 
 const addCircle = () => {
@@ -50,16 +58,24 @@ const onImgUpload = (e) => {
   };
   reader.readAsDataURL(file);
 };
+
+const onChooseTemp = () => {
+  templatesModal.update(() => true);
+  fetch("http://localhost:8400/api/templates")
+    .then((res) => res.json())
+    .then((data) => {
+      $templates = data.payload;
+    });
+};
 </script>
 
 <main>
   <input type="file" id="image-upload" on:change="{onImgUpload}" />
-  <button on:click="{() => templatesModal.update(() => true)}"
-    >Choose template</button>
+  <button on:click="{onChooseTemp}">Choose template</button>
   <button on:click="{addText}"> Text </button>
   <button on:click="{addTriangle}"> Triangle </button>
   <button on:click="{addCircle}"> Circle</button>
-  <button> Square </button>
+  <button on:click="{addRectangle}"> Rectangle </button>
   <button on:click="{addPicture}"> Picture </button>
   <button on:click="{addLine}">Line</button>
   <button on:click="{() => resizeModal.update(() => true)}">Resize</button>

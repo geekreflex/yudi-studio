@@ -1,8 +1,11 @@
 <script>
-import { templatesModal, editor, currentTemplate } from "../store/store";
+import {
+  templatesModal,
+  editor,
+  currentTemplate,
+  templates,
+} from "../store/store";
 import Modal from "./Modal.svelte";
-
-let templates = [];
 
 const renderTemplate = (template) => {
   let data = JSON.parse(template.template);
@@ -13,7 +16,6 @@ const renderTemplate = (template) => {
     height: parseFloat(data.height),
   });
   $editor.loadFromJSON(data.data, $editor.renderAll.bind($editor));
-  console.log($editor.getWidth());
   closeModal();
 };
 
@@ -28,19 +30,13 @@ const renderBlank = () => {
 const closeModal = () => {
   templatesModal.update(() => false);
 };
-
-fetch("http://localhost:8400/api/templates")
-  .then((res) => res.json())
-  .then((data) => {
-    templates = data.payload;
-  });
 </script>
 
 <Modal visible="{$templatesModal}" close="{closeModal}" title="Templates">
   <main>
     <div class="template-list">
       <div class="template" on:click="{renderBlank}">Blank</div>
-      {#each templates as template}
+      {#each $templates as template}
         <div class="template" on:click="{() => renderTemplate(template)}">
           {template.name}
         </div>

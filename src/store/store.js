@@ -7,3 +7,4 @@ export const publishModal = writable(false);
 export const previewModal = writable(false);
 export const currentTemplate = writable({ id: null, name: null });
 export const preview = writable();
+export const templates = writable([]);
