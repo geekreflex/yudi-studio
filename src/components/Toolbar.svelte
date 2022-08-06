@@ -15,12 +15,12 @@ const addText = () => {
   const text = new fabric.Textbox("Click to edit", {
     width: 200,
   });
-  $editor.add(text).setActiveObject(text).centerObject(text);
+  $editor.centerObject(text).add(text).setActiveObject(text);
 };
 
 const addTriangle = () => {
   const triangle = new fabric.Triangle();
-  $editor.add(triangle).setActiveObject(triangle).centerObject(triangle);
+  $editor.centerObject(triangle).add(triangle).setActiveObject(triangle);
 };
 
 const addRectangle = () => {
@@ -28,7 +28,7 @@ const addRectangle = () => {
     width: 100,
     height: 100,
   });
-  $editor.add(rect).setActiveObject(rect).centerObject(rect);
+  $editor.centerObject(rect).add(rect).setActiveObject(rect);
 };
 
 const addCircle = () => {
@@ -36,7 +36,7 @@ const addCircle = () => {
     fill: "#009aff",
     radius: 50,
   });
-  $editor.add(circle).setActiveObject(circle).centerObject(circle);
+  $editor.centerObject(circle).add(circle).setActiveObject(circle);
 };
 
 const addLine = () => {
@@ -46,7 +46,7 @@ const addLine = () => {
     stroke: "black",
   });
 
-  $editor.add(line).setActiveObject(line).centerObject(line);
+  $editor.centerObject(line).add(line).setActiveObject(line);
 };
 
 const addPicture = () => {
@@ -61,9 +61,7 @@ const onImgUpload = (e) => {
     let data = f.target.result;
     fabric.Image.fromURL(data, (img) => {
       img.scaleToWidth(200);
-      $editor.setActiveObject(img);
-      $editor.centerObject(img);
-      $editor.add(img);
+      $editor.setActiveObject(img).centerObject(img).add(img);
     });
   };
   reader.readAsDataURL(file);

@@ -10,3 +10,5 @@ export const preview = writable();
 export const templates = writable([]);
 export const selectedObj = writable();
 export const items = writable([]);
+export const history = writable([]);
+export const historyMods = writable(0);

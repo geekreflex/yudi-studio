@@ -3,7 +3,7 @@ import Layers from "./Layers.svelte";
 import History from "./History.svelte";
 import LayerIcon from "../icons/LayerIcon.svelte";
 
-let activeTab = "History";
+let activeTab = "Layers";
 
 const tabList = [
   { name: "Layers", icon: LayerIcon },
@@ -82,6 +82,7 @@ main {
 .main {
   border: 1px solid #444;
   flex: 1;
+  overflow: auto;
 }
 
 #tab-name {
