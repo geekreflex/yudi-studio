@@ -24,8 +24,6 @@ const activeBtn = () => {
   });
 };
 
-console.log($selectedObj);
-
 const onAlignText = (pos) => {
   $editor.getActiveObject().set({ textAlign: pos });
   activeBtn();

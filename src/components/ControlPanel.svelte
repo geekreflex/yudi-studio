@@ -2,6 +2,7 @@
 import { editor, selectedObj } from "../store/store";
 import { onMount } from "svelte";
 import { dragElement } from "../utils/resize";
+import Layers from "./Layers.svelte";
 
 onMount(() => {
   const first = document.getElementById("firstq");
@@ -27,7 +28,9 @@ const onFillChange = (e) => {
         on:input="{onFillChange}" />
     </div>
     <div id="separatorq"></div>
-    <div id="secondq" class="pane">Second pane</div>
+    <div id="secondq" class="pane">
+      <Layers />
+    </div>
   </div>
 </main>
 
@@ -37,6 +40,7 @@ main {
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
 }
 
 .pane-wrap {
@@ -66,7 +70,7 @@ main {
 }
 .pane {
   position: relative;
-  min-height: 100px;
+  min-height: 200px;
   width: 100%;
 }
 </style>

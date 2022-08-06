@@ -9,6 +9,7 @@ import { editor, resizeModal, templatesModal, templates } from "../store/store";
 import CubeIcon from "../icons/CubeIcon.svelte";
 import StarIcon from "../icons/StarIcon.svelte";
 import PictureIcon2 from "../icons/PictureIcon2.svelte";
+import PolygonIcon from "../icons/PolygonIcon.svelte";
 
 const addText = () => {
   const text = new fabric.Textbox("Click to edit", {
@@ -68,6 +69,18 @@ const onImgUpload = (e) => {
   reader.readAsDataURL(file);
 };
 
+const addPolygon = () => {
+  const polygon = new fabric.Polygon([
+    { x: 10, y: 10 },
+    { x: 50, y: 30 },
+    { x: 40, y: 70 },
+    { x: 60, y: 50 },
+    { x: 100, y: 150 },
+    { x: 40, y: 100 },
+  ]);
+  $editor.add(polygon);
+};
+
 const onChooseTemp = () => {
   templatesModal.update(() => true);
   fetch("http://localhost:8400/api/templates")
@@ -93,6 +106,7 @@ const onChooseTemp = () => {
   <!-- <button on:click="{addLine}">Line</button> -->
   <!-- <button on:click="{() => resizeModal.update(() => true)}">Resize</button> -->
   <button><StarIcon /></button>
+  <button on:click="{addPolygon}"><PolygonIcon /></button>
 </main>
 
 <style>

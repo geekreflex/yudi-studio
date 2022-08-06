@@ -1,5 +1,13 @@
 <script>
-import { publishModal, preview, editor, previewModal } from "../store/store";
+import { fabric } from "fabric";
+
+import {
+  publishModal,
+  preview,
+  editor,
+  previewModal,
+  selectedObj,
+} from "../store/store";
 import ObjectActions from "./widgets/ObjectActions.svelte";
 import TextWidget from "./widgets/TextWidget.svelte";
 
@@ -11,12 +19,18 @@ const onPublish = () => {
   publishModal.update(() => true);
   preview.set($editor.toDataURL("png"));
 };
+
+const onGroup = () => {
+  let group = new fabric.Group(selectedObj);
+  $editor.add(group);
+};
 </script>
 
 <main>
   <div class="left">
     <TextWidget />
     <ObjectActions />
+    <!-- <button on:click="{onGroup}">group</button> -->
   </div>
   <div class="right">
     <button on:click="{onPreview}">Preview</button>

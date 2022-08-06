@@ -1,7 +1,7 @@
 <script>
 import { fabric } from "fabric";
 import { onMount } from "svelte";
-import { editor, selectedObj } from "../store/store";
+import { editor, selectedObj, items } from "../store/store";
 
 onMount(() => {
   const canvas = new fabric.Canvas("canvas-elem", {
@@ -12,9 +12,12 @@ onMount(() => {
 
   canvas.setDimensions({ width: 500, height: 500 });
 
+  canvas.on("after:render", () => {
+    $items = $editor.getObjects();
+  });
+
   canvas.on("selection:created", () => {
     $selectedObj = $editor.getActiveObject();
-    console.log($selectedObj);
   });
   canvas.on("selection:updated", () => {
     $selectedObj = $editor.getActiveObject();

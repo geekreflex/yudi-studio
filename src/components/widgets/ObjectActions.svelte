@@ -5,7 +5,7 @@ import CopyIcon from "../../icons/CopyIcon.svelte";
 import TrashIcon from "../../icons/TrashIcon.svelte";
 import { selectedObj, editor } from "../../store/store";
 
-const onSendBack = () => {
+const onSendBackward = () => {
   const objs = $editor.getActiveObjects();
   objs.map((obj) => {
     $editor.sendBackwards(obj);
@@ -13,10 +13,26 @@ const onSendBack = () => {
   $editor.requestRenderAll();
 };
 
-const onBringFront = () => {
+const onBringForward = () => {
   const objs = $editor.getActiveObjects();
   objs.map((obj) => {
     $editor.bringForward(obj);
+  });
+  $editor.requestRenderAll();
+};
+
+const onBringToFront = () => {
+  const objs = $editor.getActiveObjects();
+  objs.map((obj) => {
+    $editor.bringToFront(obj);
+  });
+  $editor.requestRenderAll();
+};
+
+const onSendToBack = () => {
+  const objs = $editor.getActiveObjects();
+  objs.map((obj) => {
+    $editor.sendToBack(obj);
   });
   $editor.requestRenderAll();
 };
@@ -30,26 +46,45 @@ const onDelete = () => {
   $editor.requestRenderAll();
   $selectedObj = null;
 };
+
+const onDuplicate = () => {
+  let object = $editor.getActiveObject();
+
+  object.clone(function (clone) {
+    $editor.add(
+      clone.set({
+        left: object.left + 10,
+        top: object.top + 10,
+      })
+    );
+  });
+};
 </script>
 
 <main class="{$selectedObj ? 'visible' : 'hidden'}">
-  <button class="action-btn">
+  <button class="action-btn" on:click="{onDuplicate}">
     <CopyIcon />
   </button>
-  <button class="action-btn" style="transform: rotate(90deg);">
+  <button
+    class="action-btn"
+    style="transform: rotate(90deg);"
+    on:click="{onSendToBack}">
     <DoubleArrowAIcon />
   </button>
-  <button class="action-btn" on:click="{onSendBack}">
+  <button class="action-btn" on:click="{onSendBackward}">
     <ArrowIcon />
   </button>
   <button
     class="action-btn"
     style="transform: rotate(180deg);"
-    on:click="{onBringFront}">
+    on:click="{onBringForward}">
     >
     <ArrowIcon />
   </button>
-  <button class="action-btn" style="transform: rotate(270deg);">
+  <button
+    class="action-btn"
+    style="transform: rotate(270deg);"
+    on:click="{onBringToFront}">
     <DoubleArrowAIcon />
   </button>
   <button class="action-btn" on:click="{onDelete}">

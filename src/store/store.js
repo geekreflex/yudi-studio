@@ -9,3 +9,4 @@ export const currentTemplate = writable({ id: null, name: null });
 export const preview = writable();
 export const templates = writable([]);
 export const selectedObj = writable();
+export const items = writable([]);
