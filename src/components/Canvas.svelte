@@ -16,22 +16,20 @@ onMount(() => {
   });
   editor.set(canvas);
 
-  let hsd = [];
-
   function historyChanged() {
     const canvasContents = $editor.toJSON();
-    hsd.push(canvasContents);
-    $history = hsd;
+    $history.push(canvasContents);
     $historyMods = 0;
   }
 
   canvas.setDimensions({ width: 500, height: 500 });
 
-  canvas.on("object:modified", () => {
-    historyChanged();
-  });
+  canvas.on("object:modified", historyChanged);
+  canvas.on("object:added", historyChanged);
+  canvas.on("object:removed", historyChanged);
 
   canvas.on("before:render", () => {
+    $selectedObj = $editor.getActiveObject();
     $items = $editor.getObjects();
   });
 

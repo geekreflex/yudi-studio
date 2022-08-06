@@ -4,9 +4,22 @@ import ChainOnIcon from "../icons/ChainOnIcon.svelte";
 import EyeOffIcon from "../icons/EyeOffIcon.svelte";
 import EyeOneIcon from "../icons/EyeOneIcon.svelte";
 import { items, editor, selectedObj } from "../store/store";
+import { fabric } from "fabric";
+import { onMount } from "svelte";
 
-const generatePreview = () => {
-  return $editor.toDataURL("png");
+onMount(() => {
+  $editor.calcOffset();
+});
+
+const generatePreview = (item) => {
+  const canElm = document.createElement("canvas");
+  const canvas = new fabric.Canvas(canElm);
+  canvas.setWidth($editor.getWidth());
+  canvas.setHeight($editor.getHeight());
+  canvas.add(item);
+  canvas.calcOffset();
+  // canvas.renderAll();
+  return canvas.toDataURL("png");
 };
 
 const onObjectClick = (index) => {
@@ -56,7 +69,7 @@ const onLockObject = (e, index) => {
         </div>
         <div class="object-right-info">
           <div class="object-preview">
-            <img src="{generatePreview()}" alt="Preview" />
+            <!-- <img src="{generatePreview(item)}" alt="Preview" /> -->
           </div>
           <div class="object-name">Layer #{index + 1}- {item.type}</div>
         </div>
@@ -67,17 +80,19 @@ const onLockObject = (e, index) => {
 
 <style>
 main {
-  height: 100%;
-  overflow: auto;
   padding: 5px 0;
+  display: flex;
+  width: 100%;
+  flex: 1;
 }
 .objects {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .object {
-  width: 100%;
+  min-width: 100%;
   height: 60px;
   display: flex;
   align-items: center;
@@ -142,5 +157,6 @@ img {
 .object-name {
   color: #ccc;
   white-space: nowrap;
+  padding-right: 30px;
 }
 </style>

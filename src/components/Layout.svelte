@@ -53,7 +53,7 @@ main {
   background-color: #111;
   height: 100%;
   width: 300px;
-  min-width: 200px;
+  min-width: 250px;
   max-width: 500px;
 }
 

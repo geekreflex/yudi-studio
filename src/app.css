@@ -24,27 +24,27 @@ svg {
 .input-wrap {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
 }
 
 label {
   font-size: 14px;
-  margin-left: 10px;
   margin-bottom: 5px;
   display: block;
+  color: #ccc;
 }
 
-.input-form {
-  height: 40px;
+.input-wrap input,
+input-form {
+  height: 35px;
   padding: 0 20px;
-  background-color: #111;
+  background-color: #08080a;
   border: none;
   outline: none;
   border-radius: 4px;
   font-size: 14px;
   font-weight: 400;
   color: #ccc;
-  border: 1px solid #555;
+  border: 2px solid #555;
 }
 
 .btn-form {
@@ -97,4 +97,88 @@ svg {
 
 .tab svg {
   width: 18px !important;
+}
+
+.tablist {
+  display: flex;
+  position: relative;
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  background-color: #08080a;
+  margin-right: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.activeTab {
+  border: 1px solid #444;
+  border-bottom: none;
+  position: relative;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  background-color: #111;
+}
+
+.activeTab:after {
+  width: 100%;
+  position: absolute;
+  bottom: -1px;
+  height: 1px;
+  background-color: #111;
+  content: "";
+}
+
+.main {
+  border: 1px solid #444;
+  flex: 1;
+  overflow: auto;
+  border-top-right-radius: 4px;
+}
+
+#tab-name {
+  margin-left: 10px;
+}
+
+/* scrollbar */
+
+::-webkit-scrollbar {
+  height: 10px;
+  overflow: visible;
+  width: 10px;
+  border-radius: 10px;
+  background-color: #000;
+}
+
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 1px 1px 1px 1px;
+  min-height: 28px;
+  padding: 100px 0 0;
+  -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 0 0 4px;
 }

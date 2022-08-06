@@ -29,6 +29,7 @@ const addRectangle = () => {
     height: 100,
   });
   $editor.centerObject(rect).add(rect).setActiveObject(rect);
+  $editor.calcOffset();
 };
 
 const addCircle = () => {

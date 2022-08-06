@@ -9,7 +9,6 @@ import {
   selectedObj,
 } from "../store/store";
 import ObjectActions from "./widgets/ObjectActions.svelte";
-import TextWidget from "./widgets/TextWidget.svelte";
 
 const onPreview = () => {
   preview.set($editor.toDataURL("png"));
@@ -28,7 +27,6 @@ const onGroup = () => {
 
 <main>
   <div class="left">
-    <TextWidget />
     <ObjectActions />
     <!-- <button on:click="{onGroup}">group</button> -->
   </div>

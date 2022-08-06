@@ -1,4 +1,6 @@
 <script>
+import { fabric } from "fabric";
+
 import { editor, history } from "../store/store";
 
 // function undo() {
@@ -27,18 +29,26 @@ import { editor, history } from "../store/store";
 const onHistoryClick = (item) => {
   $editor.loadFromJSON(item);
 };
+
+const generateThumbnail = (item) => {
+  const canElm = document.createElement("canvas");
+  const canvas = new fabric.Canvas(canElm);
+  canvas.setWidth($editor.getWidth());
+  canvas.setHeight($editor.getHeight());
+  return canvas.loadFromJSON(item).toDataURL("png");
+};
 </script>
 
 <main>
   <p>History</p>
   <div class="history-list">
+    {$history.length}
     {#each $history as item, index}
       <div class="history" on:click="{() => onHistoryClick(item)}">
         <div class="history-preview">
-          <img
-            src="{$editor?.loadFromJSON(item).toDataURL('png')}"
-            alt="History preview" />
+          <img src="{generateThumbnail(item)}" alt="History preview" />
         </div>
+        <div class="history-name">History #{index + 1}</div>
       </div>
     {/each}
   </div>
@@ -78,5 +88,10 @@ main {
 
 .history-preview img {
   width: 100%;
+}
+
+.history-name {
+  margin-left: 20px;
+  white-space: nowrap;
 }
 </style>

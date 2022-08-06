@@ -1,14 +1,13 @@
 <script>
-import Layers from "./Layers.svelte";
-import History from "./History.svelte";
+import { selectedObj } from "../store/store";
 import LayerIcon from "../icons/LayerIcon.svelte";
-import HistoryIcon from "../icons/HistoryIcon.svelte";
+import ToolOptions from "./ToolOptions.svelte";
 
-let activeTab = "Layers";
+let activeTab = "Tool Options";
 
 const tabList = [
-  { name: "Layers", icon: LayerIcon },
-  { name: "History", icon: HistoryIcon },
+  { name: "Tool Options", icon: LayerIcon },
+  { name: "Patterns", icon: LayerIcon },
 ];
 
 const onTabClick = (name) => {
@@ -29,12 +28,12 @@ const onTabClick = (name) => {
     {/each}
   </div>
   <div class="main">
-    {#if activeTab === "Layers"}
-      <Layers />
+    {#if activeTab === "Tool Options"}
+      <ToolOptions />
     {/if}
 
-    {#if activeTab === "History"}
-      <History />
+    {#if activeTab === "Patters"}
+      <div>Patterns</div>
     {/if}
   </div>
 </main>
@@ -45,9 +44,5 @@ main {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-.main {
-  width: 100%;
 }
 </style>
