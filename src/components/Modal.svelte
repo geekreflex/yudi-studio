@@ -6,7 +6,7 @@ export let title;
 
 <main class:visible>
   <div class="overlay" on:click="{close}"></div>
-  <div class="main">
+  <div class="modal-main">
     <nav class="header">
       <div class="title">{title}</div>
     </nav>
@@ -40,12 +40,13 @@ main {
   align-items: center;
 }
 
-.main {
+.modal-main {
   position: relative;
-  background-color: #08080a;
+  background-color: #111;
   border: 1px solid #555;
   border-radius: 10px;
   min-width: 300px;
+  max-width: 900px;
   box-shadow: 0 9px 18px rgba(0, 0, 0, 0.5);
 }
 

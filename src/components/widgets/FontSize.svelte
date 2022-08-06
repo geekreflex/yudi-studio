@@ -1,7 +1,8 @@
 <script>
 import { selectedObj, editor } from "../../store/store";
+import { onMount } from "svelte";
 
-let fontSize = $selectedObj?.fontSize;
+$: fontSize = $selectedObj?.fontSize;
 
 const onFontSize = (e) => {
   console.log(e.target.value, fontSize);
@@ -25,3 +26,14 @@ const onFontSize = (e) => {
     </div>
   </div>
 </main>
+
+<style>
+.item {
+  margin-bottom: 10px;
+}
+.item-name {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #ccc;
+}
+</style>

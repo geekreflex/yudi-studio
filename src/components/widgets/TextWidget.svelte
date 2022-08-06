@@ -5,6 +5,7 @@ import TextAlignCenterIcon from "../../icons/TextAlignCenterIcon.svelte";
 import TextAlignLeftIcon from "../../icons/TextAlignLeftIcon.svelte";
 import TextAlignRightIcon from "../../icons/TextAlignRightIcon.svelte";
 import { selectedObj, editor } from "../../store/store";
+import ColorWidget from "./ColorWidget.svelte";
 import FontSize from "./FontSize.svelte";
 import PostionSizeWidget from "./PostionSizeWidget.svelte";
 
@@ -30,25 +31,11 @@ const onAlignText = (pos) => {
   activeBtn();
   $editor.renderAll();
 };
-
-const onFillChange = (e) => {
-  $editor.getActiveObject().set({ fill: e.target.value });
-  $editor.renderAll();
-};
 </script>
 
 <main>
+  <ColorWidget />
   <FontSize />
-  <div class="item">
-    <div class="item-name">Color:</div>
-    <div class="item-data color">
-      <input
-        type="color"
-        value="{$selectedObj?.fill}"
-        name="fill"
-        on:input="{onFillChange}" />
-    </div>
-  </div>
   <PostionSizeWidget />
   <div class="item">
     <div class="item-name">Justify:</div>
@@ -92,18 +79,13 @@ main {
 }
 
 .item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  position: relative;
 }
-
 .item-name {
-  margin-right: 20px;
-}
-
-.color input {
-  width: 100px;
-  height: 30px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #ccc;
 }
 
 button {

@@ -1,24 +1,11 @@
 <script>
-import { selectedObj, editor } from "../../store/store";
+import ColorWidget from "./ColorWidget.svelte";
 import PostionSizeWidget from "./PostionSizeWidget.svelte";
-
-const onFillChange = (e) => {
-  $editor.getActiveObject().set({ fill: e.target.value });
-  $editor.renderAll();
-};
 </script>
 
 <main>
   <div>
-    <div class="item">
-      <div class="item-name">Color</div>
-      <div>
-        <input
-          type="color"
-          value="{$selectedObj?.fill}"
-          on:input="{onFillChange}" />
-      </div>
-    </div>
+    <ColorWidget />
     <PostionSizeWidget />
   </div>
 </main>
