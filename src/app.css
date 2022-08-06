@@ -85,3 +85,16 @@ svg {
 .action-btn svg {
   width: 18px;
 }
+
+.object-lock svg {
+  width: 15px;
+}
+
+.object-lock svg,
+.object-eye svg {
+  fill: #888;
+}
+
+.tab svg {
+  width: 18px !important;
+}

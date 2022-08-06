@@ -43,7 +43,7 @@ const onDelete = () => {
     $editor.remove(obj);
     $editor.getActiveObject(obj);
   });
-  $editor.requestRenderAll();
+  $editor.discardActiveObject().renderAll();
   $selectedObj = null;
 };
 

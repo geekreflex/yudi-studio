@@ -2,7 +2,7 @@
 import { editor, selectedObj } from "../store/store";
 import { onMount } from "svelte";
 import { dragElement } from "../utils/resize";
-import Layers from "./Layers.svelte";
+import StackPanel from "./StackPanel.svelte";
 
 onMount(() => {
   const first = document.getElementById("firstq");
@@ -29,7 +29,7 @@ const onFillChange = (e) => {
     </div>
     <div id="separatorq"></div>
     <div id="secondq" class="pane">
-      <Layers />
+      <StackPanel />
     </div>
   </div>
 </main>
