@@ -1,13 +1,14 @@
 <script>
 import { selectedObj } from "../store/store";
-import LayerIcon from "../icons/LayerIcon.svelte";
+import ToolsIcon from "../icons/ToolsIcon.svelte";
 import ToolOptions from "./ToolOptions.svelte";
+import CubeIcon from "../icons/CubeIcon.svelte";
 
 let activeTab = "Tool Options";
 
 const tabList = [
-  { name: "Tool Options", icon: LayerIcon },
-  { name: "Patterns", icon: LayerIcon },
+  { name: "Tool Options", icon: ToolsIcon },
+  { name: "Patterns", icon: CubeIcon },
 ];
 
 const onTabClick = (name) => {

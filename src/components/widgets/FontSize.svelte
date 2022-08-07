@@ -1,11 +1,9 @@
 <script>
 import { selectedObj, editor } from "../../store/store";
-import { onMount } from "svelte";
 
 $: fontSize = $selectedObj?.fontSize;
 
 const onFontSize = (e) => {
-  console.log(e.target.value, fontSize);
   $editor.getActiveObject().fontSize = parseInt(e.target.value);
   $editor.renderAll();
 };

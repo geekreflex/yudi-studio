@@ -40,9 +40,7 @@ const generateThumbnail = (item) => {
 </script>
 
 <main>
-  <p>History</p>
   <div class="history-list">
-    {$history.length}
     {#each $history as item, index}
       <div class="history" on:click="{() => onHistoryClick(item)}">
         <div class="history-preview">

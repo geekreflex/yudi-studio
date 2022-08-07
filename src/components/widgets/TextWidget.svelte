@@ -34,8 +34,8 @@ const onAlignText = (pos) => {
 </script>
 
 <main>
-  <ColorWidget />
   <FontSize />
+  <ColorWidget />
   <PostionSizeWidget />
   <div class="item">
     <div class="item-name">Justify:</div>

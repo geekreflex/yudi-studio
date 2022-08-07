@@ -7,20 +7,16 @@ import { items, editor, selectedObj } from "../store/store";
 import { fabric } from "fabric";
 import { onMount } from "svelte";
 
+let imgArr = [];
+
 onMount(() => {
   $editor.calcOffset();
+  $editor.on("object:added", () => {
+    generatePreview();
+  });
 });
 
-const generatePreview = (item) => {
-  const canElm = document.createElement("canvas");
-  const canvas = new fabric.Canvas(canElm);
-  canvas.setWidth($editor.getWidth());
-  canvas.setHeight($editor.getHeight());
-  canvas.add(item);
-  canvas.calcOffset();
-  // canvas.renderAll();
-  return canvas.toDataURL("png");
-};
+const generatePreview = (index) => {};
 
 const onObjectClick = (index) => {
   $editor.setActiveObject($editor.item(index));
@@ -36,6 +32,7 @@ const onVisibility = (e, index) => {
 };
 
 const onLockObject = (e, index) => {
+  console.log("jsjs");
   e.preventDefault();
   e.stopPropagation();
   const item = $editor.item(index);
@@ -46,6 +43,7 @@ const onLockObject = (e, index) => {
 </script>
 
 <main>
+  <canvas id="thumb"></canvas>
   <div class="objects">
     {#each $items as item, index}
       <div
@@ -69,7 +67,7 @@ const onLockObject = (e, index) => {
         </div>
         <div class="object-right-info">
           <div class="object-preview">
-            <!-- <img src="{generatePreview(item)}" alt="Preview" /> -->
+            <img src="{$editor.toDataURL('png')}" alt="Preview" />
           </div>
           <div class="object-name">Layer #{index + 1}- {item.type}</div>
         </div>
@@ -158,5 +156,10 @@ img {
   color: #ccc;
   white-space: nowrap;
   padding-right: 30px;
+}
+
+#thumb {
+  position: absolute;
+  visibility: hidden;
 }
 </style>

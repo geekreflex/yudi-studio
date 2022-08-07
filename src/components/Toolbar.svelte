@@ -6,10 +6,14 @@ import SquareIcon from "../icons/SquareIcon.svelte";
 import TriangleIcon from "../icons/TriangleIcon.svelte";
 import TextIcon from "../icons/TextIcon.svelte";
 import { editor, resizeModal, templatesModal, templates } from "../store/store";
-import CubeIcon from "../icons/CubeIcon.svelte";
+import LabelsIcon from "../icons/LabelsIcon.svelte";
 import StarIcon from "../icons/StarIcon.svelte";
 import PictureIcon2 from "../icons/PictureIcon2.svelte";
 import PolygonIcon from "../icons/PolygonIcon.svelte";
+import {
+  regularPolygonPoints,
+  starPolygonPoints,
+} from "../utils/polygonPoints";
 
 const addText = () => {
   const text = new fabric.Textbox("Click to edit", {
@@ -68,16 +72,16 @@ const onImgUpload = (e) => {
   reader.readAsDataURL(file);
 };
 
+const polyPoints = regularPolygonPoints(6, 100);
 const addPolygon = () => {
-  const polygon = new fabric.Polygon([
-    { x: 10, y: 10 },
-    { x: 50, y: 30 },
-    { x: 40, y: 70 },
-    { x: 60, y: 50 },
-    { x: 100, y: 150 },
-    { x: 40, y: 100 },
-  ]);
-  $editor.add(polygon);
+  const polygon = new fabric.Polygon(polyPoints);
+  $editor.centerObject(polygon).add(polygon).setActiveObject(polygon);
+};
+
+const starPoints = starPolygonPoints(5, 50, 100);
+const addStar = () => {
+  const star = new fabric.Polygon(starPoints);
+  $editor.centerObject(star).add(star).setActiveObject(star);
 };
 
 const onChooseTemp = () => {
@@ -93,7 +97,7 @@ const onChooseTemp = () => {
 <main>
   <input type="file" id="image-upload" on:change="{onImgUpload}" />
   <!-- <button on:click="{onChooseTemp}">Choose template</button> -->
-  <button><CubeIcon /></button>
+  <button><LabelsIcon /></button>
   <button on:click="{addTriangle}"> <TriangleIcon /> </button>
   <button on:click="{addText}">
     <TextIcon />
@@ -104,7 +108,7 @@ const onChooseTemp = () => {
   <button on:click="{addPicture}"> <PictureIcon2 /> </button>
   <!-- <button on:click="{addLine}">Line</button> -->
   <!-- <button on:click="{() => resizeModal.update(() => true)}">Resize</button> -->
-  <button><StarIcon /></button>
+  <button on:click="{addStar}"><StarIcon /></button>
   <button on:click="{addPolygon}"><PolygonIcon /></button>
 </main>
 

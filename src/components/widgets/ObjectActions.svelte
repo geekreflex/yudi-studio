@@ -4,6 +4,8 @@ import DoubleArrowAIcon from "../../icons/DoubleArrowAIcon.svelte";
 import CopyIcon from "../../icons/CopyIcon.svelte";
 import TrashIcon from "../../icons/TrashIcon.svelte";
 import { selectedObj, editor } from "../../store/store";
+import Horizontal from "../../icons/Horizontal.svelte";
+import VerticalIcon from "../../icons/VerticalIcon.svelte";
 
 const onSendBackward = () => {
   const objs = $editor.getActiveObjects();
@@ -45,6 +47,18 @@ const onDelete = () => {
   });
   $editor.discardActiveObject().renderAll();
   $selectedObj = null;
+};
+
+const flipX = () => {
+  let obj = $editor.getActiveObject();
+  obj.toggle("flipX");
+  $editor.requestRenderAll();
+};
+
+const flipY = () => {
+  let obj = $editor.getActiveObject();
+  obj.toggle("flipY");
+  $editor.requestRenderAll();
 };
 
 const onDuplicate = () => {
@@ -89,6 +103,12 @@ const onDuplicate = () => {
   </button>
   <button class="action-btn" on:click="{onDelete}">
     <TrashIcon />
+  </button>
+  <button class="action-btn" on:click="{flipX}">
+    <Horizontal />
+  </button>
+  <button class="action-btn" on:click="{flipY}">
+    <VerticalIcon />
   </button>
 </main>
 
