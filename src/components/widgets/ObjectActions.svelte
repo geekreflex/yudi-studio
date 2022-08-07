@@ -49,13 +49,13 @@ const onDelete = () => {
   $selectedObj = null;
 };
 
-const flipX = () => {
+const onflipX = () => {
   let obj = $editor.getActiveObject();
   obj.toggle("flipX");
   $editor.requestRenderAll();
 };
 
-const flipY = () => {
+const onflipY = () => {
   let obj = $editor.getActiveObject();
   obj.toggle("flipY");
   $editor.requestRenderAll();
@@ -104,10 +104,10 @@ const onDuplicate = () => {
   <button class="action-btn" on:click="{onDelete}">
     <TrashIcon />
   </button>
-  <button class="action-btn" on:click="{flipX}">
+  <button class="action-btn" on:click="{onflipX}">
     <Horizontal />
   </button>
-  <button class="action-btn" on:click="{flipY}">
+  <button class="action-btn" on:click="{onflipY}">
     <VerticalIcon />
   </button>
 </main>

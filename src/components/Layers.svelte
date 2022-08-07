@@ -80,13 +80,13 @@ const onLockObject = (e, index) => {
 main {
   padding: 5px 0;
   display: flex;
-  width: 100%;
   flex: 1;
+  width: 100%;
 }
 .objects {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  flex: 1;
 }
 
 .object {

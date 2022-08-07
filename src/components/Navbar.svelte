@@ -9,6 +9,7 @@ import {
   selectedObj,
 } from "../store/store";
 import ObjectActions from "./widgets/ObjectActions.svelte";
+import UndoRedo from "./widgets/UndoRedo.svelte";
 
 const onPreview = () => {
   preview.set($editor.toDataURL("png"));
@@ -28,6 +29,7 @@ const onGroup = () => {
 <main>
   <div class="left">
     <ObjectActions />
+    <UndoRedo />
     <!-- <button on:click="{onGroup}">group</button> -->
   </div>
   <div class="right">

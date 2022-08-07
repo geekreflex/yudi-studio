@@ -1,30 +1,12 @@
 <script>
 import { fabric } from "fabric";
 
-import { editor, history } from "../store/store";
+import { editor, history, historyMods } from "../store/store";
 
-// function undo() {
-//   if ($historyMods < $history.length) {
-//     const prevHistoryObj = $history[$history.length - 1 - $historyMods - 1];
-//     $editor.loadFromJSON(prevHistoryObj, () => {
-//       $historyMods++;
-//     });
-//   }
-// }
-
-// function redo() {
-//   if ($historyMods > 0) {
-//     const nextHistoryObj = $history[$history.length - 1 - $historyMods + 1];
-//     $editor.loadFromJSON(nextHistoryObj, () => {
-//       $historyMods - 1;
-//     });
-//   }
-// }
-
-// function clear() {
-//   $history = [];
-//   $historyMods = 0;
-// }
+const onClear = () => {
+  $history = [];
+  $historyMods = 0;
+};
 
 const onHistoryClick = (item) => {
   $editor.loadFromJSON(item);
@@ -50,17 +32,25 @@ const generateThumbnail = (item) => {
       </div>
     {/each}
   </div>
+  <footer>
+    <button on:click="{onClear}">clear</button>
+  </footer>
 </main>
 
 <style>
 main {
   display: flex;
   flex-direction: column;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
 }
 
 .history-list {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  overflow: auto;
 }
 
 .history {
@@ -91,5 +81,13 @@ main {
 .history-name {
   margin-left: 20px;
   white-space: nowrap;
+}
+
+footer {
+  height: 50px;
+  border-top: 1px solid #333;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
 }
 </style>
