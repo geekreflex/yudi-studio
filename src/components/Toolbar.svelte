@@ -10,48 +10,17 @@ import LabelsIcon from "../icons/LabelsIcon.svelte";
 import StarIcon from "../icons/StarIcon.svelte";
 import PictureIcon2 from "../icons/PictureIcon2.svelte";
 import PolygonIcon from "../icons/PolygonIcon.svelte";
+import PainBrushIcon from "../icons/PainBrushIcon.svelte";
 import {
-  regularPolygonPoints,
-  starPolygonPoints,
-} from "../utils/polygonPoints";
-
-const addText = () => {
-  const text = new fabric.Textbox("Click to edit", {
-    width: 200,
-  });
-  $editor.centerObject(text).add(text).setActiveObject(text);
-};
-
-const addTriangle = () => {
-  const triangle = new fabric.Triangle();
-  $editor.centerObject(triangle).add(triangle).setActiveObject(triangle);
-};
-
-const addRectangle = () => {
-  const rect = new fabric.Rect({
-    width: 100,
-    height: 100,
-  });
-  $editor.centerObject(rect).add(rect).setActiveObject(rect);
-  $editor.calcOffset();
-};
-
-const addCircle = () => {
-  const circle = new fabric.Circle({
-    radius: 50,
-  });
-  $editor.centerObject(circle).add(circle).setActiveObject(circle);
-};
-
-const addLine = () => {
-  const line = new fabric.Line([50, 100, 200, 200], {
-    left: 170,
-    top: 150,
-    stroke: "000000",
-  });
-
-  $editor.centerObject(line).add(line).setActiveObject(line);
-};
+  addText,
+  addCircle,
+  addTriangle,
+  addRectangle,
+  addLine,
+  addPolygon,
+  addStar,
+  addFreeDrawing,
+} from "../functions/addFunctions";
 
 const addPicture = () => {
   let imgUploader = document.getElementById("image-upload");
@@ -69,18 +38,6 @@ const onImgUpload = (e) => {
     });
   };
   reader.readAsDataURL(file);
-};
-
-const polyPoints = regularPolygonPoints(5, 100);
-const addPolygon = () => {
-  const polygon = new fabric.Polygon(polyPoints, { name: "regpoly" });
-  $editor.centerObject(polygon).add(polygon).setActiveObject(polygon);
-};
-
-const starPoints = starPolygonPoints(5, 50, 100);
-const addStar = () => {
-  const star = new fabric.Polygon(starPoints, { name: "star" });
-  $editor.centerObject(star).add(star).setActiveObject(star);
 };
 
 const onChooseTemp = () => {
@@ -109,6 +66,7 @@ const onChooseTemp = () => {
   <!-- <button on:click="{() => resizeModal.update(() => true)}">Resize</button> -->
   <button on:click="{addStar}"><StarIcon /></button>
   <button on:click="{addPolygon}"><PolygonIcon /></button>
+  <button on:click="{addFreeDrawing}"><PainBrushIcon /></button>
 </main>
 
 <style>

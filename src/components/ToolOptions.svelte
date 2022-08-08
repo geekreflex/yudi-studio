@@ -7,9 +7,14 @@ import TriangleTool from "./tools/TriangleTool.svelte";
 import RectTool from "./tools/RectTool.svelte";
 import MutipleTool from "./tools/MutipleTool.svelte";
 import PolygonTool from "./tools/PolygonTool.svelte";
+import FreeDrawingTool from "./tools/FreeDrawingTool.svelte";
+// import {editor}
 </script>
 
 <main>
+  <div class="widget" class:visible="{$selectedObj?.type === 'path'}">
+    <FreeDrawingTool />
+  </div>
   <div class="widget" class:visible="{$selectedObj?.type === 'textbox'}">
     <TextTool />
   </div>

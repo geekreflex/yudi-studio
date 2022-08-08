@@ -20,7 +20,7 @@ import { selectedObj } from "../../store/store";
         <input
           id="left"
           type="number"
-          value="{($selectedObj?.left).toFixed(3)}"
+          value="{$selectedObj?.left?.toFixed(3)}"
           on:input="{(e) => onLeftPos(e.target.value)}" />
       </div>
       <div class="input-wrap">
@@ -28,7 +28,7 @@ import { selectedObj } from "../../store/store";
         <input
           id="top"
           type="number"
-          value="{($selectedObj?.top).toFixed(3)}"
+          value="{$selectedObj?.top?.toFixed(3)}"
           on:input="{(e) => onRightPos(e.target.value)}" />
       </div>
     </div>

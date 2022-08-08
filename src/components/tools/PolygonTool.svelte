@@ -3,8 +3,9 @@ import {
   onPolygonCorners,
   onStarSpokeRatio,
 } from "../../functions/editorFunctions";
-
 import { selectedObj } from "../../store/store";
+import Color from "../excerpts/Color.svelte";
+import PostionSize from "../excerpts/PostionSize.svelte";
 
 let renderPolySize = () => {
   if ($selectedObj?.name === "regpoly") {
@@ -18,6 +19,8 @@ let renderPolySize = () => {
 </script>
 
 <main>
+  <Color />
+  <PostionSize />
   <div class="item">
     <div class="item-name">Corners:</div>
     <div class="item-data">

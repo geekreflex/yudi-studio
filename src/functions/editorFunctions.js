@@ -151,7 +151,6 @@ export const onLogObject = () => {
 };
 
 export const onPolygonCorners = (val, name) => {
-  console.log(val);
   if (val < 3) {
     return;
   }
@@ -167,9 +166,7 @@ export const onPolygonCorners = (val, name) => {
 
 export const onStarSpokeRatio = (val) => {
   let corners = canvas.getActiveObject().points.length / 2;
-  console.log(corners, val);
   let newPoints = starPolygonPoints(corners, val, 100);
-  console.log(newPoints);
   canvas.getActiveObject().set("points", newPoints).setCoords();
   canvas.renderAll();
 };
