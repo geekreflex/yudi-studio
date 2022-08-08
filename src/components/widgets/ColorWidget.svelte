@@ -1,14 +1,11 @@
 <script>
-import { selectedObj, editor } from "../../store/store";
+// @ts-nocheck
+import { onFillChange, onOpacityChange } from "../../functions/editorFunctions";
 
-const onFillChange = (e) => {
-  $editor.getActiveObject().set({ fill: e.target.value });
-  $editor.renderAll();
-};
+import { selectedObj, colorModal } from "../../store/store";
 
-const onOpacityChange = (e) => {
-  $editor.getActiveObject().set({ opacity: e.target.value });
-  $editor.renderAll();
+const onColorPicker = () => {
+  $colorModal = true;
 };
 </script>
 
@@ -19,13 +16,14 @@ const onOpacityChange = (e) => {
       <label
         for="fill-color"
         class="color-block"
-        style="background: {$selectedObj?.fill}">
+        style="background: {$selectedObj?.fill}"
+        on:click="{onColorPicker}">
         <input
           id="fill-color"
           type="color"
           value="{$selectedObj?.fill}"
           name="fill"
-          on:input="{onFillChange}" />
+          on:input="{(e) => onFillChange(e.target.value)}" />
       </label>
     </div>
   </div>
@@ -39,7 +37,7 @@ const onOpacityChange = (e) => {
         max="1"
         step="0.01"
         value="{$selectedObj?.opacity}"
-        on:input="{onOpacityChange}" />
+        on:input="{(e) => onOpacityChange(e.target.value)}" />
     </div>
   </div>
 </main>
@@ -48,15 +46,7 @@ const onOpacityChange = (e) => {
 main {
   position: relative;
 }
-.item {
-  margin-bottom: 10px;
-  position: relative;
-}
-.item-name {
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: #ccc;
-}
+
 .color-block {
   width: 100px;
   height: 30px;

@@ -1,12 +1,8 @@
 <script>
-import { selectedObj, editor } from "../../store/store";
+import { onFontSize } from "../../functions/editorFunctions";
+import { selectedObj } from "../../store/store";
 
 $: fontSize = $selectedObj?.fontSize;
-
-const onFontSize = (e) => {
-  $editor.getActiveObject().fontSize = parseInt(e.target.value);
-  $editor.renderAll();
-};
 </script>
 
 <main>
@@ -19,7 +15,7 @@ const onFontSize = (e) => {
           type="number"
           value="{fontSize}"
           name="size"
-          on:input="{onFontSize}" />
+          on:input="{(e) => onFontSize(e.target.value)}" />
       </div>
     </div>
   </div>

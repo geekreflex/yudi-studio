@@ -12,3 +12,4 @@ export const selectedObj = writable();
 export const items = writable([]);
 export const history = writable([]);
 export const historyMods = writable(0);
+export const colorModal = writable(false);

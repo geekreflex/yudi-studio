@@ -1,130 +1,69 @@
-// import crypto from "crypto";
+/*****
+ *
+ * Group object
+ */
+var canvas = new fabric.Canvas("c");
+canvas.backgroundColor = "yellow";
 
-// console.log(crypto);
-// console.log("");
-// console.log("PHONE_NUMBER:", "+1(909)-269-6515");
-// console.log("BANK_CLONING:", "[========= ]94%");
-// console.log("SOCIAL_MEDIA_CLONING:", "[========= ]82%");
-// console.log("CREDIT_CARD_CLONING:", "[========= ]91%");
-// console.log("GMAIL_CLONING: ", "[========= ]97%");
-// console.log("CAMERA_CLONING ", "[========= ]85%");
-// console.log("MOBILE_DEVICE", "{{ COMPROMISED [**TARGET**] }}");
-// console.log("");
-// console.log(global);
+//create circle object
+var circle = new fabric.Circle({
+  radius: 20,
+  fill: "red",
+  left: 100,
+  top: 100,
+});
+canvas.add(circle);
 
-// <script>
-// import { templatesModal, editor } from "../store/store";
-// import templates from "../templates/list";
-// import { fabric } from "fabric";
-// import { toDataURL } from "../utils/toDataUrl";
-// import Modal from "./Modal.svelte";
+//create square object
+var square = new fabric.Rect({
+  left: 130,
+  top: 140,
+  fill: "green",
+  width: 40,
+  height: 80,
+});
+canvas.add(square);
 
-// const renderTemplate = (temp) => {
-//   $editor.clear();
-//   let items = templates[temp];
-//   const { backgroundColor, width, height, objects } = items;
-//   $editor.setDimensions({ width, height });
-//   $editor.set({ backgroundColor });
-//   renderObjects(objects);
-//   closeModal();
-// };
+canvas.renderAll();
 
-// const renderObjects = (objs) => {
-//   objs.map((ob) => {
-//     if (ob.type === "text") {
-//       renderTexts(ob);
-//     }
+$("#groupthem").on("click", function (event) {
+  groupthem();
+});
 
-//     if (ob.type === "image") {
-//       renderImages(ob);
-//     }
+var site_url = "http://fabricjs.com/assets/1.svg";
 
-//     if (ob.type === "triangle") {
-//       renderTriangle(ob);
-//     }
+fabric.loadSVGFromURL(site_url, function (objects) {
+  var group = new fabric.PathGroup(objects, {
+    left: 165,
+    top: 100,
+    width: 295,
+    height: 211,
+  });
+  canvas.add(group);
+  canvas.renderAll();
+});
 
-//     if (ob.type === "circle") {
-//       renderCircle(ob);
-//     }
-//   });
-// };
+function groupthem() {
+  var objs = [];
+  //get all the objects into an array
+  objs = canvas._objects.filter(function (obj) {
+    return obj;
+  });
 
-// const renderTexts = (text) => {
-//   const t = new fabric.Textbox(text.content, { ...text });
-//   $editor.add(t);
-// };
+  //group all the objects
+  var alltogetherObj = new fabric.Group(objs, {
+    top: 200,
+    left: 250,
+    originX: "center",
+    originY: "center",
+  });
 
-// const renderImages = (image) => {
-//   toDataURL(image.url).then((dataUrl) => {
-//     fabric.Image.fromURL(dataUrl, (img) => {
-//       img.scaleToWidth(200);
-//       img.set({ ...image });
-//       $editor.add(img);
-//     });
-//   });
-// };
+  //clear previous objects
+  canvas._objects.forEach(function (obj) {
+    obj.remove();
+  });
 
-// const renderTriangle = (triangle) => {
-//   const t = new fabric.Triangle({
-//     ...triangle,
-//   });
-//   $editor.add(t);
-// };
-
-// const renderCircle = (circle) => {
-//   const c = new fabric.Circle({
-//     ...circle,
-//   });
-//   $editor.add(c);
-// };
-
-// const closeModal = () => {
-//   templatesModal.update(() => false);
-// };
-
-// const renderBlank = () => {
-//   $editor.clear();
-//   $editor.setDimensions({ width: 600, height: 500 });
-//   $editor.set({ backgroundColor: "white" });
-//   closeModal();
-// };
-
-// fetch("http://localhost:8400/api/templates")
-//   .then((res) => res.json())
-//   .then((data) => console.log(data));
-// </script>
-
-// <Modal visible="{$templatesModal}" close="{closeModal}" title="Templates">
-//   <main>
-//     <div class="template-list">
-//       <div class="template" on:click="{renderBlank}">Blank</div>
-//       <div class="template" on:click="{() => renderTemplate('pyramid')}">
-//         Pyramid
-//       </div>
-//       <div class="template" on:click="{() => renderTemplate('birthday')}">
-//         Birthday
-//       </div>
-//     </div>
-//   </main>
-// </Modal>
-
-// <style>
-// main {
-//   width: 750px;
-// }
-
-// .template-list {
-//   display: flex;
-// }
-
-// .template {
-//   height: 100px;
-//   width: 100px;
-//   border: 1px solid #666;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   cursor: pointer;
-//   color: #fff;
-// }
-// </style>
+  canvas.add(alltogetherObj);
+  alltogether.setCoords();
+  canvas.renderAll();
+}

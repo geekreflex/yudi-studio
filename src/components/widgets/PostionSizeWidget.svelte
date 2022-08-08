@@ -1,49 +1,16 @@
 <script>
-import { onMount } from "svelte";
+// @ts-nocheck
 
-import { selectedObj, editor } from "../../store/store";
+import {
+  onHeightChange,
+  onLeftPos,
+  onRightPos,
+  onWidthChange,
+  skewX,
+  skewY,
+} from "../../functions/editorFunctions";
 
-const onLeftPos = (e) => {
-  let val = e.target.value;
-  $editor.getActiveObject().set("left", parseInt(val, 10)).setCoords();
-  $editor.requestRenderAll();
-};
-
-const onRightPos = (e) => {
-  let val = e.target.value;
-  $editor.getActiveObject().set("top", parseInt(val, 10)).setCoords();
-  $editor.requestRenderAll();
-};
-
-const onWidthChange = (e) => {
-  let val = e.target.value;
-  if ($selectedObj.type === "circle") {
-    $editor
-      .getActiveObject()
-      .set("radius", parseInt(val) / 2)
-      .setCoords();
-    $editor.requestRenderAll();
-    return;
-  }
-
-  $editor.getActiveObject().set("width", parseInt(val)).setCoords();
-  $editor.requestRenderAll();
-};
-
-const onHeightChange = (e) => {
-  let val = e.target.value;
-
-  if ($selectedObj.type === "circle") {
-    $editor
-      .getActiveObject()
-      .set("radius", parseInt(val) / 2)
-      .setCoords();
-    $editor.requestRenderAll();
-    return;
-  }
-  $editor.getActiveObject().set("height", parseInt(val)).setCoords();
-  $editor.requestRenderAll();
-};
+import { selectedObj } from "../../store/store";
 </script>
 
 <main>
@@ -56,7 +23,7 @@ const onHeightChange = (e) => {
           id="left"
           type="number"
           value="{($selectedObj?.left).toFixed(3)}"
-          on:input="{onLeftPos}" />
+          on:input="{(e) => onLeftPos(e.target.value)}" />
       </div>
       <div class="input-wrap">
         <label for="top">Y:</label>
@@ -64,7 +31,7 @@ const onHeightChange = (e) => {
           id="top"
           type="number"
           value="{($selectedObj?.top).toFixed(3)}"
-          on:input="{onRightPos}" />
+          on:input="{(e) => onRightPos(e.target.value)}" />
       </div>
     </div>
   </div>
@@ -77,7 +44,7 @@ const onHeightChange = (e) => {
           id="width"
           type="number"
           value="{($selectedObj?.width * $selectedObj?.scaleX).toFixed(3)}"
-          on:input="{onWidthChange}" />
+          on:input="{(e) => onWidthChange(e.target.value)}" />
       </div>
       <div class="input-wrap">
         <label for="height">H:</label>
@@ -85,8 +52,36 @@ const onHeightChange = (e) => {
           id="height"
           type="number"
           value="{($selectedObj?.height * $selectedObj?.scaleY).toFixed(3)}"
-          on:input="{onHeightChange}" />
+          on:input="{(e) => onHeightChange(e.target.value)}" />
       </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-name">SkewX:</div>
+    <div class="item-data opacity">
+      <input
+        id="range"
+        type="range"
+        min="{-100}"
+        start="1"
+        max="100"
+        step="1"
+        value="{$selectedObj?.skewX}"
+        on:input="{(e) => skewX(e.target.value)}" />
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-name">SkewY:</div>
+    <div class="item-data opacity">
+      <input
+        id="range"
+        type="range"
+        min="{-100}"
+        start="1"
+        max="100"
+        step="1"
+        value="{$selectedObj?.skewY}"
+        on:input="{(e) => skewY(e.target.value)}" />
     </div>
   </div>
 </main>

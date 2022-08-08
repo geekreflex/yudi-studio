@@ -1,5 +1,6 @@
 <script>
 import { fabric } from "fabric";
+import TrashIcon from "../icons/TrashIcon.svelte";
 
 import { editor, history, historyMods } from "../store/store";
 
@@ -33,7 +34,9 @@ const generateThumbnail = (item) => {
     {/each}
   </div>
   <footer>
-    <button on:click="{onClear}">clear</button>
+    <button class="action-btn" on:click="{onClear}">
+      <TrashIcon />
+    </button>
   </footer>
 </main>
 
@@ -84,7 +87,7 @@ main {
 }
 
 footer {
-  height: 50px;
+  height: 40px;
   border-top: 1px solid #333;
   display: flex;
   align-items: center;

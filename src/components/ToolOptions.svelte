@@ -1,19 +1,30 @@
 <script>
-import TextWidget from "./widgets/TextWidget.svelte";
-import CircleWidget from "./widgets/CircleWidget.svelte";
+// @ts-nocheck
 import { selectedObj } from "../store/store";
-import TriangleWidget from "./widgets/TriangleWidget.svelte";
+import TextTool from "./tools/TextTool.svelte";
+import CircleTool from "./tools/CircleTool.svelte";
+import TriangleTool from "./tools/TriangleTool.svelte";
+import RectTool from "./tools/RectTool.svelte";
+import MutipleTool from "./tools/MutipleTool.svelte";
 </script>
 
 <main>
   <div class="widget" class:visible="{$selectedObj?.type === 'textbox'}">
-    <TextWidget />
+    <TextTool />
   </div>
   <div class="widget" class:visible="{$selectedObj?.type === 'circle'}">
-    <CircleWidget />
+    <CircleTool />
   </div>
   <div class="widget" class:visible="{$selectedObj?.type === 'triangle'}">
-    <TriangleWidget />
+    <TriangleTool />
+  </div>
+  <div class="widget" class:visible="{$selectedObj?.type === 'rect'}">
+    <RectTool />
+  </div>
+  <div
+    class="widget"
+    class:visible="{$selectedObj?.type === 'activeSelection'}">
+    <MutipleTool />
   </div>
 </main>
 

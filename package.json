@@ -14,7 +14,9 @@
     "vite": "^3.0.0"
   },
   "dependencies": {
+    "@jaames/iro": "^5.5.2",
     "fabric": "^5.2.1",
+    "fontfaceobserver": "^2.3.0",
     "uuid": "^8.3.2"
   }
 }

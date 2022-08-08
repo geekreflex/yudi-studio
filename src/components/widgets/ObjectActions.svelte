@@ -3,76 +3,19 @@ import ArrowIcon from "../../icons/ArrowIcon.svelte";
 import DoubleArrowAIcon from "../../icons/DoubleArrowAIcon.svelte";
 import CopyIcon from "../../icons/CopyIcon.svelte";
 import TrashIcon from "../../icons/TrashIcon.svelte";
-import { selectedObj, editor } from "../../store/store";
+import { selectedObj } from "../../store/store";
 import Horizontal from "../../icons/Horizontal.svelte";
 import VerticalIcon from "../../icons/VerticalIcon.svelte";
-
-const onSendBackward = () => {
-  const objs = $editor.getActiveObjects();
-  objs.map((obj) => {
-    $editor.sendBackwards(obj);
-  });
-  $editor.requestRenderAll();
-};
-
-const onBringForward = () => {
-  const objs = $editor.getActiveObjects();
-  objs.map((obj) => {
-    $editor.bringForward(obj);
-  });
-  $editor.requestRenderAll();
-};
-
-const onBringToFront = () => {
-  const objs = $editor.getActiveObjects();
-  objs.map((obj) => {
-    $editor.bringToFront(obj);
-  });
-  $editor.requestRenderAll();
-};
-
-const onSendToBack = () => {
-  const objs = $editor.getActiveObjects();
-  objs.map((obj) => {
-    $editor.sendToBack(obj);
-  });
-  $editor.requestRenderAll();
-};
-
-const onDelete = () => {
-  let objs = $editor.getActiveObjects();
-  objs.map((obj) => {
-    $editor.remove(obj);
-    $editor.getActiveObject(obj);
-  });
-  $editor.discardActiveObject().renderAll();
-  $selectedObj = null;
-};
-
-const onflipX = () => {
-  let obj = $editor.getActiveObject();
-  obj.toggle("flipX");
-  $editor.requestRenderAll();
-};
-
-const onflipY = () => {
-  let obj = $editor.getActiveObject();
-  obj.toggle("flipY");
-  $editor.requestRenderAll();
-};
-
-const onDuplicate = () => {
-  let object = $editor.getActiveObject();
-
-  object.clone(function (clone) {
-    $editor.add(
-      clone.set({
-        left: object.left + 10,
-        top: object.top + 10,
-      })
-    );
-  });
-};
+import {
+  onDelete,
+  onDuplicate,
+  onSendBackward,
+  onSendToBack,
+  onBringForward,
+  onBringToFront,
+  onFlipX,
+  onFlipY,
+} from "../../functions/editorFunctions";
 </script>
 
 <main class="{$selectedObj ? 'visible' : 'hidden'}">
@@ -104,10 +47,10 @@ const onDuplicate = () => {
   <button class="action-btn" on:click="{onDelete}">
     <TrashIcon />
   </button>
-  <button class="action-btn" on:click="{onflipX}">
+  <button class="action-btn" on:click="{onFlipX}">
     <Horizontal />
   </button>
-  <button class="action-btn" on:click="{onflipY}">
+  <button class="action-btn" on:click="{onFlipY}">
     <VerticalIcon />
   </button>
 </main>

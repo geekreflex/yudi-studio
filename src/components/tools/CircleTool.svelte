@@ -1,6 +1,6 @@
 <script>
-import ColorWidget from "./ColorWidget.svelte";
-import PostionSizeWidget from "./PostionSizeWidget.svelte";
+import ColorWidget from "../widgets/ColorWidget.svelte";
+import PostionSizeWidget from "../widgets/PostionSizeWidget.svelte";
 </script>
 
 <main>

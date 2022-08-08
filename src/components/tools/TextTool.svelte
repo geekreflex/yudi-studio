@@ -5,9 +5,10 @@ import TextAlignCenterIcon from "../../icons/TextAlignCenterIcon.svelte";
 import TextAlignLeftIcon from "../../icons/TextAlignLeftIcon.svelte";
 import TextAlignRightIcon from "../../icons/TextAlignRightIcon.svelte";
 import { selectedObj, editor } from "../../store/store";
-import ColorWidget from "./ColorWidget.svelte";
-import FontSize from "./FontSize.svelte";
-import PostionSizeWidget from "./PostionSizeWidget.svelte";
+import ColorWidget from "../widgets/ColorWidget.svelte";
+import FontFamily from "../widgets/FontFamily.svelte";
+import FontSize from "../widgets/FontSize.svelte";
+import PostionSizeWidget from "../widgets/PostionSizeWidget.svelte";
 
 onMount(() => {
   activeBtn();
@@ -34,6 +35,7 @@ const onAlignText = (pos) => {
 </script>
 
 <main>
+  <FontFamily />
   <FontSize />
   <ColorWidget />
   <PostionSizeWidget />
