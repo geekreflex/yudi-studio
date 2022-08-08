@@ -1,6 +1,6 @@
 <script>
 // @ts-nocheck
-import { selectedObj } from "../store/store";
+import { selectedObj, freeDrawingMode } from "../store/store";
 import TextTool from "./tools/TextTool.svelte";
 import CircleTool from "./tools/CircleTool.svelte";
 import TriangleTool from "./tools/TriangleTool.svelte";
@@ -8,33 +8,35 @@ import RectTool from "./tools/RectTool.svelte";
 import MutipleTool from "./tools/MutipleTool.svelte";
 import PolygonTool from "./tools/PolygonTool.svelte";
 import FreeDrawingTool from "./tools/FreeDrawingTool.svelte";
-// import {editor}
 </script>
 
 <main>
-  <div class="widget" class:visible="{$selectedObj?.type === 'path'}">
-    <FreeDrawingTool />
-  </div>
-  <div class="widget" class:visible="{$selectedObj?.type === 'textbox'}">
-    <TextTool />
-  </div>
-  <div class="widget" class:visible="{$selectedObj?.type === 'circle'}">
-    <CircleTool />
-  </div>
-  <div class="widget" class:visible="{$selectedObj?.type === 'triangle'}">
-    <TriangleTool />
-  </div>
-  <div class="widget" class:visible="{$selectedObj?.type === 'rect'}">
-    <RectTool />
-  </div>
-  <div class="widget" class:visible="{$selectedObj?.type === 'polygon'}">
-    <PolygonTool />
-  </div>
-  <div
-    class="widget"
-    class:visible="{$selectedObj?.type === 'activeSelection'}">
-    <MutipleTool />
-  </div>
+  {#if $freeDrawingMode}
+    <div class="widget" class:visible="{$freeDrawingMode}">
+      <FreeDrawingTool />
+    </div>
+  {:else}
+    <div class="widget" class:visible="{$selectedObj?.type === 'textbox'}">
+      <TextTool />
+    </div>
+    <div class="widget" class:visible="{$selectedObj?.type === 'circle'}">
+      <CircleTool />
+    </div>
+    <div class="widget" class:visible="{$selectedObj?.type === 'triangle'}">
+      <TriangleTool />
+    </div>
+    <div class="widget" class:visible="{$selectedObj?.type === 'rect'}">
+      <RectTool />
+    </div>
+    <div class="widget" class:visible="{$selectedObj?.type === 'polygon'}">
+      <PolygonTool />
+    </div>
+    <div
+      class="widget"
+      class:visible="{$selectedObj?.type === 'activeSelection'}">
+      <MutipleTool />
+    </div>
+  {/if}
 </main>
 
 <style>

@@ -4,19 +4,6 @@ import ChainOnIcon from "../icons/ChainOnIcon.svelte";
 import EyeOffIcon from "../icons/EyeOffIcon.svelte";
 import EyeOneIcon from "../icons/EyeOneIcon.svelte";
 import { items, editor, selectedObj } from "../store/store";
-import { fabric } from "fabric";
-import { onMount } from "svelte";
-
-let imgArr = [];
-
-onMount(() => {
-  $editor.calcOffset();
-  $editor.on("object:added", () => {
-    generatePreview();
-  });
-});
-
-const generatePreview = (index) => {};
 
 const onObjectClick = (index) => {
   $editor.setActiveObject($editor.item(index));
@@ -67,7 +54,7 @@ const onLockObject = (e, index) => {
         </div>
         <div class="object-right-info">
           <div class="object-preview">
-            <img src="{$editor.toDataURL('png')}" alt="Preview" />
+            <img src="{$editor.toDataURL()}" alt="Preview" />
           </div>
           <div class="object-name">Layer #{index + 1}- {item.type}</div>
         </div>

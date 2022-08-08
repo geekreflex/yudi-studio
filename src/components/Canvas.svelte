@@ -24,8 +24,10 @@ onMount(() => {
 
   canvas.setDimensions({ width: 500, height: 500 });
 
+  canvas.on("object:added", (e) => {
+    historyChanged();
+  });
   canvas.on("object:modified", historyChanged);
-  canvas.on("object:added", historyChanged);
   canvas.on("object:removed", historyChanged);
 
   canvas.on("before:render", () => {

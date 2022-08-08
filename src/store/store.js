@@ -14,3 +14,4 @@ export const history = writable([]);
 export const historyMods = writable(0);
 export const colorWidget = writable(false);
 export const skewWidget = writable(false);
+export const freeDrawingMode = writable(false);

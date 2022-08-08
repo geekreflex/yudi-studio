@@ -5,7 +5,13 @@ import PictureIcon from "../icons/PictureIcon.svelte";
 import SquareIcon from "../icons/SquareIcon.svelte";
 import TriangleIcon from "../icons/TriangleIcon.svelte";
 import TextIcon from "../icons/TextIcon.svelte";
-import { editor, resizeModal, templatesModal, templates } from "../store/store";
+import {
+  editor,
+  resizeModal,
+  templatesModal,
+  templates,
+  freeDrawingMode,
+} from "../store/store";
 import LabelsIcon from "../icons/LabelsIcon.svelte";
 import StarIcon from "../icons/StarIcon.svelte";
 import PictureIcon2 from "../icons/PictureIcon2.svelte";
@@ -66,7 +72,8 @@ const onChooseTemp = () => {
   <!-- <button on:click="{() => resizeModal.update(() => true)}">Resize</button> -->
   <button on:click="{addStar}"><StarIcon /></button>
   <button on:click="{addPolygon}"><PolygonIcon /></button>
-  <button on:click="{addFreeDrawing}"><PainBrushIcon /></button>
+  <button class:active="{$freeDrawingMode}" on:click="{addFreeDrawing}"
+    ><PainBrushIcon /></button>
 </main>
 
 <style>
@@ -86,6 +93,7 @@ main {
   border-radius: 6px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
   border: 1px solid #333;
+  align-items: center;
 }
 
 button {
@@ -94,10 +102,16 @@ button {
   background: transparent;
   color: #fff;
   height: 50px;
+  width: 50px;
   cursor: pointer;
+  border-radius: 8px;
 }
 
 button:hover {
   opacity: 0.5;
+}
+
+.active {
+  background-color: #08080a;
 }
 </style>
