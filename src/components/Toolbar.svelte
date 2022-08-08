@@ -38,7 +38,6 @@ const addRectangle = () => {
 
 const addCircle = () => {
   const circle = new fabric.Circle({
-    fill: "#009aff",
     radius: 50,
   });
   $editor.centerObject(circle).add(circle).setActiveObject(circle);
@@ -48,7 +47,7 @@ const addLine = () => {
   const line = new fabric.Line([50, 100, 200, 200], {
     left: 170,
     top: 150,
-    stroke: "black",
+    stroke: "000000",
   });
 
   $editor.centerObject(line).add(line).setActiveObject(line);
