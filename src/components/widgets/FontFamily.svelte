@@ -5,7 +5,6 @@ import { selectedObj, editor } from "../../store/store";
 const fontList = [
   "Helvetica",
   "Arial",
-  "Sans serif",
   "Times New Roman",
   "Ubuntu",
   "Poppins",
@@ -14,6 +13,17 @@ const fontList = [
 
 const onFontFamilyChange = (font) => {
   const myfont = new FontFaceObserver(font);
+
+  if (
+    font === "Ubuntu" ||
+    font === "Times New Roman" ||
+    font === "Helvetica" ||
+    font === "Arial"
+  ) {
+    $editor.getActiveObject().set("fontFamily", font);
+    $editor.renderAll();
+    return;
+  }
 
   myfont
     .load()

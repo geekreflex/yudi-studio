@@ -12,7 +12,6 @@ let selectedColor;
 onMount(() => {
   colorPicker = new iro.ColorPicker("#picker", {
     width: 320,
-    color: $selectedObj?.fill,
     colors: ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)"],
     handleRadius: 9,
     borderWidth: 1,
