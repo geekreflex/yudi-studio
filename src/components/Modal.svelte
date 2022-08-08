@@ -6,8 +6,8 @@ export let title;
 
 <main class:visible>
   <div class="overlay" on:click="{close}"></div>
-  <div class="modal-main">
-    <nav class="header">
+  <div class="modal-main" id="dragable">
+    <nav class="header" id="dragzone">
       <div class="title">{title}</div>
     </nav>
     <div class="children">
@@ -41,7 +41,7 @@ main {
 }
 
 .modal-main {
-  position: relative;
+  position: absolute;
   background-color: #111;
   border: 1px solid #555;
   border-radius: 10px;
@@ -61,6 +61,7 @@ main {
   justify-content: center;
   padding: 10px;
   border-bottom: 1px solid #555;
+  border: 1px solid red;
 }
 
 .title {

@@ -4,6 +4,13 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body,
+html {
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -13,6 +20,10 @@ body {
 svg {
   fill: #fff;
   width: 25px;
+}
+
+.icon-sm svg {
+  width: 15px;
 }
 
 .input-group {

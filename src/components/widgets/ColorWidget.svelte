@@ -13,18 +13,12 @@ const onColorPicker = () => {
   <div class="item">
     <div class="item-name">Color:</div>
     <div class="item-data color">
-      <label
+      <div
         for="fill-color"
         class="color-block"
         style="background: {$selectedObj?.fill}"
         on:click="{onColorPicker}">
-        <input
-          id="fill-color"
-          type="color"
-          value="{$selectedObj?.fill}"
-          name="fill"
-          on:input="{(e) => onFillChange(e.target.value)}" />
-      </label>
+      </div>
     </div>
   </div>
   <div class="item">

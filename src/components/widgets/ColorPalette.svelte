@@ -2,13 +2,11 @@
 import iro from "@jaames/iro";
 import { onMount } from "svelte";
 import { colorModal } from "../../store/store";
-import Modal from "../Modal.svelte";
+import Draggable from "../Draggable.svelte";
 
 onMount(() => {
   var colorPicker = new iro.ColorPicker("#picker", {
-    // Set the size of the color picker
     width: 320,
-    // Set the initial color to pure red
     color: "#f00",
   });
 });
@@ -18,14 +16,20 @@ const onClose = () => {
 };
 </script>
 
-<Modal visible="{$colorModal}" title="Color Palette" close="{onClose}">
+<Draggable visible="{$colorModal}" title="Color palette" close="{onClose}">
   <main>
     <div id="picker"></div>
   </main>
-</Modal>
+</Draggable>
 
 <style>
 main {
   width: 600px;
+  background-color: #222;
+  overflow: auto;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  padding: 20px;
 }
 </style>
