@@ -1,8 +1,7 @@
 <script>
-import ColorWidget from "../widgets/ColorWidget.svelte";
+import Color from "../excerpts/Color.svelte";
 </script>
 
 <main>
-  <ColorWidget />
-  <p>multi selection</p>
+  <Color />
 </main>

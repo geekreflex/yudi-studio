@@ -12,4 +12,5 @@ export const selectedObj = writable();
 export const items = writable([]);
 export const history = writable([]);
 export const historyMods = writable(0);
-export const colorModal = writable(false);
+export const colorWidget = writable(false);
+export const skewWidget = writable(false);

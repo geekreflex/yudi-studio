@@ -1,11 +1,11 @@
 <script>
-import ColorWidget from "../widgets/ColorWidget.svelte";
-import PostionSizeWidget from "../widgets/PostionSizeWidget.svelte";
+import Color from "../excerpts/Color.svelte";
+import PostionSize from "../excerpts/PostionSize.svelte";
 </script>
 
 <main>
-  <ColorWidget />
-  <PostionSizeWidget />
+  <Color />
+  <PostionSize />
 </main>
 
 <style>

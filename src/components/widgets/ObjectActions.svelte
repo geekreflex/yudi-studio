@@ -17,6 +17,9 @@ import {
   onFlipY,
   onLogObject,
 } from "../../functions/editorFunctions";
+import UndoIcon from "../../icons/UndoIcon.svelte";
+import RedoIcon from "../../icons/RedoIcon.svelte";
+import { onSkewWidget } from "../../functions/clickFunctions";
 </script>
 
 <main class="{$selectedObj ? 'visible' : 'hidden'}">
@@ -54,6 +57,9 @@ import {
   <button class="action-btn" on:click="{onFlipY}">
     <VerticalIcon />
   </button>
+  <button class="action-btn"><UndoIcon /></button>
+  <button class="action-btn"><RedoIcon /></button>
+  <button on:click="{() => onSkewWidget(true)}">skew</button>
   <button on:click="{onLogObject}">Log Object</button>
 </main>
 

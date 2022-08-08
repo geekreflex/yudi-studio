@@ -4,7 +4,8 @@ import Layout from "./components/Layout.svelte";
 import PublishModal from "./components/PublishModal.svelte";
 import ResizeModal from "./components/ResizeModal.svelte";
 import TemplatesModal from "./components/TemplatesModal.svelte";
-import ColorPalette from "./components/widgets/ColorPalette.svelte";
+import ColorWidget from "./components/widgets/ColorWidget.svelte";
+import SkewWidget from "./components/widgets/SkewWidget.svelte";
 </script>
 
 <main>
@@ -13,5 +14,6 @@ import ColorPalette from "./components/widgets/ColorPalette.svelte";
   <TemplatesModal />
   <PublishModal />
   <PreviewModal />
-  <ColorPalette />
+  <ColorWidget />
+  <SkewWidget />
 </main>

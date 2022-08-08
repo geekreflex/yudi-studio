@@ -6,8 +6,6 @@ import {
   onLeftPos,
   onRightPos,
   onWidthChange,
-  skewX,
-  skewY,
 } from "../../functions/editorFunctions";
 
 import { selectedObj } from "../../store/store";
@@ -54,34 +52,6 @@ import { selectedObj } from "../../store/store";
           value="{($selectedObj?.height * $selectedObj?.scaleY).toFixed(3)}"
           on:input="{(e) => onHeightChange(e.target.value)}" />
       </div>
-    </div>
-  </div>
-  <div class="item">
-    <div class="item-name">SkewX:</div>
-    <div class="item-data opacity">
-      <input
-        id="range"
-        type="range"
-        min="{-100}"
-        start="1"
-        max="100"
-        step="1"
-        value="{$selectedObj?.skewX}"
-        on:input="{(e) => skewX(e.target.value)}" />
-    </div>
-  </div>
-  <div class="item">
-    <div class="item-name">SkewY:</div>
-    <div class="item-data opacity">
-      <input
-        id="range"
-        type="range"
-        min="{-100}"
-        start="1"
-        max="100"
-        step="1"
-        value="{$selectedObj?.skewY}"
-        on:input="{(e) => skewY(e.target.value)}" />
     </div>
   </div>
 </main>

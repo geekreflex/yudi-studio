@@ -44,6 +44,10 @@ label {
   color: #ccc;
 }
 
+input {
+  width: 100%;
+}
+
 .input-wrap select {
   -webkit-appearance: none;
   -moz-appearance: none;

@@ -1,54 +1,123 @@
 <script>
-// @ts-nocheck
-import { onFillChange, onOpacityChange } from "../../functions/editorFunctions";
+import iro from "@jaames/iro";
+import { onFillChange } from "../../functions/editorFunctions";
+import { onMount } from "svelte";
+import { colorWidget, selectedObj } from "../../store/store";
+import Draggable from "../Draggable.svelte";
+import { onColorWidget } from "../../functions/clickFunctions";
 
-import { selectedObj, colorModal } from "../../store/store";
+let colorList = [];
+let colorPicker;
 
-const onColorPicker = () => {
-  $colorModal = true;
+onMount(() => {
+  colorPicker = new iro.ColorPicker("#picker", {
+    width: 320,
+    colors: ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)"],
+    handleRadius: 9,
+    borderWidth: 1,
+    borderColor: "#888",
+  });
+
+  colorPicker.on(["mount", "color:change"], function () {
+    colorList = colorPicker.colors;
+  });
+
+  colorPicker.on(["mount", "color:setActive", "color:change"], function () {
+    // colorPicker.color is always the active color
+    const index = colorPicker.color.index;
+    const hexString = colorPicker.color.hexString;
+    // currentColor = hexString;
+    onFillChange(hexString);
+  });
+});
+
+const setColor = (colorIndex) => {
+  // setActiveColor expects the color index!
+  colorPicker.setActiveColor(colorIndex);
 };
 </script>
 
-<main>
-  <div class="item">
-    <div class="item-name">Color:</div>
-    <div class="item-data color">
-      <div
-        for="fill-color"
-        class="color-block"
-        style="background: {$selectedObj?.fill}"
-        on:click="{onColorPicker}">
+<Draggable
+  visible="{$colorWidget}"
+  title="Color palette"
+  close="{() => onColorWidget(false)}">
+  <main>
+    <div id="picker"></div>
+    <div class="color-data">
+      <div class="color-list">
+        {#each colorList as color, index}
+          <div class="color" on:click="{() => setColor(index)}">
+            <div class="color-block" style="background:{color.hexString}"></div>
+            <div class="color-hex">
+              {color.hexString}
+            </div>
+          </div>
+        {/each}
+      </div>
+      <div class="current-color">
+        <span>Current:</span>
+        <div style="background: {$selectedObj?.fill}" class="current-block">
+        </div>
       </div>
     </div>
-  </div>
-  <div class="item">
-    <div class="item-name">Opacity:</div>
-    <div class="item-data opacity">
-      <input
-        id="range"
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
-        value="{$selectedObj?.opacity}"
-        on:input="{(e) => onOpacityChange(e.target.value)}" />
-    </div>
-  </div>
-</main>
+  </main>
+</Draggable>
 
 <style>
 main {
-  position: relative;
+  width: 600px;
+  background-color: #222;
+  overflow: auto;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.color-data {
+  margin-left: 20px;
+}
+
+.color-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-bottom: 20px;
 }
 
 .color-block {
-  width: 100px;
+  width: 100%;
   height: 30px;
-  border: 3px solid #333;
   border-radius: 4px;
+  border: 4px solid #333;
 }
 
-#range {
-  width: 100%;
+.color-hex {
+  font-size: 12px;
+  color: #fff;
+  /* display: none; */
+}
+
+.current-color {
+  display: block;
+  display: flex;
+  flex-direction: column;
+}
+
+.current-color span {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 4px;
+}
+
+.current-block {
+  width: 150px;
+  height: 40px;
+  border-radius: 4px;
+  border: 4px solid #333;
 }
 </style>
