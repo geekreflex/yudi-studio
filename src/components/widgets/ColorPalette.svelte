@@ -1,13 +1,22 @@
 <script>
 import iro from "@jaames/iro";
+import { onFillChange } from "../../functions/editorFunctions";
 import { onMount } from "svelte";
-import { colorModal } from "../../store/store";
+import { colorModal, selectedObj } from "../../store/store";
 import Draggable from "../Draggable.svelte";
 
 onMount(() => {
   var colorPicker = new iro.ColorPicker("#picker", {
-    width: 320,
+    width: $selectedObj?.fill,
     color: "#f00",
+  });
+
+  colorPicker.on(["mount", "color:setActive", "color:change"], function () {
+    // colorPicker.color is always the active color
+    const index = colorPicker.color.index;
+    const hexString = colorPicker.color.hexString;
+    console.log(hexString);
+    onFillChange(hexString);
   });
 });
 
