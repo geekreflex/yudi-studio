@@ -6,6 +6,7 @@ import CircleTool from "./tools/CircleTool.svelte";
 import TriangleTool from "./tools/TriangleTool.svelte";
 import RectTool from "./tools/RectTool.svelte";
 import MutipleTool from "./tools/MutipleTool.svelte";
+import PolygonTool from "./tools/PolygonTool.svelte";
 </script>
 
 <main>
@@ -20,6 +21,9 @@ import MutipleTool from "./tools/MutipleTool.svelte";
   </div>
   <div class="widget" class:visible="{$selectedObj?.type === 'rect'}">
     <RectTool />
+  </div>
+  <div class="widget" class:visible="{$selectedObj?.type === 'polygon'}">
+    <PolygonTool />
   </div>
   <div
     class="widget"

@@ -15,6 +15,7 @@ import {
   onBringToFront,
   onFlipX,
   onFlipY,
+  onLogObject,
 } from "../../functions/editorFunctions";
 </script>
 
@@ -53,6 +54,7 @@ import {
   <button class="action-btn" on:click="{onFlipY}">
     <VerticalIcon />
   </button>
+  <button on:click="{onLogObject}">Log Object</button>
 </main>
 
 <style>

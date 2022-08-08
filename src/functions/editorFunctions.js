@@ -1,3 +1,7 @@
+import {
+  regularPolygonPoints,
+  starPolygonPoints,
+} from "../utils/polygonPoints";
 import { editor, selectedObj } from "../store/store";
 
 let canvas;
@@ -139,5 +143,33 @@ export const onOpacityChange = (val) => {
 
 export const onFontSize = (val) => {
   canvas.getActiveObject().set("fontSize", parseInt(val));
+  canvas.renderAll();
+};
+
+export const onLogObject = () => {
+  console.log(canvas.getActiveObject());
+};
+
+export const onPolygonCorners = (val, name) => {
+  console.log(val);
+  if (val < 3) {
+    return;
+  }
+
+  let newPoints =
+    name === "star"
+      ? starPolygonPoints(val, 50, 100)
+      : regularPolygonPoints(val, 100);
+
+  canvas.getActiveObject().set("points", newPoints).setCoords();
+  canvas.renderAll();
+};
+
+export const onStarSpokeRatio = (val) => {
+  let corners = canvas.getActiveObject().points.length / 2;
+  console.log(corners, val);
+  let newPoints = starPolygonPoints(corners, val, 100);
+  console.log(newPoints);
+  canvas.getActiveObject().set("points", newPoints).setCoords();
   canvas.renderAll();
 };

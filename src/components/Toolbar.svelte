@@ -71,15 +71,15 @@ const onImgUpload = (e) => {
   reader.readAsDataURL(file);
 };
 
-const polyPoints = regularPolygonPoints(6, 100);
+const polyPoints = regularPolygonPoints(5, 100);
 const addPolygon = () => {
-  const polygon = new fabric.Polygon(polyPoints);
+  const polygon = new fabric.Polygon(polyPoints, { name: "regpoly" });
   $editor.centerObject(polygon).add(polygon).setActiveObject(polygon);
 };
 
 const starPoints = starPolygonPoints(5, 50, 100);
 const addStar = () => {
-  const star = new fabric.Polygon(starPoints);
+  const star = new fabric.Polygon(starPoints, { name: "star" });
   $editor.centerObject(star).add(star).setActiveObject(star);
 };
 

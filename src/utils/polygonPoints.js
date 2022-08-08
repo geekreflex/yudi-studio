@@ -11,6 +11,14 @@ export function regularPolygonPoints(sideCount, radius) {
   return points;
 }
 
+/**
+ *
+ * @param {*} spikeCount the number of spikes
+ * @param {*} outerRadius the outer roundness
+ * @param {*} innerRadius the inner roundness
+ * @returns the points
+ */
+
 export function starPolygonPoints(spikeCount, outerRadius, innerRadius) {
   var rot = (Math.PI / 2) * 3;
   var cx = outerRadius;
