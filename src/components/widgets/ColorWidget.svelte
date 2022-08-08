@@ -48,19 +48,6 @@ main {
   border-radius: 4px;
 }
 
-label {
-  position: relative;
-  margin-bottom: 0;
-}
-
-#fill-color {
-  visibility: hidden;
-  opacity: 0;
-  overflow: hidden;
-  margin: 0;
-  /* position: absolute; */
-}
-
 #range {
   width: 100%;
 }
