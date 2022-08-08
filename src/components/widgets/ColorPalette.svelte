@@ -7,7 +7,6 @@ import Draggable from "../Draggable.svelte";
 
 let colorList = [];
 let colorPicker;
-let selectedColor;
 
 onMount(() => {
   colorPicker = new iro.ColorPicker("#picker", {
@@ -15,7 +14,7 @@ onMount(() => {
     colors: ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)"],
     handleRadius: 9,
     borderWidth: 1,
-    borderColor: "#fff",
+    borderColor: "#888",
   });
 
   colorPicker.on(["mount", "color:change"], function () {
@@ -26,7 +25,7 @@ onMount(() => {
     // colorPicker.color is always the active color
     const index = colorPicker.color.index;
     const hexString = colorPicker.color.hexString;
-    selectedColor = hexString;
+    // currentColor = hexString;
     onFillChange(hexString);
   });
 });
@@ -44,7 +43,7 @@ const onClose = () => {
 <Draggable visible="{$colorModal}" title="Color palette" close="{onClose}">
   <main>
     <div id="picker"></div>
-    <div>
+    <div class="color-data">
       <div class="color-list">
         {#each colorList as color, index}
           <div class="color" on:click="{() => setColor(index)}">
@@ -55,7 +54,11 @@ const onClose = () => {
           </div>
         {/each}
       </div>
-      <div class="selected-color" style="background: {selectedColor}"></div>
+      <div class="current-color">
+        <span>Current:</span>
+        <div style="background: {$selectedObj?.fill}" class="current-block">
+        </div>
+      </div>
     </div>
   </main>
 </Draggable>
@@ -73,6 +76,10 @@ main {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+.color-data {
+  margin-left: 20px;
 }
 
 .color-list {
@@ -95,9 +102,21 @@ main {
   /* display: none; */
 }
 
-.selected-color {
-  width: 90px;
-  height: 30px;
+.current-color {
+  display: block;
+  display: flex;
+  flex-direction: column;
+}
+
+.current-color span {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 4px;
+}
+
+.current-block {
+  width: 150px;
+  height: 40px;
   border-radius: 4px;
   border: 4px solid #333;
 }

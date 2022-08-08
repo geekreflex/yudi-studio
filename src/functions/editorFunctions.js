@@ -119,8 +119,6 @@ export const onFlipY = () => {
     obj.toggle("flipY");
   });
   canvas.requestRenderAll();
-  console.log(objects.type);
-  console.log(object.type);
 };
 
 export const onFillChange = (val) => {
