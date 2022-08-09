@@ -55,6 +55,12 @@ const onResetCanvas = () => {
   });
   $editor.renderAll();
 };
+
+const templateList = [
+  { name: "A4 Paper", alias: "a4p" },
+  { name: "Youtube Thumbnail", alias: "yt1" },
+  { name: "Facebook Cover Photo", alias: "fb-cp" },
+];
 </script>
 
 <Draggable
@@ -62,6 +68,15 @@ const onResetCanvas = () => {
   visible="{$resizeWidget}"
   close="{() => onResizeWidget(false)}">
   <main>
+    <div class="input-wrap templates">
+      <label for="templates">Templates:</label>
+      <select id="templates">
+        {#each templateList as template}
+          <option value="{template.name}">{template.name}</option>
+        {/each}
+      </select>
+    </div>
+
     <div class="area size">
       <div class="name">Canvas Size</div>
       <div class="item">
@@ -157,5 +172,9 @@ main {
 .toggle-preview input {
   width: auto;
   margin-right: 20px;
+}
+
+.templates select {
+  width: 100%;
 }
 </style>

@@ -9,6 +9,7 @@ export let visible;
 
 let moving = false;
 
+import { onMount } from "svelte";
 function onMouseDown() {
   moving = true;
 }
@@ -24,17 +25,26 @@ function onMouseUp() {
   moving = false;
 }
 
+function clickedElem(e) {
+  document
+    .querySelectorAll(".draggable")
+    .forEach((item) => (item.style.zIndex = 9999999));
+  e.target.parentNode.style.zIndex = 9999999999;
+}
+
 // 	$: console.log(moving);
 </script>
 
 <section class:visible style="left: {left}px; top: {top}px;" class="draggable">
-  <nav on:mousedown="{onMouseDown}">
+  <nav on:mousedown="{onMouseDown}" on:mousedown="{clickedElem}">
     {title}
     <div class="close icon-sm" on:click="{close}">
       <CancelIcon2 />
     </div>
   </nav>
-  <slot />
+  <div on:mousedown="{clickedElem}">
+    <slot />
+  </div>
 </section>
 
 <svelte:window on:mouseup="{onMouseUp}" on:mousemove="{onMouseMove}" />
