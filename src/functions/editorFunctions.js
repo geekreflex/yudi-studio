@@ -2,7 +2,7 @@ import {
   regularPolygonPoints,
   starPolygonPoints,
 } from "../utils/polygonPoints";
-import { editor, selectedObj } from "../store/store";
+import { editor, selectedObj, colorValue } from "../store/store";
 
 let canvas;
 let object;
@@ -129,6 +129,23 @@ export const onFillChange = (val) => {
   const objects = canvas.getActiveObjects();
   objects.map((obj) => {
     obj.set("fill", val);
+  });
+  canvas.renderAll();
+};
+
+export const onStrokeChange = (val) => {
+  colorValue.set(val);
+  const objects = canvas.getActiveObjects();
+  objects.map((obj) => {
+    obj.set("stroke", val);
+  });
+  canvas.renderAll();
+};
+
+export const onStrokeWidth = (val) => {
+  const objects = canvas.getActiveObjects();
+  objects.map((obj) => {
+    obj.set("strokeWidth", parseInt(val, 10));
   });
   canvas.renderAll();
 };

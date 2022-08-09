@@ -10,8 +10,7 @@ export default function () {
     return document.getElementById(id);
   };
 
-  var drawingColorEl = $("drawing-color"),
-    drawingLineWidthEl = $("drawing-line-width");
+  var drawingLineWidthEl = $("drawing-line-width");
 
   if (fabric.PatternBrush) {
     var vLinePatternBrush = new fabric.PatternBrush(canvas);
@@ -110,19 +109,11 @@ export default function () {
 
     if (canvas.freeDrawingBrush) {
       var brush = canvas.freeDrawingBrush;
-      brush.color = drawingColorEl.value;
+      brush.color = drawColor;
       if (brush.getPatternSrc) {
         brush.source = brush.getPatternSrc.call(brush);
       }
       brush.width = parseInt(drawingLineWidthEl.value, 10) || 1;
-    }
-  };
-
-  drawingColorEl.onchange = function () {
-    var brush = canvas.freeDrawingBrush;
-    brush.color = this.value;
-    if (brush.getPatternSrc) {
-      brush.source = brush.getPatternSrc.call(brush);
     }
   };
 

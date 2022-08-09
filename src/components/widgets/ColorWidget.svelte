@@ -1,8 +1,8 @@
 <script>
 import iro from "@jaames/iro";
-import { onFillChange } from "../../functions/editorFunctions";
+import { onFillChange, onStrokeChange } from "../../functions/editorFunctions";
 import { onMount } from "svelte";
-import { colorWidget, selectedObj } from "../../store/store";
+import { colorWidget, selectedObj, fillStroke } from "../../store/store";
 import Draggable from "../Draggable.svelte";
 import { onColorWidget } from "../../functions/clickFunctions";
 
@@ -23,11 +23,13 @@ onMount(() => {
   });
 
   colorPicker.on(["mount", "color:setActive", "color:change"], function () {
-    // colorPicker.color is always the active color
-    const index = colorPicker.color.index;
     const hexString = colorPicker.color.hexString;
-    // currentColor = hexString;
-    onFillChange(hexString);
+
+    if ($fillStroke === "stroke") {
+      onStrokeChange(hexString);
+    } else {
+      onFillChange(hexString);
+    }
   });
 });
 
@@ -56,7 +58,11 @@ const setColor = (colorIndex) => {
       </div>
       <div class="current-color">
         <span>Current:</span>
-        <div style="background: {$selectedObj?.fill}" class="current-block">
+        <div
+          style="background: {$fillStroke === 'stroke'
+            ? $selectedObj?.stroke
+            : $selectedObj?.fill}"
+          class="current-block">
         </div>
       </div>
     </div>

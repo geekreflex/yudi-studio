@@ -1,7 +1,12 @@
 <script>
 import { onColorWidget } from "../../functions/clickFunctions";
 import { onOpacityChange } from "../../functions/editorFunctions";
-import { selectedObj } from "../../store/store";
+import { selectedObj, fillStroke } from "../../store/store";
+
+const showColorWidget = () => {
+  $fillStroke = "fill";
+  onColorWidget(tre);
+};
 </script>
 
 <main>
@@ -12,7 +17,7 @@ import { selectedObj } from "../../store/store";
         for="fill-color"
         class="color-block"
         style="background: {$selectedObj?.fill}"
-        on:click="{() => onColorWidget(true)}">
+        on:click="{showColorWidget}">
       </div>
     </div>
   </div>

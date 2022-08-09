@@ -2,7 +2,7 @@ import {
   regularPolygonPoints,
   starPolygonPoints,
 } from "../utils/polygonPoints";
-import { editor, freeDrawingMode } from "../store/store";
+import { editor, fillStroke, freeDrawingMode } from "../store/store";
 import { fabric } from "fabric";
 
 let canvas;
@@ -54,14 +54,20 @@ export const addLine = () => {
 const polyPoints = regularPolygonPoints(5, 100);
 export const addPolygon = () => {
   remomveFreeDrawing();
-  const polygon = new fabric.Polygon(polyPoints, { name: "regpoly" });
+  const polygon = new fabric.Polygon(polyPoints, {
+    name: "regpoly",
+    objectCaching: false,
+  });
   canvas.centerObject(polygon).add(polygon).setActiveObject(polygon);
 };
 
 const starPoints = starPolygonPoints(5, 50, 100);
 export const addStar = () => {
   remomveFreeDrawing();
-  const star = new fabric.Polygon(starPoints, { name: "star" });
+  const star = new fabric.Polygon(starPoints, {
+    name: "star",
+    objectCaching: false,
+  });
   canvas.centerObject(star).add(star).setActiveObject(star);
 };
 
@@ -72,5 +78,6 @@ export const remomveFreeDrawing = () => {
 
 export const addFreeDrawing = () => {
   canvas.isDrawingMode = !canvas.isDrawingMode;
+  fillStroke.set("stroke");
   freeDrawingMode.update((val) => !val);
 };

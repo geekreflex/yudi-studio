@@ -8,6 +8,7 @@ import RectTool from "./tools/RectTool.svelte";
 import MutipleTool from "./tools/MutipleTool.svelte";
 import PolygonTool from "./tools/PolygonTool.svelte";
 import FreeDrawingTool from "./tools/FreeDrawingTool.svelte";
+import PathTool from "./tools/PathTool.svelte";
 </script>
 
 <main>
@@ -35,6 +36,9 @@ import FreeDrawingTool from "./tools/FreeDrawingTool.svelte";
       class="widget"
       class:visible="{$selectedObj?.type === 'activeSelection'}">
       <MutipleTool />
+    </div>
+    <div class="widget" class:visible="{$selectedObj?.type === 'path'}">
+      <PathTool />
     </div>
   {/if}
 </main>

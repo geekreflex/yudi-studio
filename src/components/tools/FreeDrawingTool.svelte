@@ -1,10 +1,20 @@
 <script>
-import { editor } from "../../store/store";
+import { editor, colorValue } from "../../store/store";
 import freeDrawing from "../../functions/freeDrawing";
 import { onMount } from "svelte";
+import Stroke from "../excerpts/Stroke.svelte";
+import { afterUpdate } from "svelte";
 
 onMount(() => {
   freeDrawing();
+});
+
+afterUpdate(() => {
+  var brush = $editor.freeDrawingBrush;
+  brush.color = $colorValue;
+  if (brush.getPatternSrc) {
+    brush.source = brush.getPatternSrc.call(brush);
+  }
 });
 
 const modes = [
@@ -21,6 +31,7 @@ const modes = [
 </script>
 
 <main>
+  <input id="drawing-color" value="{$colorValue}" />
   <div class="item">
     <div class="item-name">Mode:</div>
     <div class="item-data">
@@ -33,17 +44,7 @@ const modes = [
       </div>
     </div>
   </div>
-  <div class="item">
-    <div class="item-name">Stroke color:</div>
-    <div class="item-data">
-      <div class="input-wrap">
-        <input
-          id="drawing-color"
-          type="color"
-          value="{$editor.freeDrawingBrush.color}" />
-      </div>
-    </div>
-  </div>
+  <Stroke />
   <div class="item">
     <div class="item-name">Size:</div>
     <div class="item-data">
@@ -59,3 +60,11 @@ const modes = [
     </div>
   </div>
 </main>
+
+<style>
+/* #drawing-color {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+} */
+</style>
