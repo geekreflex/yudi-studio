@@ -5,7 +5,7 @@ import { selectedObj, fillStroke } from "../../store/store";
 
 const showColorWidget = () => {
   $fillStroke = "fill";
-  onColorWidget(tre);
+  onColorWidget(true);
 };
 </script>
 

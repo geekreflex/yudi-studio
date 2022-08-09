@@ -28,7 +28,9 @@ const showColorWidget = () => {
       <div
         for="fill-color"
         class="color-block"
-        style="background: {$selectedObj?.stroke || $colorValue}"
+        style="background: {$selectedObj?.stroke ||
+          $selectedObj?.fill ||
+          $colorValue}"
         on:click="{showColorWidget}">
       </div>
     </div>

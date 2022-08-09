@@ -187,3 +187,13 @@ export const onStarSpokeRatio = (val) => {
   canvas.getActiveObject().set("points", newPoints).setCoords();
   canvas.renderAll();
 };
+
+export const onRoundX = (val) => {
+  canvas.getActiveObject().set("rx", parseInt(val, 10)).setCoords();
+  canvas.requestRenderAll();
+};
+
+export const onRoundY = (val) => {
+  canvas.getActiveObject().set("ry", parseInt(val, 10)).setCoords();
+  canvas.requestRenderAll();
+};

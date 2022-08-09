@@ -1,6 +1,5 @@
 import { fabric } from "fabric";
 import { editor } from "../store/store";
-import success from "../assets/images/success.png";
 
 let canvas;
 editor.subscribe((val) => (canvas = val));
@@ -86,7 +85,7 @@ export default function () {
     };
 
     var img = new Image();
-    img.src = success;
+    img.src = "./vite.svg";
 
     var texturePatternBrush = new fabric.PatternBrush(canvas);
     texturePatternBrush.source = img;
@@ -109,7 +108,7 @@ export default function () {
 
     if (canvas.freeDrawingBrush) {
       var brush = canvas.freeDrawingBrush;
-      brush.color = drawColor;
+      brush.color = "#000";
       if (brush.getPatternSrc) {
         brush.source = brush.getPatternSrc.call(brush);
       }

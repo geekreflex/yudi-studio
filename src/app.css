@@ -215,6 +215,7 @@ svg {
 .item {
   margin-bottom: 10px;
   position: relative;
+  display: block;
 }
 .item-name {
   margin-bottom: 5px;

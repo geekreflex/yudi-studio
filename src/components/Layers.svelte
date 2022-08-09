@@ -19,7 +19,6 @@ const onVisibility = (e, index) => {
 };
 
 const onLockObject = (e, index) => {
-  console.log("jsjs");
   e.preventDefault();
   e.stopPropagation();
   const item = $editor.item(index);

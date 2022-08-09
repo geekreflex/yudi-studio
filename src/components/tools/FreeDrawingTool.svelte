@@ -62,9 +62,9 @@ const modes = [
 </main>
 
 <style>
-/* #drawing-color {
+#drawing-color {
   position: absolute;
   visibility: hidden;
   opacity: 0;
-} */
+}
 </style>
