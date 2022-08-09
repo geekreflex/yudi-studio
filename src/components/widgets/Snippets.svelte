@@ -5,6 +5,8 @@ import { fontList } from "../../data/fontList";
 import {
   onFontFamilyChange,
   onFontSize,
+  onFontUnderline,
+  onFontWeight,
 } from "../../functions/editorFunctions";
 import BoldIcon from "../../icons/BoldIcon.svelte";
 import UnderlinedIcon from "../../icons/UnderlinedIcon.svelte";
@@ -53,9 +55,18 @@ const showColorWidget = () => {
   </div>
   <div class="section bottom">
     <div class="text-format">
-      <button class="action-btn"><BoldIcon /></button>
-      <button class="action-btn"><UnderlinedIcon /></button>
-      <button class="action-btn"><ItalicIcon /></button>
+      <button
+        class:activeBtn="{$selectedObj?.fontWeight === 'bold'}"
+        class="action-btn"
+        on:click="{() => onFontWeight('bold')}"><BoldIcon /></button>
+      <button
+        on:click="{() => onFontUnderline()}"
+        class:activeBtn="{$selectedObj?.underline}"
+        class="action-btn"><UnderlinedIcon /></button>
+      <button
+        on:click="{() => onFontWeight('italic')}"
+        class:activeBtn="{$selectedObj?.fontWeight === 'italic'}"
+        class="action-btn"><ItalicIcon /></button>
     </div>
     <div
       on:click="{showColorWidget}"
@@ -85,6 +96,10 @@ main {
   display: flex;
 }
 
+.top {
+  margin-bottom: 5px;
+}
+
 .visible {
   display: block;
 }
@@ -93,12 +108,17 @@ main {
   display: flex;
 }
 
-.text-format button {
+/* .text-format button {
   background-color: #333;
+} */
+
+.activeBtn {
+  background-color: #333 !important;
 }
 
 .select {
   width: 75%;
+  margin-right: 10px;
 }
 
 .color-block {

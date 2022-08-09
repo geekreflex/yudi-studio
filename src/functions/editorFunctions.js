@@ -234,3 +234,24 @@ export const onFontFamilyChange = (font) => {
       console.log("font loading failed " + font);
     });
 };
+
+export const onFontWeight = (val) => {
+  let object = canvas.getActiveObject();
+  if (val === object.fontWeight) {
+    canvas.getActiveObject().set("fontWeight", "normal");
+  } else {
+    canvas.getActiveObject().set("fontWeight", val);
+  }
+  canvas.renderAll();
+};
+
+export const onFontUnderline = () => {
+  let object = canvas.getActiveObject();
+
+  if (object.underline) {
+    canvas.getActiveObject().set("underline", false);
+  } else {
+    canvas.getActiveObject().set("underline", true);
+  }
+  canvas.renderAll();
+};
