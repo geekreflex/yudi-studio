@@ -20,22 +20,31 @@ import {
 import UndoIcon from "../../icons/UndoIcon.svelte";
 import RedoIcon from "../../icons/RedoIcon.svelte";
 import { onSkewWidget } from "../../functions/clickFunctions";
+import ControlIcon from "../../icons/ControlIcon.svelte";
 </script>
 
 <main class="{$selectedObj ? 'visible' : 'hidden'}">
-  <button class="action-btn" on:click="{onDuplicate}">
+  <button
+    class="action-btn"
+    on:click="{onDuplicate}"
+    title="Duplicate selected objects">
     <CopyIcon />
   </button>
   <button
+    title="Lower selection to bottom"
     class="action-btn"
     style="transform: rotate(90deg);"
     on:click="{onSendToBack}">
     <DoubleArrowAIcon />
   </button>
-  <button class="action-btn" on:click="{onSendBackward}">
+  <button
+    title="Lower selection one step"
+    class="action-btn"
+    on:click="{onSendBackward}">
     <ArrowIcon />
   </button>
   <button
+    title="Raise selection on step"
     class="action-btn"
     style="transform: rotate(180deg);"
     on:click="{onBringForward}">
@@ -43,23 +52,38 @@ import { onSkewWidget } from "../../functions/clickFunctions";
     <ArrowIcon />
   </button>
   <button
+    title="Raise selection to top"
     class="action-btn"
     style="transform: rotate(270deg);"
     on:click="{onBringToFront}">
     <DoubleArrowAIcon />
   </button>
-  <button class="action-btn" on:click="{onDelete}">
+  <button
+    class="action-btn"
+    on:click="{onDelete}"
+    title="Delete selected objects">
     <TrashIcon />
   </button>
-  <button class="action-btn" on:click="{onFlipX}">
+  <button
+    class="action-btn"
+    on:click="{onFlipX}"
+    title="Flip selected objects horizontally">
     <Horizontal />
   </button>
-  <button class="action-btn" on:click="{onFlipY}">
+  <button
+    class="action-btn"
+    on:click="{onFlipY}"
+    title="Flip selected objects vertically">
     <VerticalIcon />
   </button>
   <button class="action-btn"><UndoIcon /></button>
   <button class="action-btn"><RedoIcon /></button>
-  <button on:click="{() => onSkewWidget(true)}">skew</button>
+  <button
+    class="action-btn"
+    on:click="{() => onSkewWidget(true)}"
+    title="Skew Tool: Shear selected object(s)">
+    <ControlIcon />
+  </button>
   <button on:click="{onLogObject}">Log Object</button>
 </main>
 

@@ -20,6 +20,9 @@ const onAlignText = (pos) => {
   <FontFamily />
   <FontSize />
   <Color />
+  <div class="btn-wrap">
+    <button class="btn">Use editor</button>
+  </div>
   <PostionSize />
   <div class="item">
     <div class="item-name">Justify:</div>
@@ -65,6 +68,13 @@ main {
 
 .align-btns {
   display: flex;
+  justify-content: center;
+}
+
+.btn-wrap {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .item {
@@ -77,7 +87,7 @@ main {
   color: #ccc;
 }
 
-button {
+.align-btn {
   background: transparent;
   border: none;
   outline: none;

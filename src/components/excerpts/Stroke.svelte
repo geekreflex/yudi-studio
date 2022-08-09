@@ -40,6 +40,7 @@ const showColorWidget = () => {
 <style>
 main {
   position: relative;
+  width: 50%;
 }
 
 .color-block {
