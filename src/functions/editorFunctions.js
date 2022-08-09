@@ -3,6 +3,7 @@ import {
   starPolygonPoints,
 } from "../utils/polygonPoints";
 import { editor, selectedObj, colorValue } from "../store/store";
+import FontFaceObserver from "fontfaceobserver";
 
 let canvas;
 let object;
@@ -206,4 +207,30 @@ export const onRoundX = (val) => {
 export const onRoundY = (val) => {
   canvas.getActiveObject().set("ry", parseInt(val, 10)).setCoords();
   canvas.requestRenderAll();
+};
+
+export const onFontFamilyChange = (font) => {
+  const myfont = new FontFaceObserver(font);
+
+  if (
+    font === "Ubuntu" ||
+    font === "Times New Roman" ||
+    font === "Helvetica" ||
+    font === "Arial"
+  ) {
+    canvas.getActiveObject().set("fontFamily", font);
+    canvas.renderAll();
+    return;
+  }
+
+  myfont
+    .load()
+    .then(function () {
+      // when font is loaded, use it.
+      canvas.getActiveObject().set("fontFamily", font);
+      canvas.renderAll();
+    })
+    .catch(function (e) {
+      console.log("font loading failed " + font);
+    });
 };

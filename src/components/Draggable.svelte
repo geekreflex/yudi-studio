@@ -46,7 +46,7 @@ function onMouseUp() {
 }
 section {
   position: absolute;
-  z-index: 999;
+  z-index: 99999998;
   background-color: #222;
   border-radius: 6px;
   box-shadow: 0 3px 13px rgba(0, 0, 0, 0.4);

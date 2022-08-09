@@ -9,6 +9,7 @@ import {
   historyMods,
   unfinishedModal,
 } from "../store/store";
+import Snippets from "./widgets/Snippets.svelte";
 
 onMount(() => {
   const canvas = new fabric.Canvas("canvas-elem", {
@@ -69,7 +70,8 @@ onMount(() => {
 
 <main>
   <div class="canvas-wrap">
-    <canvas id="canvas-elem"></canvas>
+    <Snippets />
+    <canvas id="canvas-elem"> </canvas>
   </div>
 </main>
 
@@ -84,5 +86,6 @@ main {
 }
 .canvas-wrap {
   display: flex;
+  position: relative;
 }
 </style>

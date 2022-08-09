@@ -1,42 +1,7 @@
 <script>
-import FontFaceObserver from "fontfaceobserver";
-import { selectedObj, editor } from "../../store/store";
-
-const fontList = [
-  "Helvetica",
-  "Arial",
-  "Times New Roman",
-  "Ubuntu",
-  "Poppins",
-  "Oleo Script Swash Caps",
-];
-
-const onFontFamilyChange = (font) => {
-  const myfont = new FontFaceObserver(font);
-
-  if (
-    font === "Ubuntu" ||
-    font === "Times New Roman" ||
-    font === "Helvetica" ||
-    font === "Arial"
-  ) {
-    $editor.getActiveObject().set("fontFamily", font);
-    $editor.renderAll();
-    return;
-  }
-
-  myfont
-    .load()
-    .then(function () {
-      // when font is loaded, use it.
-      $editor.getActiveObject().set("fontFamily", font);
-      $editor.renderAll();
-    })
-    .catch(function (e) {
-      console.log(e);
-      alert("font loading failed " + font);
-    });
-};
+import { onFontFamilyChange } from "../../functions/editorFunctions";
+import { selectedObj } from "../../store/store";
+import { fontList } from "../../data/fontList";
 </script>
 
 <main>
