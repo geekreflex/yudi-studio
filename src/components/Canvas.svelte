@@ -7,6 +7,7 @@ import {
   items,
   history,
   historyMods,
+  unfinishedModal,
 } from "../store/store";
 
 onMount(() => {
@@ -16,13 +17,32 @@ onMount(() => {
   });
   editor.set(canvas);
 
-  function historyChanged() {
+  const historyChanged = () => {
     const canvasContents = $editor.toJSON();
     $history.push(canvasContents);
     $historyMods = 0;
-  }
+  };
 
+  const saveCanvasToStorage = () => {
+    const json = canvas.toJSON();
+    localStorage.setItem("editor-state", JSON.stringify(json));
+  };
+
+  const getCanvasFromStorage = () => {
+    const json = localStorage.getItem("editor-state");
+    if (json !== null && JSON.parse(json)?.objects?.length > 0) {
+      $unfinishedModal = true;
+      const json = localStorage.getItem("editor-state");
+      canvas.loadFromJSON(JSON.parse(json), canvas.renderAll.bind(canvas));
+    }
+  };
+
+  getCanvasFromStorage();
   canvas.setDimensions({ width: 500, height: 500 });
+
+  canvas.on("before:render", () => {
+    saveCanvasToStorage();
+  });
 
   canvas.on("object:added", (e) => {
     historyChanged();

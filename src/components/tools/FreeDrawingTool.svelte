@@ -44,7 +44,7 @@ const modes = [
       </div>
     </div>
   </div>
-  <Stroke />
+  <Stroke strokeWidth="{true}" />
   <div class="item">
     <div class="item-name">Size:</div>
     <div class="item-data">
@@ -66,5 +66,10 @@ const modes = [
   position: absolute;
   visibility: hidden;
   opacity: 0;
+}
+
+input {
+  width: 100%;
+  padding: 0;
 }
 </style>

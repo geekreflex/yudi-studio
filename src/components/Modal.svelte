@@ -2,11 +2,13 @@
 export let visible;
 export let close;
 export let title;
+export let pos;
+export let blur = false;
 </script>
 
 <main class:visible>
   <div class="overlay" on:click="{close}"></div>
-  <div class="modal-main" id="dragable">
+  <div class:blur class="{'modal-main ' + pos}" id="dragable">
     <nav class="header" id="dragzone">
       <div class="title">{title}</div>
     </nav>
@@ -50,6 +52,11 @@ main {
   box-shadow: 0 9px 18px rgba(0, 0, 0, 0.5);
 }
 
+.blur {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+}
+
 .children {
   overflow-y: auto;
   padding: 20px;
@@ -64,8 +71,18 @@ main {
 }
 
 .title {
-  font-size: 20px;
+  font-size: 16px;
   color: #fff;
   font-weight: 600;
+}
+
+.bottom-right {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
+
+.accent {
+  background-color: red;
 }
 </style>

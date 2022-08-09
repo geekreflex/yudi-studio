@@ -68,7 +68,6 @@ const onChooseTemp = () => {
   <button on:click="{addCircle}"> <CircleIcon /></button>
   <button on:click="{addRectangle}"> <SquareIcon /> </button>
   <button on:click="{addPicture}"> <PictureIcon /> </button>
-  <button on:click="{addPicture}"> <PictureIcon2 /> </button>
   <button on:click="{addStar}"><StarIcon /></button>
   <button on:click="{addPolygon}"><PolygonIcon /></button>
   <button class:active="{$freeDrawingMode}" on:click="{addFreeDrawing}"

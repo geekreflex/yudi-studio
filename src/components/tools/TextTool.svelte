@@ -1,4 +1,6 @@
 <script>
+import { onTextWidget } from "../../functions/clickFunctions";
+
 import TextAlignBlockIcon from "../../icons/TextAlignBlockIcon.svelte";
 import TextAlignCenterIcon from "../../icons/TextAlignCenterIcon.svelte";
 import TextAlignLeftIcon from "../../icons/TextAlignLeftIcon.svelte";
@@ -21,7 +23,8 @@ const onAlignText = (pos) => {
   <FontSize />
   <Color />
   <div class="btn-wrap">
-    <button class="btn">Use editor</button>
+    <button on:click="{() => onTextWidget(true)}" class="btn"
+      >Use editor</button>
   </div>
   <PostionSize />
   <div class="item">

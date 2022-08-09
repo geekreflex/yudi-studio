@@ -6,6 +6,8 @@ import TemplatesModal from "./components/TemplatesModal.svelte";
 import ColorWidget from "./components/widgets/ColorWidget.svelte";
 import SkewWidget from "./components/widgets/SkewWidget.svelte";
 import ResizeWidget from "./components/widgets/ResizeWidget.svelte";
+import TextWidget from "./components/widgets/TextWidget.svelte";
+import UnfinishedModal from "./components/UnfinishedModal.svelte";
 </script>
 
 <main>
@@ -16,4 +18,6 @@ import ResizeWidget from "./components/widgets/ResizeWidget.svelte";
   <ColorWidget />
   <SkewWidget />
   <ResizeWidget />
+  <TextWidget />
+  <UnfinishedModal />
 </main>

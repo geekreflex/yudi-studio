@@ -3,6 +3,8 @@ import { onStrokeWidth } from "../../functions/editorFunctions";
 import { onColorWidget } from "../../functions/clickFunctions";
 import { selectedObj, fillStroke, colorValue } from "../../store/store";
 
+export let strokeWidth = false;
+
 const showColorWidget = () => {
   onColorWidget(true);
   $fillStroke = "stroke";
@@ -10,7 +12,7 @@ const showColorWidget = () => {
 </script>
 
 <main>
-  <div class="item">
+  <div class="item stroke-width" class:hidden="{strokeWidth}">
     <div class="item-name">Stroke width:</div>
     <div class="item-data color">
       <div class="input-wrap">
@@ -48,5 +50,9 @@ main {
   height: 30px;
   border: 3px solid #333;
   border-radius: 4px;
+}
+
+.hidden {
+  display: none;
 }
 </style>
