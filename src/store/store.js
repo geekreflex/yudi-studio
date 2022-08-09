@@ -17,3 +17,4 @@ export const resizeWidget = writable(false);
 export const freeDrawingMode = writable(false);
 export const colorValue = writable("#000");
 export const fillStroke = writable();
+export const canvasBg = writable("#fff");

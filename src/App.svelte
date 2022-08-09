@@ -5,6 +5,7 @@ import PublishModal from "./components/PublishModal.svelte";
 import TemplatesModal from "./components/TemplatesModal.svelte";
 import ColorWidget from "./components/widgets/ColorWidget.svelte";
 import SkewWidget from "./components/widgets/SkewWidget.svelte";
+import ResizeWidget from "./components/widgets/ResizeWidget.svelte";
 </script>
 
 <main>
@@ -14,4 +15,5 @@ import SkewWidget from "./components/widgets/SkewWidget.svelte";
   <PreviewModal />
   <ColorWidget />
   <SkewWidget />
+  <ResizeWidget />
 </main>

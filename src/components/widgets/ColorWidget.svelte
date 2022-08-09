@@ -2,7 +2,12 @@
 import iro from "@jaames/iro";
 import { onFillChange, onStrokeChange } from "../../functions/editorFunctions";
 import { onMount } from "svelte";
-import { colorWidget, selectedObj, fillStroke } from "../../store/store";
+import {
+  colorWidget,
+  selectedObj,
+  fillStroke,
+  canvasBg,
+} from "../../store/store";
 import Draggable from "../Draggable.svelte";
 import { onColorWidget } from "../../functions/clickFunctions";
 
@@ -25,10 +30,16 @@ onMount(() => {
   colorPicker.on(["mount", "color:setActive", "color:change"], function () {
     const hexString = colorPicker.color.hexString;
 
+    if ($fillStroke === "fill") {
+      onFillChange(hexString);
+    }
+
     if ($fillStroke === "stroke") {
       onStrokeChange(hexString);
-    } else {
-      onFillChange(hexString);
+    }
+
+    if ($fillStroke === "canvasBg") {
+      canvasBg.update(() => hexString);
     }
   });
 });
@@ -60,12 +71,17 @@ const setColor = (colorIndex) => {
         </div>
         <div class="current-color">
           <span>Current:</span>
-          <div
-            style="background: {$fillStroke === 'stroke'
-              ? $selectedObj?.stroke
-              : $selectedObj?.fill}"
-            class="current-block">
-          </div>
+          {#if $fillStroke === "canvasBg"}
+            <div style="background: {$canvasBg}" class="current-block"></div>
+          {:else if $fillStroke === "fill"}
+            <div style="background: {$selectedObj?.fill}" class="current-block">
+            </div>
+          {:else if $fillStroke === "stroke"}
+            <div
+              style="background: {$selectedObj?.stroke}"
+              class="current-block">
+            </div>
+          {/if}
         </div>
       </div>
     </div>

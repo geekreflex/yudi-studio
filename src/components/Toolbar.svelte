@@ -10,6 +10,7 @@ import {
   templatesModal,
   templates,
   freeDrawingMode,
+  resizeWidget,
 } from "../store/store";
 import LabelsIcon from "../icons/LabelsIcon.svelte";
 import StarIcon from "../icons/StarIcon.svelte";
@@ -72,7 +73,8 @@ const onChooseTemp = () => {
   <button on:click="{addPolygon}"><PolygonIcon /></button>
   <button class:active="{$freeDrawingMode}" on:click="{addFreeDrawing}"
     ><PainBrushIcon /></button>
-  <button on:click="{() => onResizeWidget(true)}"><ResizeIcon /></button>
+  <button class:active="{$resizeWidget}" on:click="{() => onResizeWidget(true)}"
+    ><ResizeIcon /></button>
 </main>
 
 <style>
