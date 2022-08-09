@@ -33,7 +33,7 @@ const generateThumbnail = (item) => {
       </div>
     {/each}
   </div>
-  <footer>
+  <footer class="panel-footer">
     <button class="action-btn" on:click="{onClear}">
       <TrashIcon />
     </button>

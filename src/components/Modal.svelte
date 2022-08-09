@@ -61,7 +61,6 @@ main {
   justify-content: center;
   padding: 10px;
   border-bottom: 1px solid #555;
-  border: 1px solid red;
 }
 
 .title {

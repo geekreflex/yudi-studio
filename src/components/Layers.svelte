@@ -1,9 +1,14 @@
 <script>
+import TrashIcon from "../icons/TrashIcon.svelte";
+
 import ChainOffIcon from "../icons/ChainOffIcon.svelte";
 import ChainOnIcon from "../icons/ChainOnIcon.svelte";
 import EyeOffIcon from "../icons/EyeOffIcon.svelte";
 import EyeOneIcon from "../icons/EyeOneIcon.svelte";
 import { items, editor, selectedObj } from "../store/store";
+import CancelIcon from "../icons/CancelIcon.svelte";
+import CopyIcon from "../icons/CopyIcon.svelte";
+import ArrowIcon from "../icons/ArrowIcon.svelte";
 
 const onObjectClick = (index) => {
   $editor.setActiveObject($editor.item(index));
@@ -29,7 +34,6 @@ const onLockObject = (e, index) => {
 </script>
 
 <main>
-  <canvas id="thumb"></canvas>
   <div class="objects">
     {#each $items as item, index}
       <div
@@ -60,19 +64,45 @@ const onLockObject = (e, index) => {
       </div>
     {/each}
   </div>
+  <footer class="panel-footer">
+    <button class="action-btn" title="Delete  object">
+      <CancelIcon />
+    </button>
+
+    <button
+      class="action-btn"
+      style="transform: rotate(180deg);"
+      title="Raise this object one step in the object stack">
+      <ArrowIcon />
+    </button>
+    <button
+      class="action-btn"
+      title="Lower this object on step in the object stack">
+      <ArrowIcon />
+    </button>
+    <button class="action-btn" title="Create a duplicate of the object">
+      <CopyIcon />
+    </button>
+    <button class="action-btn" title="Delete all objects">
+      <TrashIcon />
+    </button>
+  </footer>
 </main>
 
 <style>
 main {
-  padding: 5px 0;
   display: flex;
-  flex: 1;
-  width: 100%;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
 }
+
 .objects {
   display: flex;
   flex-direction: column;
   flex: 1;
+  overflow: auto;
 }
 
 .object {
@@ -80,7 +110,7 @@ main {
   height: 60px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 10px 10px;
   cursor: pointer;
 }
 
@@ -142,10 +172,5 @@ img {
   color: #ccc;
   white-space: nowrap;
   padding-right: 30px;
-}
-
-#thumb {
-  position: absolute;
-  visibility: hidden;
 }
 </style>

@@ -106,6 +106,10 @@ button {
   width: 50px;
   cursor: pointer;
   border-radius: 8px;
+  margin-bottom: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button:hover {
