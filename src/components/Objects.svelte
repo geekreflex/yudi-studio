@@ -1,4 +1,10 @@
 <script>
+/**
+ * Jerry 09/AUG/22
+ * NOTE: The items array was reversed, so I had to
+ * flip the methods for stacking objects. bringForward
+ * arrow calls sendBackward function and vice versa.
+ */
 import TrashIcon from "../icons/TrashIcon.svelte";
 
 import ChainOffIcon from "../icons/ChainOffIcon.svelte";
@@ -9,6 +15,13 @@ import { items, editor, selectedObj } from "../store/store";
 import CancelIcon from "../icons/CancelIcon.svelte";
 import CopyIcon from "../icons/CopyIcon.svelte";
 import ArrowIcon from "../icons/ArrowIcon.svelte";
+import {
+  onBringForward,
+  onDelete,
+  onDeleteAll,
+  onDuplicate,
+  onSendBackward,
+} from "../functions/editorFunctions";
 
 const onObjectClick = (index) => {
   $editor.setActiveObject($editor.item(index));
@@ -35,7 +48,7 @@ const onLockObject = (e, index) => {
 
 <main>
   <div class="objects">
-    {#each $items as item, index}
+    {#each $items.reverse() as item, index}
       <div
         class="{$selectedObj === item ? 'active object' : 'object'}"
         on:click="{() => onObjectClick(index)}">
@@ -65,25 +78,41 @@ const onLockObject = (e, index) => {
     {/each}
   </div>
   <footer class="panel-footer">
-    <button class="action-btn" title="Delete  object">
+    <button
+      on:click="{onDelete}"
+      class:activeBtn="{$selectedObj}"
+      class="action-btn"
+      title="Delete  object">
       <CancelIcon />
     </button>
 
     <button
+      on:click="{onBringForward}"
+      class:activeBtn="{$selectedObj}"
       class="action-btn"
       style="transform: rotate(180deg);"
       title="Raise this object one step in the object stack">
       <ArrowIcon />
     </button>
     <button
+      on:click="{onSendBackward}"
+      class:activeBtn="{$selectedObj}"
       class="action-btn"
       title="Lower this object on step in the object stack">
       <ArrowIcon />
     </button>
-    <button class="action-btn" title="Create a duplicate of the object">
+    <button
+      on:click="{onDuplicate}"
+      class:activeBtn="{$selectedObj}"
+      class="action-btn"
+      title="Create a duplicate of the object">
       <CopyIcon />
     </button>
-    <button class="action-btn" title="Delete all objects">
+    <button
+      class:activeBtn="{$items.length > 0}"
+      class="action-btn"
+      title="Delete all objects"
+      on:click="{onDeleteAll}">
       <TrashIcon />
     </button>
   </footer>
@@ -172,5 +201,15 @@ img {
   color: #ccc;
   white-space: nowrap;
   padding-right: 30px;
+}
+
+.action-btn {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.activeBtn {
+  opacity: 1;
+  pointer-events: visible;
 }
 </style>

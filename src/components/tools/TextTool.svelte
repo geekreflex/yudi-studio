@@ -1,5 +1,4 @@
 <script>
-import { onMount } from "svelte";
 import TextAlignBlockIcon from "../../icons/TextAlignBlockIcon.svelte";
 import TextAlignCenterIcon from "../../icons/TextAlignCenterIcon.svelte";
 import TextAlignLeftIcon from "../../icons/TextAlignLeftIcon.svelte";
@@ -9,27 +8,10 @@ import Color from "../excerpts/Color.svelte";
 import FontFamily from "../excerpts/FontFamily.svelte";
 import FontSize from "../excerpts/FontSize.svelte";
 import PostionSize from "../excerpts/PostionSize.svelte";
-
-onMount(() => {
-  activeBtn();
-});
-
-const activeBtn = () => {
-  const btns = document.querySelectorAll(".align-btn");
-  btns.forEach((btn) => {
-    // @ts-ignore
-    btn.style.backgroundColor = "";
-    if (btn["dataset"].name === $selectedObj?.textAlign) {
-      btn.classList.add("active");
-      // @ts-ignore
-      btn.style.backgroundColor = "#333";
-    }
-  });
-};
+import Stroke from "../excerpts/Stroke.svelte";
 
 const onAlignText = (pos) => {
   $editor.getActiveObject().set({ textAlign: pos });
-  activeBtn();
   $editor.renderAll();
 };
 </script>
@@ -43,24 +25,28 @@ const onAlignText = (pos) => {
     <div class="item-name">Justify:</div>
     <div class="align-btns item-data">
       <button
+        class:active="{$selectedObj?.textAlign === 'left'}"
         on:click="{() => onAlignText('left')}"
         class="align-btn"
         data-name="left">
         <TextAlignLeftIcon />
       </button>
       <button
+        class:active="{$selectedObj?.textAlign === 'right'}"
         on:click="{() => onAlignText('right')}"
         class="align-btn"
         data-name="right">
         <TextAlignRightIcon />
       </button>
       <button
+        class:active="{$selectedObj?.textAlign === 'center'}"
         on:click="{() => onAlignText('center')}"
         class="align-btn"
         data-name="center">
         <TextAlignCenterIcon />
       </button>
       <button
+        class:active="{$selectedObj?.textAlign === 'block'}"
         on:click="{() => onAlignText('block')}"
         class="align-btn"
         data-name="block">
@@ -68,6 +54,7 @@ const onAlignText = (pos) => {
       </button>
     </div>
   </div>
+  <Stroke />
 </main>
 
 <style>
@@ -102,5 +89,9 @@ button {
   margin-right: 10px;
   cursor: pointer;
   border-radius: 3px;
+}
+
+.active {
+  background-color: #08080a !important;
 }
 </style>

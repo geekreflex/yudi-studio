@@ -1,13 +1,13 @@
 <script>
-import Layers from "./Layers.svelte";
+import Objects from "./Objects.svelte";
 import History from "./History.svelte";
 import LayerIcon from "../icons/LayerIcon.svelte";
 import HistoryIcon from "../icons/HistoryIcon.svelte";
 
-let activeTab = "Layers";
+let activeTab = "Objects";
 
 const tabList = [
-  { name: "Layers", icon: LayerIcon },
+  { name: "Objects", icon: LayerIcon },
   { name: "History", icon: HistoryIcon },
 ];
 
@@ -29,8 +29,8 @@ const onTabClick = (name) => {
     {/each}
   </div>
   <div class="main">
-    {#if activeTab === "Layers"}
-      <Layers />
+    {#if activeTab === "Objects"}
+      <Objects />
     {/if}
 
     {#if activeTab === "History"}

@@ -12,6 +12,7 @@ export const addText = () => {
   remomveFreeDrawing();
   const text = new fabric.Textbox("Click to edit", {
     width: 200,
+    textAlign: "left",
   });
   canvas.centerObject(text).add(text).setActiveObject(text);
 };

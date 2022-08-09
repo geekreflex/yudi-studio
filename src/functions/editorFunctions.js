@@ -77,6 +77,15 @@ export const onDelete = () => {
   selectedObj.update(() => null);
 };
 
+export const onDeleteAll = () => {
+  const objects = canvas.getObjects();
+  objects.map((obj) => {
+    canvas.remove(obj);
+  });
+  canvas.discardActiveObject().renderAll();
+  selectedObj.update(() => null);
+};
+
 export const onSendBackward = () => {
   const objects = canvas.getActiveObjects();
   objects.map((obj) => {
@@ -87,6 +96,7 @@ export const onSendBackward = () => {
 
 export const onBringForward = () => {
   const objects = canvas.getActiveObjects();
+  console.log(objects);
   objects.map((obj) => {
     canvas.bringForward(obj);
   });
