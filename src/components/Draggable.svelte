@@ -63,12 +63,13 @@ nav {
   align-items: center;
   font-size: 20px;
   color: #fff;
+  border-bottom: 1px solid #444;
 }
 
 .close {
   position: absolute;
   right: 20px;
-  top: 10px;
+  top: 5px;
   width: 30px;
   height: 30px;
   cursor: pointer;

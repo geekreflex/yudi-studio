@@ -44,27 +44,33 @@ const setColor = (colorIndex) => {
   title="Color palette"
   close="{() => onColorWidget(false)}">
   <main>
-    <div id="picker"></div>
-    <div class="color-data">
-      <div class="color-list">
-        {#each colorList as color, index}
-          <div class="color" on:click="{() => setColor(index)}">
-            <div class="color-block" style="background:{color.hexString}"></div>
-            <div class="color-hex">
-              {color.hexString}
+    <div class="palette-main">
+      <div id="picker"></div>
+      <div class="color-data">
+        <div class="color-list">
+          {#each colorList as color, index}
+            <div class="color" on:click="{() => setColor(index)}">
+              <div class="color-block" style="background:{color.hexString}">
+              </div>
+              <div class="color-hex">
+                {color.hexString}
+              </div>
             </div>
+          {/each}
+        </div>
+        <div class="current-color">
+          <span>Current:</span>
+          <div
+            style="background: {$fillStroke === 'stroke'
+              ? $selectedObj?.stroke
+              : $selectedObj?.fill}"
+            class="current-block">
           </div>
-        {/each}
-      </div>
-      <div class="current-color">
-        <span>Current:</span>
-        <div
-          style="background: {$fillStroke === 'stroke'
-            ? $selectedObj?.stroke
-            : $selectedObj?.fill}"
-          class="current-block">
         </div>
       </div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn">Reset</button>
     </div>
   </main>
 </Draggable>
@@ -80,8 +86,15 @@ main {
   padding: 20px;
   overflow: auto;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+.palette-main {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .color-data {

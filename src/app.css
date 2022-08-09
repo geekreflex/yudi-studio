@@ -23,7 +23,7 @@ svg {
 }
 
 .icon-sm svg {
-  width: 15px;
+  width: 10px;
 }
 
 .input-group {
@@ -221,4 +221,22 @@ svg {
   margin-bottom: 5px;
   font-size: 14px;
   color: #ccc;
+}
+
+.btn {
+  background-color: #08080a;
+  display: flex;
+  border: none;
+  outline: none;
+  color: #ccc;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px #000;
+  cursor: pointer;
+  border: 1px solid #333;
+}
+
+.btn:hover {
+  opacity: 0.9;
 }

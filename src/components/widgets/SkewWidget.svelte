@@ -55,7 +55,7 @@ const onResetSkew = () => {
         </div>
       </div>
     </div>
-    <button on:click="{onResetSkew}">Reset</button>
+    <button class="btn" on:click="{onResetSkew}">Reset</button>
   </main>
 </Draggable>
 

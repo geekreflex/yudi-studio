@@ -7,7 +7,6 @@ import TriangleIcon from "../icons/TriangleIcon.svelte";
 import TextIcon from "../icons/TextIcon.svelte";
 import {
   editor,
-  resizeModal,
   templatesModal,
   templates,
   freeDrawingMode,
@@ -22,11 +21,12 @@ import {
   addCircle,
   addTriangle,
   addRectangle,
-  addLine,
   addPolygon,
   addStar,
   addFreeDrawing,
 } from "../functions/addFunctions";
+import ResizeIcon from "../icons/ResizeIcon.svelte";
+import { onResizeWidget } from "../functions/clickFunctions";
 
 const addPicture = () => {
   let imgUploader = document.getElementById("image-upload");
@@ -68,12 +68,11 @@ const onChooseTemp = () => {
   <button on:click="{addRectangle}"> <SquareIcon /> </button>
   <button on:click="{addPicture}"> <PictureIcon /> </button>
   <button on:click="{addPicture}"> <PictureIcon2 /> </button>
-  <!-- <button on:click="{addLine}">Line</button> -->
-  <!-- <button on:click="{() => resizeModal.update(() => true)}">Resize</button> -->
   <button on:click="{addStar}"><StarIcon /></button>
   <button on:click="{addPolygon}"><PolygonIcon /></button>
   <button class:active="{$freeDrawingMode}" on:click="{addFreeDrawing}"
     ><PainBrushIcon /></button>
+  <button on:click="{() => onResizeWidget(true)}"><ResizeIcon /></button>
 </main>
 
 <style>
