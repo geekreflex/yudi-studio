@@ -82,3 +82,19 @@ export const addFreeDrawing = () => {
   fillStroke.set("stroke");
   freeDrawingMode.update((val) => !val);
 };
+
+export const onRemoveShadow = () => {
+  canvas.getActiveObject().set("shadow");
+  canvas.renderAll();
+};
+
+export const onCreateShadow = (shadowObj) => {
+  let shadow = new fabric.Shadow(shadowObj);
+
+  let obj = canvas?.getActiveObject();
+
+  if (obj) {
+    canvas.getActiveObject().set("shadow", shadow);
+    canvas.renderAll();
+  }
+};

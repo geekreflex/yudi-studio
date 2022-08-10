@@ -41,13 +41,6 @@ main {
   position: relative;
 }
 
-.color-block {
-  width: 100px;
-  height: 30px;
-  border: 3px solid #333;
-  border-radius: 4px;
-}
-
 #range {
   width: 100%;
 }

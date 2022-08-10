@@ -21,7 +21,6 @@ import Stroke from "../excerpts/Stroke.svelte";
 main {
   width: 300px;
   display: flex;
-  padding: 20px;
   color: white;
   flex-direction: column;
 }

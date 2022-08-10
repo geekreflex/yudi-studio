@@ -7,6 +7,7 @@ import {
   selectedObj,
   fillStroke,
   canvasBg,
+  shadowColor,
 } from "../../store/store";
 import Draggable from "../Draggable.svelte";
 import { onColorWidget } from "../../functions/clickFunctions";
@@ -40,6 +41,10 @@ onMount(() => {
 
     if ($fillStroke === "canvasBg") {
       canvasBg.update(() => hexString);
+    }
+
+    if ($fillStroke === "shadowColor") {
+      shadowColor.update(() => hexString);
     }
   });
 });
@@ -75,6 +80,11 @@ const setColor = (colorIndex) => {
             <div style="background: {$canvasBg}" class="current-block"></div>
           {:else if $fillStroke === "fill"}
             <div style="background: {$selectedObj?.fill}" class="current-block">
+            </div>
+          {:else if $fillStroke === "shadowColor"}
+            <div
+              style="background: {$selectedObj?.shadow?.color}"
+              class="current-block">
             </div>
           {:else if $fillStroke === "stroke"}
             <div
