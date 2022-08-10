@@ -10,7 +10,6 @@ import Color from "../excerpts/Color.svelte";
 import FontFamily from "../excerpts/FontFamily.svelte";
 import FontSize from "../excerpts/FontSize.svelte";
 import PostionSize from "../excerpts/PostionSize.svelte";
-import Stroke from "../excerpts/Stroke.svelte";
 
 const onAlignText = (pos) => {
   $editor.getActiveObject().set({ textAlign: pos });
@@ -60,7 +59,6 @@ const onAlignText = (pos) => {
       </button>
     </div>
   </div>
-  <Stroke />
 </main>
 
 <style>

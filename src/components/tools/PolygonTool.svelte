@@ -6,7 +6,6 @@ import {
 import { selectedObj } from "../../store/store";
 import Color from "../excerpts/Color.svelte";
 import PostionSize from "../excerpts/PostionSize.svelte";
-import Stroke from "../excerpts/Stroke.svelte";
 
 let renderPolySize = () => {
   if ($selectedObj?.name === "regpoly") {
@@ -48,5 +47,4 @@ let renderPolySize = () => {
       </div>
     </div>
   {/if}
-  <Stroke />
 </main>

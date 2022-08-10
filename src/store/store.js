@@ -20,3 +20,4 @@ export const colorValue = writable("#000");
 export const fillStroke = writable();
 export const canvasBg = writable();
 export const unfinishedModal = writable(false);
+export const filterWidget = writable(false);

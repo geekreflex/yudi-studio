@@ -1,7 +1,6 @@
 <script>
 import Color from "../excerpts/Color.svelte";
 import PostionSize from "../excerpts/PostionSize.svelte";
-import Stroke from "../excerpts/Stroke.svelte";
 import { selectedObj } from "../../store/store";
 import { onRoundX, onRoundY } from "../../functions/editorFunctions";
 </script>
@@ -30,7 +29,6 @@ import { onRoundX, onRoundY } from "../../functions/editorFunctions";
       </div>
     </div>
   </div>
-  <Stroke />
 </main>
 
 <style>

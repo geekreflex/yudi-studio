@@ -20,7 +20,7 @@ import {
 } from "../../functions/editorFunctions";
 import UndoIcon from "../../icons/UndoIcon.svelte";
 import RedoIcon from "../../icons/RedoIcon.svelte";
-import { onSkewWidget } from "../../functions/clickFunctions";
+import { onFilterWidget, onSkewWidget } from "../../functions/clickFunctions";
 import ControlIcon from "../../icons/ControlIcon.svelte";
 import RotateRightIcon from "../../icons/RotateRightIcon.svelte";
 import RotateLeftIcon from "../../icons/RotateLeftIcon.svelte";
@@ -97,6 +97,7 @@ import RotateLeftIcon from "../../icons/RotateLeftIcon.svelte";
     on:click="{() => onRotate(90)}"
     ><RotateRightIcon />
   </button>
+  <button on:click="{() => onFilterWidget(true)}">Filters</button>
   <button on:click="{onLogObject}">Log Object</button>
 </main>
 

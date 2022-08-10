@@ -2,7 +2,6 @@
 import { editor, colorValue } from "../../store/store";
 import freeDrawing from "../../functions/freeDrawing";
 import { onMount } from "svelte";
-import Stroke from "../excerpts/Stroke.svelte";
 import { afterUpdate } from "svelte";
 
 onMount(() => {
@@ -44,7 +43,6 @@ const modes = [
       </div>
     </div>
   </div>
-  <Stroke strokeWidth="{true}" />
   <div class="item">
     <div class="item-name">Size:</div>
     <div class="item-data">

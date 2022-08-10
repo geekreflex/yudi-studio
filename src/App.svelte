@@ -8,6 +8,7 @@ import SkewWidget from "./components/widgets/SkewWidget.svelte";
 import ResizeWidget from "./components/widgets/ResizeWidget.svelte";
 import TextWidget from "./components/widgets/TextWidget.svelte";
 import UnfinishedModal from "./components/UnfinishedModal.svelte";
+import FilterWidget from "./components/widgets/FilterWidget.svelte";
 </script>
 
 <main>
@@ -20,4 +21,5 @@ import UnfinishedModal from "./components/UnfinishedModal.svelte";
   <ResizeWidget />
   <TextWidget />
   <UnfinishedModal />
+  <FilterWidget />
 </main>

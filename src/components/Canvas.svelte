@@ -54,6 +54,10 @@ onMount(() => {
     }
   };
 
+  canvas.on("object:scaling", (e) => {
+    e.target.set("strokeUniform", true);
+  });
+
   canvas.on("before:render", () => {
     saveCanvasToStorage();
   });

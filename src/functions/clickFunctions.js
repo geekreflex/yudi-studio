@@ -1,5 +1,6 @@
 import {
   colorWidget,
+  filterWidget,
   resizeWidget,
   skewWidget,
   textWidget,
@@ -19,4 +20,8 @@ export const onResizeWidget = (val) => {
 
 export const onTextWidget = (val) => {
   textWidget.set(val);
+};
+
+export const onFilterWidget = (val) => {
+  filterWidget.set(val);
 };
