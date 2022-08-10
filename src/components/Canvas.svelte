@@ -8,6 +8,7 @@ import {
   history,
   historyMods,
   unfinishedModal,
+  canvasBg,
 } from "../store/store";
 import Snippets from "./widgets/Snippets.svelte";
 
@@ -35,11 +36,23 @@ onMount(() => {
       $unfinishedModal = true;
       const json = localStorage.getItem("editor-state");
       canvas.loadFromJSON(JSON.parse(json), canvas.renderAll.bind(canvas));
+      $canvasBg = canvas.backgroundColor;
     }
   };
 
   getCanvasFromStorage();
   canvas.setDimensions({ width: 500, height: 500 });
+
+  const resetFontSize = (e) => {
+    if (e.target.type === "textbox") {
+      let newFontSize = e.target.fontSize * e.target.scaleX;
+      e.target.set("fontSize", parseInt(newFontSize, 10));
+      e.target.set("width", parseInt(e.target.scaleX * e.target.width, 10));
+      e.target.set("scaleX", 1);
+      e.target.set("scaleY", 1);
+      canvas.renderAll();
+    }
+  };
 
   canvas.on("before:render", () => {
     saveCanvasToStorage();
@@ -48,7 +61,10 @@ onMount(() => {
   canvas.on("object:added", (e) => {
     historyChanged();
   });
-  canvas.on("object:modified", historyChanged);
+  canvas.on("object:modified", (e) => {
+    historyChanged();
+    resetFontSize(e);
+  });
   canvas.on("object:removed", historyChanged);
 
   canvas.on("before:render", () => {

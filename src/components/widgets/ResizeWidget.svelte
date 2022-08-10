@@ -37,6 +37,7 @@ const onUpdateCanvas = () => {
   $editor.set("backgroundColor", $canvasBg);
   $editor.renderAll();
   storeCanvasVals();
+  onResizeWidget(false);
 };
 
 const onTogglePreview = (e) => {

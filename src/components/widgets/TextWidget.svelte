@@ -19,7 +19,7 @@ const onInputText = (val) => {
       <div
         contenteditable="true"
         class="editor"
-        on:input="{(e) => onInputText(e.target.textContent)}">
+        on:input="{(e) => onInputText(e.target.innerText)}">
         {$selectedObj?.text}
       </div>
     </div>

@@ -16,11 +16,14 @@ import {
   onFlipX,
   onFlipY,
   onLogObject,
+  onRotate,
 } from "../../functions/editorFunctions";
 import UndoIcon from "../../icons/UndoIcon.svelte";
 import RedoIcon from "../../icons/RedoIcon.svelte";
 import { onSkewWidget } from "../../functions/clickFunctions";
 import ControlIcon from "../../icons/ControlIcon.svelte";
+import RotateRightIcon from "../../icons/RotateRightIcon.svelte";
+import RotateLeftIcon from "../../icons/RotateLeftIcon.svelte";
 </script>
 
 <main class="{$selectedObj ? 'visible' : 'hidden'}">
@@ -83,6 +86,16 @@ import ControlIcon from "../../icons/ControlIcon.svelte";
     on:click="{() => onSkewWidget(true)}"
     title="Skew Tool: Shear selected object(s)">
     <ControlIcon />
+  </button>
+  <button
+    title="Rotate selection 90 counter-clockwise"
+    class="action-btn"
+    on:click="{() => onRotate(-90)}"><RotateLeftIcon /></button>
+  <button
+    title="Rotate selection 90 clockwise"
+    class="action-btn"
+    on:click="{() => onRotate(90)}"
+    ><RotateRightIcon />
   </button>
   <button on:click="{onLogObject}">Log Object</button>
 </main>

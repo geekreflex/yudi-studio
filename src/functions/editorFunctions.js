@@ -255,3 +255,12 @@ export const onFontUnderline = () => {
   }
   canvas.renderAll();
 };
+
+export const onRotate = (angleOffset) => {
+  let object = canvas.getActiveObject();
+  let angle = object.angle + angleOffset;
+  angle = angle > 360 ? 90 : angle < 0 ? 270 : angle;
+  object.rotate(angle).setCoords();
+  canvas.renderAll();
+  var point = obj.getPointByOrigin("left", "top");
+};
