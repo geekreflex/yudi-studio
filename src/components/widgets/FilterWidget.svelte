@@ -3,11 +3,17 @@ import { filterWidget } from "../../store/store";
 
 import Draggable from "../Draggable.svelte";
 import Shadow from "../excerpts/Shadow.svelte";
+import Stroke from "../excerpts/Stroke.svelte";
 </script>
 
 <Draggable visible="{$filterWidget}" title="Filter">
   <main>
-    <Shadow />
+    <div class="filter">
+      <Stroke />
+    </div>
+    <div class="filter">
+      <Shadow />
+    </div>
   </main>
 </Draggable>
 
@@ -17,5 +23,14 @@ main {
   display: flex;
   padding: 20px;
   color: white;
+  flex-direction: column;
+}
+
+.filter {
+  margin-bottom: 15px;
+}
+
+.filter:last-child {
+  margin: 0;
 }
 </style>

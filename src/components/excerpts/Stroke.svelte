@@ -1,9 +1,13 @@
 <script>
+import Switch from "../addons/Switch.svelte";
+import { selectedObj, colorValue, fillStroke } from "../../store/store";
 import { onStrokeWidth } from "../../functions/editorFunctions";
 import { onColorWidget } from "../../functions/clickFunctions";
-import { selectedObj, fillStroke, colorValue } from "../../store/store";
+let visible = true;
 
-export let strokeWidth = false;
+const onSwitch = (e) => {
+  visible = e.target.checked;
+};
 
 const showColorWidget = () => {
   onColorWidget(true);
@@ -12,28 +16,25 @@ const showColorWidget = () => {
 </script>
 
 <main>
-  <div class="item stroke-width" class:hidden="{strokeWidth}">
-    <div class="item-name">Stroke width:</div>
-    <div class="item-data color">
-      <div class="input-wrap">
+  <div class="toggler">
+    <div>Stroke</div>
+    <Switch onSwitch="{onSwitch}" checked="{true}" />
+  </div>
+  <div class:visible class="main">
+    <div class="stroke-item">
+      <div class="input-wrap" title="Stroke width">
         <input
           type="number"
           value="{$selectedObj?.strokeWidth}"
-          min="0"
           on:input="{(e) => onStrokeWidth(e.target.value)}" />
       </div>
-    </div>
-  </div>
-  <div class="item">
-    <div class="item-name">Stroke color:</div>
-    <div class="item-data color">
       <div
-        for="fill-color"
+        title="Stroke color"
         class="color-block"
+        on:click="{showColorWidget}"
         style="background: {$selectedObj?.stroke ||
           $selectedObj?.fill ||
-          $colorValue}"
-        on:click="{showColorWidget}">
+          $colorValue}">
       </div>
     </div>
   </div>
@@ -41,18 +42,33 @@ const showColorWidget = () => {
 
 <style>
 main {
-  position: relative;
-  width: 50%;
+  width: 100%;
+}
+.toggler {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.main {
+  display: none;
+  border: none;
+}
+
+.visible {
+  display: flex;
+}
+
+.stroke-item {
+  display: flex;
 }
 
 .color-block {
-  width: 100px;
-  height: 30px;
-  border: 3px solid #333;
-  border-radius: 4px;
-}
-
-.hidden {
-  display: none;
+  width: 80px;
+  border-radius: 3px;
+  border: 2px solid #555;
+  margin-left: 20px;
 }
 </style>

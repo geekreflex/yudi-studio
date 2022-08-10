@@ -1,7 +1,6 @@
 <script>
-import Stroke from "../excerpts/Stroke.svelte";
 </script>
 
 <main>
-  <Stroke />
+  <h2>Path Tool</h2>
 </main>
