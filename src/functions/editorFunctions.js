@@ -2,7 +2,7 @@ import {
   regularPolygonPoints,
   starPolygonPoints,
 } from "../utils/polygonPoints";
-import { editor, selectedObj, colorValue } from "../store/store";
+import { editor, selectedObj } from "../store/store";
 import FontFaceObserver from "fontfaceobserver";
 
 let canvas;
@@ -145,7 +145,6 @@ export const onFillChange = (val) => {
 };
 
 export const onStrokeChange = (val) => {
-  colorValue.set(val);
   const objects = canvas.getActiveObjects();
   objects.map((obj) => {
     obj.set("stroke", val);
@@ -155,6 +154,7 @@ export const onStrokeChange = (val) => {
 
 export const onStrokeWidth = (val) => {
   const objects = canvas.getActiveObjects();
+
   objects.map((obj) => {
     obj.set("strokeWidth", parseInt(val, 10));
   });
@@ -262,5 +262,4 @@ export const onRotate = (angleOffset) => {
   angle = angle > 360 ? 90 : angle < 0 ? 270 : angle;
   object.rotate(angle).setCoords();
   canvas.renderAll();
-  var point = obj.getPointByOrigin("left", "top");
 };

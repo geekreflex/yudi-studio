@@ -9,6 +9,7 @@ import { selectedObj, editor } from "../../store/store";
 import Color from "../excerpts/Color.svelte";
 import FontFamily from "../excerpts/FontFamily.svelte";
 import FontSize from "../excerpts/FontSize.svelte";
+import Opacity from "../excerpts/Opacity.svelte";
 import PostionSize from "../excerpts/PostionSize.svelte";
 
 const onAlignText = (pos) => {
@@ -20,7 +21,13 @@ const onAlignText = (pos) => {
 <main>
   <FontFamily />
   <FontSize />
-  <Color />
+  <div class="item">
+    <div class="item-name">Color:</div>
+    <div class="item-data">
+      <Color mode="fill" val="{$selectedObj?.fill}" />
+    </div>
+  </div>
+  <Opacity />
   <div class="btn-wrap">
     <button on:click="{() => onTextWidget(true)}" class="btn"
       >Use editor</button>

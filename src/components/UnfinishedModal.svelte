@@ -6,7 +6,7 @@ const onDiscardDesign = () => {
   $unfinishedModal = false;
   $editor.clear();
   $editor.set("backgroundColor", "#ffffff");
-  $editor.setDimension({ width: 500, height: 500 });
+  $editor.setDimensions({ width: 500, height: 500 });
 };
 
 const onContinueDesign = () => {

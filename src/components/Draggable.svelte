@@ -6,10 +6,10 @@ export let top = 100;
 export let title = "Drag Zone";
 export let close;
 export let visible;
+export let zIndex = 9999;
 
 let moving = false;
 
-import { onMount } from "svelte";
 function onMouseDown() {
   moving = true;
 }
@@ -24,25 +24,19 @@ function onMouseMove(e) {
 function onMouseUp() {
   moving = false;
 }
-
-function clickedElem(e) {
-  document
-    .querySelectorAll(".draggable")
-    .forEach((item) => (item.style.zIndex = 9999999));
-  e.target.parentNode.style.zIndex = 9999999999;
-}
-
-// 	$: console.log(moving);
 </script>
 
-<section class:visible style="left: {left}px; top: {top}px;" class="draggable">
-  <nav on:mousedown="{onMouseDown}" on:mousedown="{clickedElem}">
+<section
+  class:visible
+  style="left: {left}px; top: {top}px; z-index: {zIndex};"
+  class="draggable">
+  <nav on:mousedown="{onMouseDown}">
     {title}
     <div class="close icon-sm" on:click="{close}">
       <CancelIcon2 />
     </div>
   </nav>
-  <div on:mousedown="{clickedElem}">
+  <div>
     <slot />
   </div>
 </section>

@@ -1,10 +1,19 @@
 <script>
+import { selectedObj } from "../../store/store";
+
 import Color from "../excerpts/Color.svelte";
+import Opacity from "../excerpts/Opacity.svelte";
 import PostionSize from "../excerpts/PostionSize.svelte";
 </script>
 
 <main>
-  <Color />
+  <div class="item">
+    <div class="item-name">Color:</div>
+    <div class="item-data">
+      <Color mode="fill" val="{$selectedObj?.fill}" />
+    </div>
+  </div>
+  <Opacity />
   <PostionSize />
 </main>
 

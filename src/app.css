@@ -258,8 +258,16 @@ svg {
   cursor: pointer;
   border: 1px solid #333;
   min-width: 100px;
+  height: 35px;
   justify-content: center;
   align-items: center;
+}
+.btn span {
+  font-size: 14px;
+  margin-right: 10px;
+}
+.btn svg {
+  width: 20px;
 }
 
 .btn:hover {

@@ -8,6 +8,7 @@ import {
   previewModal,
   selectedObj,
 } from "../store/store";
+import NavList from "./NavList.svelte";
 import ObjectActions from "./widgets/ObjectActions.svelte";
 
 const onPreview = () => {
@@ -18,15 +19,11 @@ const onPublish = () => {
   publishModal.update(() => true);
   preview.set($editor.toDataURL("png"));
 };
-
-const onGroup = () => {
-  let group = new fabric.Group(selectedObj);
-  $editor.add(group);
-};
 </script>
 
 <main>
   <div class="left">
+    <NavList />
     <ObjectActions />
   </div>
   <div class="right">
@@ -41,7 +38,7 @@ main {
   height: 50px;
   background-color: #111;
   border-bottom: 1px solid #333;
-  padding: 0 20px;
+  padding: 0px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;

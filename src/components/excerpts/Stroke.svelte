@@ -1,29 +1,20 @@
 <script>
 import Switch from "../addons/Switch.svelte";
-import { selectedObj, colorValue, fillStroke } from "../../store/store";
-import { onStrokeWidth } from "../../functions/editorFunctions";
-import { onColorWidget } from "../../functions/clickFunctions";
+import { selectedObj, strokeColor } from "../../store/store";
+import { onStrokeChange, onStrokeWidth } from "../../functions/editorFunctions";
+import Color from "./Color.svelte";
 import { afterUpdate } from "svelte";
-let visible = true;
+
+let visible = false;
 
 const onSwitch = (e) => {
   visible = e.target.checked;
 };
 
-const strokeObj = {
-  width: $selectedObj?.strokeWidth,
-};
-
-const showColorWidget = () => {
-  onColorWidget(true);
-  $fillStroke = "stroke";
-};
-
 afterUpdate(() => {
-  if (visible) {
-    onStrokeWidth(strokeObj.width);
-  } else {
-    onStrokeWidth(0);
+  if ($selectedObj?.stroke === null) {
+    visible = true;
+    onStrokeChange("#000000");
   }
 });
 </script>
@@ -31,7 +22,7 @@ afterUpdate(() => {
 <main>
   <div class="toggler">
     <div>Stroke</div>
-    <Switch onSwitch="{onSwitch}" checked="{true}" />
+    <Switch onSwitch="{onSwitch}" checked="{visible}" />
   </div>
   <div class:visible class="main">
     <div class="wrap">
@@ -39,20 +30,16 @@ afterUpdate(() => {
         <div class="item-name">Width:</div>
         <div class="input-wrap" title="Stroke width">
           <input
+            min="0"
             type="number"
-            value="{$selectedObj?.strokeWidth}"
-            on:input="{(e) => (strokeObj.width = e.target.value)}" />
+            value="{$selectedObj?.strokeWidth || 0}"
+            on:input="{(e) => onStrokeWidth(e.target.value)}" />
         </div>
       </div>
       <div class="item">
         <div class="item-name">Color:</div>
-        <div
-          title="Stroke color"
-          class="color-block"
-          on:click="{showColorWidget}"
-          style="background: {$selectedObj?.stroke ||
-            $selectedObj?.fill ||
-            $colorValue}">
+        <div class="item-data">
+          <Color mode="stroke" val="{$selectedObj?.stroke || $strokeColor}" />
         </div>
       </div>
     </div>

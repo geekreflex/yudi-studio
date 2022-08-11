@@ -1,54 +1,47 @@
 <script>
-import { onColorWidget } from "../../functions/clickFunctions";
-
 import { afterUpdate } from "svelte";
 
 import { onCreateShadow, onRemoveShadow } from "../../functions/addFunctions";
-import { selectedObj, fillStroke, shadowColor } from "../../store/store";
+import { selectedObj, shadowColor, filterWidget } from "../../store/store";
 
 import Switch from "../addons/Switch.svelte";
-let visible;
+import Color from "./Color.svelte";
+let visible = false;
 
 $: shadowObj = {
-  color: $selectedObj?.shadow?.color || "#000" || $shadowColor,
+  color: $selectedObj?.shadow?.color || "#000",
   offsetX: $selectedObj?.shadow?.offsetX || 0,
   offsetY: $selectedObj?.shadow?.offsetY || 0,
-  blur: $selectedObj?.shadow?.blur || 10,
+  blur: $selectedObj?.shadow?.blur || 0,
   opacity: $selectedObj?.shadow?.opacity || 1,
 };
+
+$: shadowObj.color = $shadowColor;
 
 const onSwitch = (e) => {
   visible = e.target.checked;
 };
 
 afterUpdate(() => {
-  console.log(shadowObj);
-  if (visible) {
+  if (visible && $filterWidget) {
     onCreateShadow(shadowObj);
   } else {
-    onRemoveShadow();
+    visible = false;
   }
 });
-
-const showColorWidget = () => {
-  onColorWidget(true);
-  $fillStroke = "shadowColor";
-};
 </script>
 
 <main>
   <div class="toggler">
     <div>Shadow</div>
-    <Switch onSwitch="{onSwitch}" checked="{false}" />
+    <Switch onSwitch="{onSwitch}" checked="{visible}" />
   </div>
   <div class:visible class="main">
     <div class="wrap">
       <div class="item">
         <div class="item-name">Color:</div>
-        <div
-          on:click="{showColorWidget}"
-          class="color-block"
-          style="background-color: {$selectedObj?.shadow?.color}">
+        <div class="item-data">
+          <Color mode="shadowColor" val="{$selectedObj?.shadow?.color}" />
         </div>
       </div>
       <div class="item">

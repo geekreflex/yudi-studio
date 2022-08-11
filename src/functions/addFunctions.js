@@ -2,7 +2,7 @@ import {
   regularPolygonPoints,
   starPolygonPoints,
 } from "../utils/polygonPoints";
-import { editor, fillStroke, freeDrawingMode } from "../store/store";
+import { editor, freeDrawingMode } from "../store/store";
 import { fabric } from "fabric";
 
 let canvas;
@@ -46,7 +46,6 @@ export const addLine = () => {
   const line = new fabric.Line([50, 100, 200, 200], {
     left: 170,
     top: 150,
-    stroke: "000000",
   });
 
   canvas.centerObject(line).add(line).setActiveObject(line);
@@ -79,13 +78,15 @@ export const remomveFreeDrawing = () => {
 
 export const addFreeDrawing = () => {
   canvas.isDrawingMode = !canvas.isDrawingMode;
-  fillStroke.set("stroke");
   freeDrawingMode.update((val) => !val);
 };
 
 export const onRemoveShadow = () => {
-  canvas.getActiveObject().set("shadow");
-  canvas.renderAll();
+  let obj = canvas?.getActiveObject();
+  if (obj) {
+    canvas.getActiveObject().set("shadow");
+    canvas.renderAll();
+  }
 };
 
 export const onCreateShadow = (shadowObj) => {

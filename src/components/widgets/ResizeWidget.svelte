@@ -1,8 +1,9 @@
 <script>
 import Draggable from "../Draggable.svelte";
-import { resizeWidget, editor, fillStroke, canvasBg } from "../../store/store";
-import { onColorWidget, onResizeWidget } from "../../functions/clickFunctions";
+import { resizeWidget, editor, canvasBg } from "../../store/store";
+import { onResizeWidget } from "../../functions/clickFunctions";
 import { beforeUpdate, onMount } from "svelte";
+import Color from "../excerpts/Color.svelte";
 
 let isPreview = false;
 
@@ -28,15 +29,11 @@ beforeUpdate(() => {
   }
 });
 
-const showColorWidget = () => {
-  $fillStroke = "canvasBg";
-  onColorWidget(true);
-};
-
 const onUpdateCanvas = () => {
   $editor.set("backgroundColor", $canvasBg);
   $editor.renderAll();
   storeCanvasVals();
+  fillStroke;
   onResizeWidget(false);
 };
 
@@ -92,14 +89,10 @@ const templateList = [
       </div>
     </div>
 
-    <div class="area bg">
+    <div class="area size">
       <div class="name">Canvas Background</div>
       <div class="item">
-        <div
-          class="color-block"
-          style="background: {$canvasBg}"
-          on:click="{showColorWidget}">
-        </div>
+        <Color mode="canvasBg" val="{$canvasBg}" />
       </div>
     </div>
 
@@ -147,13 +140,6 @@ main {
 }
 .input-wrap label {
   width: 100px;
-}
-
-.color-block {
-  width: 100px;
-  height: 30px;
-  border: 3px solid #333;
-  border-radius: 4px;
 }
 
 .btn-wrap {

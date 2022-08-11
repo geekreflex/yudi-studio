@@ -14,7 +14,6 @@ import {
 } from "../store/store";
 import LabelsIcon from "../icons/LabelsIcon.svelte";
 import StarIcon from "../icons/StarIcon.svelte";
-import PictureIcon2 from "../icons/PictureIcon2.svelte";
 import PolygonIcon from "../icons/PolygonIcon.svelte";
 import PainBrushIcon from "../icons/PainBrushIcon.svelte";
 import {
@@ -40,6 +39,7 @@ const onImgUpload = (e) => {
   reader.onload = (f) => {
     let data = f.target.result;
     fabric.Image.fromURL(data, (img) => {
+      img.set("stroke", "#000");
       img.scaleToWidth(200);
       $editor.setActiveObject(img).centerObject(img).add(img);
     });
@@ -60,20 +60,24 @@ const onChooseTemp = () => {
 <main>
   <input type="file" id="image-upload" on:change="{onImgUpload}" />
   <!-- <button on:click="{onChooseTemp}">Choose template</button> -->
-  <button><LabelsIcon /></button>
-  <button on:click="{addTriangle}"> <TriangleIcon /> </button>
-  <button on:click="{addText}">
+  <button class="add-tool"><LabelsIcon /></button>
+  <button class="add-tool" on:click="{addTriangle}"> <TriangleIcon /> </button>
+  <button class="add-tool" on:click="{addText}">
     <TextIcon />
   </button>
-  <button on:click="{addCircle}"> <CircleIcon /></button>
-  <button on:click="{addRectangle}"> <SquareIcon /> </button>
-  <button on:click="{addPicture}"> <PictureIcon /> </button>
-  <button on:click="{addStar}"><StarIcon /></button>
-  <button on:click="{addPolygon}"><PolygonIcon /></button>
-  <button class:active="{$freeDrawingMode}" on:click="{addFreeDrawing}"
-    ><PainBrushIcon /></button>
-  <button class:active="{$resizeWidget}" on:click="{() => onResizeWidget(true)}"
-    ><ResizeIcon /></button>
+  <button class="add-tool" on:click="{addCircle}"> <CircleIcon /></button>
+  <button class="add-tool" on:click="{addRectangle}"> <SquareIcon /> </button>
+  <button class="add-tool" on:click="{addPicture}"> <PictureIcon /> </button>
+  <button class="add-tool" on:click="{addStar}"><StarIcon /></button>
+  <button class="add-tool" on:click="{addPolygon}"><PolygonIcon /></button>
+  <button
+    class="add-tool"
+    class:active="{$freeDrawingMode}"
+    on:click="{addFreeDrawing}"><PainBrushIcon /></button>
+  <button
+    class="add-tool"
+    class:active="{$resizeWidget}"
+    on:click="{() => onResizeWidget(true)}"><ResizeIcon /></button>
 </main>
 
 <style>
@@ -101,7 +105,7 @@ button {
   outline: none;
   background: transparent;
   color: #fff;
-  height: 50px;
+  height: 48px;
   width: 50px;
   cursor: pointer;
   border-radius: 8px;

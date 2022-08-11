@@ -135,12 +135,13 @@ main {
 }
 
 .object {
-  min-width: 100%;
   height: 60px;
   display: flex;
   align-items: center;
   padding: 10px 10px;
   cursor: pointer;
+  width: max-content;
+  min-width: 100%;
 }
 
 .active {

@@ -15,15 +15,18 @@ import {
   onBringToFront,
   onFlipX,
   onFlipY,
-  onLogObject,
   onRotate,
 } from "../../functions/editorFunctions";
 import UndoIcon from "../../icons/UndoIcon.svelte";
 import RedoIcon from "../../icons/RedoIcon.svelte";
-import { onFilterWidget, onSkewWidget } from "../../functions/clickFunctions";
+import { onSkewWidget } from "../../functions/clickFunctions";
 import ControlIcon from "../../icons/ControlIcon.svelte";
 import RotateRightIcon from "../../icons/RotateRightIcon.svelte";
 import RotateLeftIcon from "../../icons/RotateLeftIcon.svelte";
+
+const onLogObject = () => {
+  console.log($selectedObj.filters);
+};
 </script>
 
 <main class="{$selectedObj ? 'visible' : 'hidden'}">
@@ -79,14 +82,7 @@ import RotateLeftIcon from "../../icons/RotateLeftIcon.svelte";
     title="Flip selected objects vertically">
     <VerticalIcon />
   </button>
-  <button class="action-btn"><UndoIcon /></button>
-  <button class="action-btn"><RedoIcon /></button>
-  <button
-    class="action-btn"
-    on:click="{() => onSkewWidget(true)}"
-    title="Skew Tool: Shear selected object(s)">
-    <ControlIcon />
-  </button>
+
   <button
     title="Rotate selection 90 counter-clockwise"
     class="action-btn"
@@ -97,14 +93,25 @@ import RotateLeftIcon from "../../icons/RotateLeftIcon.svelte";
     on:click="{() => onRotate(90)}"
     ><RotateRightIcon />
   </button>
-  <button on:click="{() => onFilterWidget(true)}">Filters</button>
-  <button on:click="{onLogObject}">Log Object</button>
+  <button
+    class="action-btn"
+    on:click="{() => onSkewWidget(true)}"
+    title="Skew Tool: Shear selected object(s)">
+    <ControlIcon />
+  </button>
+  <div class="undo-redo">
+    <button class="action-btn"><UndoIcon /></button>
+    <button class="action-btn"><RedoIcon /></button>
+  </div>
+  <div class="widget-btns">
+    <button class="btn" on:click="{onLogObject}">Log Object</button>
+  </div>
 </main>
 
 <style>
 main {
   display: flex;
-  margin-left: 30px;
+  align-items: center;
 }
 
 .visible {
@@ -114,5 +121,20 @@ main {
 .hidden {
   pointer-events: none;
   opacity: 0.5;
+}
+
+.widget-btns {
+  display: flex;
+  margin-left: 50px;
+  align-items: center;
+}
+
+.widget-btns button {
+  margin-right: 20px;
+}
+
+.undo-redo {
+  display: flex;
+  margin-left: 50px;
 }
 </style>

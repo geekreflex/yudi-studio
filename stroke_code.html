@@ -1,58 +1,19 @@
-<script>
-import { onStrokeWidth } from "../../functions/editorFunctions";
-import { onColorWidget } from "../../functions/clickFunctions";
-import { selectedObj, fillStroke, colorValue } from "../../store/store";
-
-export let strokeWidth = false;
-
-const showColorWidget = () => {
-  onColorWidget(true);
-  $fillStroke = "stroke";
-};
-</script>
-
-<main>
-  <div class="item stroke-width" class:hidden="{strokeWidth}">
-    <div class="item-name">Stroke width:</div>
-    <div class="item-data color">
-      <div class="input-wrap">
-        <input
-          type="number"
-          value="{$selectedObj?.strokeWidth}"
-          min="0"
-          on:input="{(e) => onStrokeWidth(e.target.value)}" />
-      </div>
-    </div>
-  </div>
-  <div class="item">
-    <div class="item-name">Stroke color:</div>
-    <div class="item-data color">
-      <div
-        for="fill-color"
-        class="color-block"
-        style="background: {$selectedObj?.stroke ||
-          $selectedObj?.fill ||
-          $colorValue}"
-        on:click="{showColorWidget}">
-      </div>
-    </div>
-  </div>
-</main>
-
-<style>
-main {
-  position: relative;
-  width: 50%;
-}
-
-.color-block {
-  width: 100px;
-  height: 30px;
-  border: 3px solid #333;
-  border-radius: 4px;
-}
-
-.hidden {
-  display: none;
-}
-</style>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="range" />
+  </body>
+</html>

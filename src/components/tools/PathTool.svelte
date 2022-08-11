@@ -1,6 +1,9 @@
 <script>
+import Opacity from "../excerpts/Opacity.svelte";
+import PostionSize from "../excerpts/PostionSize.svelte";
 </script>
 
 <main>
-  <h2>Path Tool</h2>
+  <PostionSize />
+  <Opacity />
 </main>

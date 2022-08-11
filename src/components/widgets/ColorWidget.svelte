@@ -5,9 +5,11 @@ import { onMount } from "svelte";
 import {
   colorWidget,
   selectedObj,
-  fillStroke,
+  fillMode,
   canvasBg,
   shadowColor,
+  strokeColor,
+  freeDrawingColor,
 } from "../../store/store";
 import Draggable from "../Draggable.svelte";
 import { onColorWidget } from "../../functions/clickFunctions";
@@ -31,20 +33,25 @@ onMount(() => {
   colorPicker.on(["mount", "color:setActive", "color:change"], function () {
     const hexString = colorPicker.color.hexString;
 
-    if ($fillStroke === "fill") {
+    if ($fillMode === "fill") {
       onFillChange(hexString);
     }
 
-    if ($fillStroke === "stroke") {
+    if ($fillMode === "stroke") {
       onStrokeChange(hexString);
+      strokeColor.update(() => hexString);
     }
 
-    if ($fillStroke === "canvasBg") {
+    if ($fillMode === "canvasBg") {
       canvasBg.update(() => hexString);
     }
 
-    if ($fillStroke === "shadowColor") {
+    if ($fillMode === "shadowColor") {
       shadowColor.update(() => hexString);
+    }
+
+    if ($fillMode === "freeDrawing") {
+      freeDrawingColor.update(() => hexString);
     }
   });
 });
@@ -56,6 +63,7 @@ const setColor = (colorIndex) => {
 </script>
 
 <Draggable
+  zIndex="9999999"
   visible="{$colorWidget}"
   title="Color palette"
   close="{() => onColorWidget(false)}">
@@ -76,19 +84,22 @@ const setColor = (colorIndex) => {
         </div>
         <div class="current-color">
           <span>Current:</span>
-          {#if $fillStroke === "canvasBg"}
+          {#if $fillMode === "canvasBg"}
             <div style="background: {$canvasBg}" class="current-block"></div>
-          {:else if $fillStroke === "fill"}
+          {:else if $fillMode === "fill"}
             <div style="background: {$selectedObj?.fill}" class="current-block">
             </div>
-          {:else if $fillStroke === "shadowColor"}
+          {:else if $fillMode === "shadowColor"}
             <div
               style="background: {$selectedObj?.shadow?.color}"
               class="current-block">
             </div>
-          {:else if $fillStroke === "stroke"}
+          {:else if $fillMode === "freeDrawing"}
+            <div style="background: {$freeDrawingColor}" class="current-block">
+            </div>
+          {:else if $fillMode === "stroke"}
             <div
-              style="background: {$selectedObj?.stroke}"
+              style="background: {$selectedObj?.stroke || $strokeColor}"
               class="current-block">
             </div>
           {/if}

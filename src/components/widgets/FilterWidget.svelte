@@ -1,19 +1,39 @@
 <script>
-import { filterWidget } from "../../store/store";
-
+import { onMount } from "svelte";
+import filters from "../../functions/filters";
+import { onFilterWidget } from "../../functions/clickFunctions";
+import { filterWidget, selectedObj } from "../../store/store";
 import Draggable from "../Draggable.svelte";
-import Shadow from "../excerpts/Shadow.svelte";
-import Stroke from "../excerpts/Stroke.svelte";
+
+onMount(() => {
+  filters();
+});
 </script>
 
-<Draggable visible="{$filterWidget}" title="Filter">
-  <main>
-    <div class="filter">
-      <Stroke />
-    </div>
-    <div class="filter">
-      <Shadow />
-    </div>
+<Draggable
+  visible="{$filterWidget}"
+  title="Filters"
+  close="{() => onFilterWidget(false)}">
+  <main class:active="{$selectedObj}">
+    <p>
+      <label
+        ><span>Invert:</span>
+        <input type="checkbox" id="invert" disabled /></label>
+    </p>
+    <p>
+      <label
+        ><span>Blur:</span> <input type="checkbox" id="blur" disabled /></label>
+      <br />
+      <label
+        >Value: <input
+          type="range"
+          id="blur-value"
+          value="0.1"
+          min="0"
+          max="1"
+          step="0.01"
+          disabled /></label>
+    </p>
   </main>
 </Draggable>
 
@@ -23,13 +43,12 @@ main {
   display: flex;
   color: white;
   flex-direction: column;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
-.filter {
-  margin-bottom: 15px;
-}
-
-.filter:last-child {
-  margin: 0;
+.active {
+  opacity: 1;
+  pointer-events: visible;
 }
 </style>

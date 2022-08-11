@@ -16,9 +16,12 @@ export const skewWidget = writable(false);
 export const resizeWidget = writable(false);
 export const textWidget = writable(false);
 export const freeDrawingMode = writable(false);
-export const colorValue = writable("#000");
-export const fillStroke = writable();
-export const canvasBg = writable();
 export const unfinishedModal = writable(false);
 export const filterWidget = writable(false);
+export const fillMode = writable("fill");
+
+// fills and stroke
 export const shadowColor = writable("#000");
+export const strokeColor = writable("#000");
+export const canvasBg = writable("#fff");
+export const freeDrawingColor = writable("#000");

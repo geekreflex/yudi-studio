@@ -1,5 +1,5 @@
 <script>
-import { selectedObj, fillStroke } from "../../store/store";
+import { selectedObj } from "../../store/store";
 import { afterUpdate } from "svelte";
 import { fontList } from "../../data/fontList";
 import {
@@ -11,7 +11,7 @@ import {
 import BoldIcon from "../../icons/BoldIcon.svelte";
 import UnderlinedIcon from "../../icons/UnderlinedIcon.svelte";
 import ItalicIcon from "../../icons/ItalicIcon.svelte";
-import { onColorWidget } from "../../functions/clickFunctions";
+import Color from "../excerpts/Color.svelte";
 
 afterUpdate(() => {
   let snippetsWrap = document.getElementById("snippets-wrap");
@@ -25,11 +25,6 @@ afterUpdate(() => {
     snippetsWrap.style.marginTop = `${$selectedObj?.top - 100}px`;
   }
 });
-
-const showColorWidget = () => {
-  $fillStroke = "fill";
-  onColorWidget(true);
-};
 </script>
 
 <main
@@ -68,11 +63,7 @@ const showColorWidget = () => {
         class:activeBtn="{$selectedObj?.fontWeight === 'italic'}"
         class="action-btn"><ItalicIcon /></button>
     </div>
-    <div
-      on:click="{showColorWidget}"
-      class="color-block"
-      style="background-color: {$selectedObj?.fill}">
-    </div>
+    <Color mode="fill" val="{$selectedObj?.fill}" />
   </div>
 </main>
 
