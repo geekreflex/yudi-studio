@@ -10,6 +10,7 @@ import Saturation from "../filters/Saturation.svelte";
 
 onMount(() => {
   filters();
+  console.log("filter mounted");
 });
 </script>
 

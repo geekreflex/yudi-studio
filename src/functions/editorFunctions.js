@@ -97,7 +97,6 @@ export const onSendBackward = () => {
 
 export const onBringForward = () => {
   const objects = canvas.getActiveObjects();
-  console.log(objects);
   objects.map((obj) => {
     canvas.bringForward(obj);
   });

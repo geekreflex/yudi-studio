@@ -10,18 +10,20 @@ import UnfinishedModal from "./components/UnfinishedModal.svelte";
 import FilterWidget from "./components/widgets/FilterWidget.svelte";
 import ShadowStrokeWidget from "./components/widgets/ShadowStrokeWidget.svelte";
 import DownloadWidget from "./components/widgets/DownloadWidget.svelte";
+
+import { filterWidget, colorWidget } from "./store/store";
 </script>
 
 <main>
   <Layout />
   <TemplatesModal />
   <PublishModal />
-  <ColorWidget />
+  <svelte:component this="{$colorWidget && ColorWidget}" />
   <SkewWidget />
   <ResizeWidget />
   <TextWidget />
   <UnfinishedModal />
-  <FilterWidget />
+  <svelte:component this="{$filterWidget && FilterWidget}" />
   <ShadowStrokeWidget />
   <DownloadWidget />
 </main>

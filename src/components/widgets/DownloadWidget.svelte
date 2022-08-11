@@ -4,7 +4,7 @@ import Draggable from "../Draggable.svelte";
 
 let fileName = "Unititled";
 let selectedFormat = "png";
-let selectedQuality = 0.8;
+let selectedQuality = "0.8";
 
 function onSave(e) {
   let image = $editor.toDataURL({
@@ -51,12 +51,12 @@ const formatList = ["png", "jpg", "pdf"];
       <div class="input-wrap ">
         <select
           value="{selectedQuality}"
-          on:change="{(e) => (selectedQuality = e.target.value)}">
-          <option value="{0.2}">20%</option>
-          <option value="{0.4}">40%</option>
-          <option value="{0.6}">60%</option>
-          <option value="{0.8}">80%</option>
-          <option value="{1}">100%</option>
+          on:input="{(e) => (selectedQuality = e.target.value)}">
+          <option value="0.2">20%</option>
+          <option value="0.4">40%</option>
+          <option value="0.6">60%</option>
+          <option value="0.8">80%</option>
+          <option value="1">100%</option>
         </select>
       </div>
     </div>
