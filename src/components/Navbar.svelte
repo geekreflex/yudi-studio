@@ -1,20 +1,9 @@
 <script>
-import { fabric } from "fabric";
-
-import {
-  publishModal,
-  preview,
-  editor,
-  previewModal,
-  selectedObj,
-} from "../store/store";
+import DownloadIcon from "../icons/DownloadIcon.svelte";
+import { publishModal, preview, editor } from "../store/store";
 import NavList from "./NavList.svelte";
 import ObjectActions from "./widgets/ObjectActions.svelte";
 
-const onPreview = () => {
-  preview.set($editor.toDataURL("png"));
-  previewModal.update(() => true);
-};
 const onPublish = () => {
   publishModal.update(() => true);
   preview.set($editor.toDataURL("png"));
@@ -27,8 +16,11 @@ const onPublish = () => {
     <ObjectActions />
   </div>
   <div class="right">
-    <button on:click="{onPreview}">Preview</button>
-    <button on:click="{onPublish}">Publish</button>
+    <button class="btn primary" on:click="{onPublish}">Publish</button>
+    <button class="btn btn-primary"
+      ><span>Download</span>
+      <DownloadIcon />
+    </button>
   </div>
 </main>
 
@@ -47,5 +39,14 @@ main {
 
 .left {
   display: flex;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.right button {
+  margin-left: 10px;
 }
 </style>

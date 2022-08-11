@@ -104,7 +104,7 @@ const onLogObject = () => {
     <button class="action-btn"><RedoIcon /></button>
   </div>
   <div class="widget-btns">
-    <button class="btn" on:click="{onLogObject}">Log Object</button>
+    <!-- <button class="btn" on:click="{onLogObject}">Log Object</button> -->
   </div>
 </main>
 

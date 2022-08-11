@@ -1,4 +1,5 @@
 import "./app.css";
+import "./range.css";
 import "./styles/googleFonts.css";
 import App from "./App.svelte";
 

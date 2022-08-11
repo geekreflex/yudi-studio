@@ -1,14 +1,10 @@
 <script>
-import { preview, previewModal } from "../store/store";
-
-const onClick = () => {
-  previewModal.update(() => true);
-};
+import { preview } from "../store/store";
 </script>
 
-<main>
-  <label for="preview">Preview</label>
-  <div id="preview" class="preview" on:click="{onClick}">
+<main class="item">
+  <div class="item-name" for="preview">Preview Image</div>
+  <div id="preview" class="preview">
     <img class="preview-img" src="{$preview}" alt="Preivew" />
   </div>
 </main>

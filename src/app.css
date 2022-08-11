@@ -76,15 +76,6 @@ input-form {
   border: 2px solid #555;
 }
 
-.btn-form {
-  border: none;
-  outline: none;
-  padding: 10px 30px;
-  border-radius: 5px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
 .btn-left {
   justify-content: flex-end;
 }
@@ -262,12 +253,18 @@ svg {
   justify-content: center;
   align-items: center;
 }
+
+.btn-primary {
+  background-color: #256141;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 .btn span {
   font-size: 14px;
   margin-right: 10px;
 }
 .btn svg {
-  width: 20px;
+  width: 17px;
 }
 
 .btn:hover {

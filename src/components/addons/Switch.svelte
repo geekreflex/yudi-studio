@@ -30,11 +30,11 @@ input {
 }
 
 input:checked + .knob {
-  background-color: #08080a;
+  background-color: #256141;
 }
 
 input:focus + .knob {
-  box-shadow: #08080a;
+  box-shadow: #256141;
 }
 
 input:checked + .knob:before {

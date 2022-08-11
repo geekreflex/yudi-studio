@@ -41,7 +41,7 @@ afterUpdate(() => {
     <div>Shadow</div>
     <Switch onSwitch="{onSwitch}" checked="{visible}" />
   </div>
-  <div class:visible class="main">
+  <div class:visible class="main-wrap">
     <div class="wrap">
       <div class="item">
         <div class="item-name">Color:</div>
@@ -52,10 +52,6 @@ afterUpdate(() => {
       <div class="item">
         <div class="item-name">Blur:</div>
         <div class="input-wrap">
-          <input
-            type="number"
-            value="{$selectedObj?.shadow?.blur}"
-            on:input="{(e) => (shadowObj.blur = e.target.value)}" />
           <input
             type="range"
             min="{0}"
@@ -118,7 +114,7 @@ main {
   justify-content: space-between;
   align-items: center;
 }
-.main {
+.main-wrap {
   display: none;
   border: none;
 }
