@@ -23,25 +23,27 @@ import {
   onSendBackward,
 } from "../functions/editorFunctions";
 
-const onObjectClick = (index) => {
-  $editor.setActiveObject($editor.item(index));
+const onObjectClick = (item) => {
+  $editor.setActiveObject(item);
   $editor.renderAll();
 };
 
-const onVisibility = (e, index) => {
+const onVisibility = (e, item) => {
   e.preventDefault();
   e.stopPropagation();
-  const obj = $editor.item(index);
+  $editor.setActiveObject(item);
+  const obj = $editor.getActiveObject();
   obj.visible = !obj.visible;
   $editor.renderAll();
 };
 
-const onLockObject = (e, index) => {
+const onLockObject = (e, item) => {
   e.preventDefault();
   e.stopPropagation();
-  const item = $editor.item(index);
-  item.lockMovementX = !item.lockMovementX;
-  item.lockMovementY = !item.lockMovementY;
+  $editor.setActiveObject(item);
+  const obj = $editor.getActiveObject();
+  obj.lockMovementX = !obj.lockMovementX;
+  obj.lockMovementY = !obj.lockMovementY;
   $editor.renderAll();
 };
 </script>
@@ -51,16 +53,16 @@ const onLockObject = (e, index) => {
     {#each $items.reverse() as item, index}
       <div
         class="{$selectedObj === item ? 'active object' : 'object'}"
-        on:click="{() => onObjectClick(index)}">
+        on:click="{() => onObjectClick(item)}">
         <div class="object-left-info">
-          <div class="object-eye" on:click="{(e) => onVisibility(e, index)}">
+          <div class="object-eye" on:click="{(e) => onVisibility(e, item)}">
             {#if item.visible}
               <EyeOneIcon />
             {:else}
               <EyeOffIcon />
             {/if}
           </div>
-          <div class="object-lock" on:click="{(e) => onLockObject(e, index)}">
+          <div class="object-lock" on:click="{(e) => onLockObject(e, item)}">
             {#if item.lockMovementX && item.lockMovementY}
               <ChainOnIcon />
             {:else}
