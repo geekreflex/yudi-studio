@@ -13,6 +13,7 @@ export const historyMods = writable(0);
 export const colorWidget = writable(false);
 export const skewWidget = writable(false);
 export const resizeWidget = writable(false);
+export const downloadWidget = writable(false);
 export const textWidget = writable(false);
 export const freeDrawingMode = writable(false);
 export const unfinishedModal = writable(false);

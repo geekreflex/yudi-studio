@@ -33,7 +33,6 @@ const onUpdateCanvas = () => {
   $editor.set("backgroundColor", $canvasBg);
   $editor.renderAll();
   storeCanvasVals();
-  fillStroke;
   onResizeWidget(false);
 };
 

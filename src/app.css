@@ -44,10 +44,6 @@ svg {
   color: #ccc;
 }
 
-input {
-  width: 100%;
-}
-
 .input-wrap select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -252,6 +248,7 @@ svg {
   height: 35px;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
 }
 
 .btn-primary {

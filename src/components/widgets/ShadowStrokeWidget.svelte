@@ -19,7 +19,7 @@ import Shadow from "../excerpts/Shadow.svelte";
 
 <style>
 main {
-  width: 300px;
+  width: 350px;
   display: flex;
   color: white;
   flex-direction: column;

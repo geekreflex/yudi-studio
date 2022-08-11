@@ -1,12 +1,22 @@
 <script>
 import DownloadIcon from "../icons/DownloadIcon.svelte";
-import { publishModal, preview, editor } from "../store/store";
+import {
+  publishModal,
+  preview,
+  editor,
+  items,
+  downloadWidget,
+} from "../store/store";
 import NavList from "./NavList.svelte";
 import ObjectActions from "./widgets/ObjectActions.svelte";
 
 const onPublish = () => {
   publishModal.update(() => true);
   preview.set($editor.toDataURL("png"));
+};
+
+const onDownloadBtn = () => {
+  $downloadWidget = true;
 };
 </script>
 
@@ -17,7 +27,10 @@ const onPublish = () => {
   </div>
   <div class="right">
     <button class="btn primary" on:click="{onPublish}">Publish</button>
-    <button class="btn btn-primary"
+    <button
+      class:active-download="{$items.length}"
+      class="download-btn btn btn-primary"
+      on:click="{onDownloadBtn}"
       ><span>Download</span>
       <DownloadIcon />
     </button>
@@ -48,5 +61,15 @@ main {
 
 .right button {
   margin-left: 10px;
+}
+
+.active-download {
+  opacity: 1 !important;
+  pointer-events: visible !important;
+}
+
+.download-btn {
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>

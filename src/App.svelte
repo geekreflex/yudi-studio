@@ -9,6 +9,7 @@ import TextWidget from "./components/widgets/TextWidget.svelte";
 import UnfinishedModal from "./components/UnfinishedModal.svelte";
 import FilterWidget from "./components/widgets/FilterWidget.svelte";
 import ShadowStrokeWidget from "./components/widgets/ShadowStrokeWidget.svelte";
+import DownloadWidget from "./components/widgets/DownloadWidget.svelte";
 </script>
 
 <main>
@@ -22,4 +23,5 @@ import ShadowStrokeWidget from "./components/widgets/ShadowStrokeWidget.svelte";
   <UnfinishedModal />
   <FilterWidget />
   <ShadowStrokeWidget />
+  <DownloadWidget />
 </main>
