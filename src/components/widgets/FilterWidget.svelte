@@ -4,6 +4,9 @@ import filters from "../../functions/filters";
 import { onFilterWidget } from "../../functions/clickFunctions";
 import { filterWidget, selectedObj } from "../../store/store";
 import Draggable from "../Draggable.svelte";
+import Invert from "../filters/Invert.svelte";
+import Blur from "../filters/Blur.svelte";
+import Saturation from "../filters/Saturation.svelte";
 
 onMount(() => {
   filters();
@@ -14,26 +17,12 @@ onMount(() => {
   visible="{$filterWidget}"
   title="Filters"
   close="{() => onFilterWidget(false)}">
-  <main class:active="{$selectedObj}">
-    <p>
-      <label
-        ><span>Invert:</span>
-        <input type="checkbox" id="invert" disabled /></label>
-    </p>
-    <p>
-      <label
-        ><span>Blur:</span> <input type="checkbox" id="blur" disabled /></label>
-      <br />
-      <label
-        >Value: <input
-          type="range"
-          id="blur-value"
-          value="0.1"
-          min="0"
-          max="1"
-          step="0.01"
-          disabled /></label>
-    </p>
+  <main class:active="{$selectedObj?.type === 'image'}">
+    <Invert />
+    <div class="line"><span></span></div>
+    <Blur />
+    <div class="line"><span></span></div>
+    <Saturation />
   </main>
 </Draggable>
 
@@ -45,6 +34,7 @@ main {
   flex-direction: column;
   opacity: 0.5;
   pointer-events: none;
+  padding: 20px;
 }
 
 .active {

@@ -273,3 +273,24 @@ svg {
 .btn:hover {
   opacity: 0.7;
 }
+
+.toggler {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.line span {
+  width: 40%;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #333;
+  background: #333;
+}

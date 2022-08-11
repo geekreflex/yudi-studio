@@ -9,6 +9,7 @@ import MutipleTool from "./tools/MutipleTool.svelte";
 import PolygonTool from "./tools/PolygonTool.svelte";
 import FreeDrawingTool from "./tools/FreeDrawingTool.svelte";
 import PathTool from "./tools/PathTool.svelte";
+import ImageTool from "./tools/ImageTool.svelte";
 </script>
 
 <main>
@@ -39,6 +40,9 @@ import PathTool from "./tools/PathTool.svelte";
     </div>
     <div class="widget" class:visible="{$selectedObj?.type === 'path'}">
       <PathTool />
+    </div>
+    <div class="widget" class:visible="{$selectedObj?.type === 'image'}">
+      <ImageTool />
     </div>
   {/if}
 </main>

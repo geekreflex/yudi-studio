@@ -1,11 +1,16 @@
 <script>
 export let onSwitch;
 export let checked;
+export let id;
 </script>
 
 <main>
   <label class="switch">
-    <input type="checkbox" on:change="{onSwitch}" checked="{checked}" />
+    <input
+      type="checkbox"
+      id="{id}"
+      on:change="{onSwitch}"
+      checked="{checked}" />
     <div class="knob"></div>
   </label>
 </main>

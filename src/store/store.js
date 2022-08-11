@@ -18,6 +18,7 @@ export const textWidget = writable(false);
 export const freeDrawingMode = writable(false);
 export const unfinishedModal = writable(false);
 export const filterWidget = writable(false);
+export const shadowStrokeWidget = writable(false);
 export const fillMode = writable("fill");
 
 // fills and stroke

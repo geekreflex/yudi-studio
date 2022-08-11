@@ -49,7 +49,7 @@ afterUpdate(() => {
 <style>
 main {
   width: 100%;
-  padding: 20px;
+  /* padding: 20px; */
 }
 .toggler {
   width: 100%;

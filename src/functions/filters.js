@@ -53,7 +53,11 @@ export default function () {
           el.disabled = false;
         });
 
-      var filters = ["invert", "blur"];
+      var filters = ["invert", "blur", "saturation"];
+
+      if (canvas.getActiveObject().type !== "image") {
+        return;
+      }
 
       for (var i = 0; i < filters.length; i++) {
         $(filters[i]) &&
@@ -83,5 +87,17 @@ export default function () {
   };
   $("blur-value").oninput = function () {
     applyFilterValue(11, "blur", parseFloat(this.value, 10));
+  };
+  $("saturation").onclick = function () {
+    applyFilter(
+      7,
+      this.checked &&
+        new f.Saturation({
+          saturation: parseFloat($("saturation-value").value),
+        })
+    );
+  };
+  $("saturation-value").oninput = function () {
+    applyFilterValue(7, "saturation", parseFloat(this.value));
   };
 }

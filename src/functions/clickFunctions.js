@@ -4,6 +4,7 @@ import {
   resizeWidget,
   skewWidget,
   textWidget,
+  shadowStrokeWidget,
 } from "../store/store";
 
 export const onSkewWidget = (val) => {
@@ -24,4 +25,8 @@ export const onTextWidget = (val) => {
 
 export const onFilterWidget = (val) => {
   filterWidget.set(val);
+};
+
+export const onShadowStrokeWidget = (val) => {
+  shadowStrokeWidget.set(val);
 };

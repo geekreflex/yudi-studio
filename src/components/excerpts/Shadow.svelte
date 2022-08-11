@@ -2,7 +2,11 @@
 import { afterUpdate } from "svelte";
 
 import { onCreateShadow, onRemoveShadow } from "../../functions/addFunctions";
-import { selectedObj, shadowColor, filterWidget } from "../../store/store";
+import {
+  selectedObj,
+  shadowColor,
+  shadowStrokeWidget,
+} from "../../store/store";
 
 import Switch from "../addons/Switch.svelte";
 import Color from "./Color.svelte";
@@ -19,11 +23,12 @@ $: shadowObj = {
 $: shadowObj.color = $shadowColor;
 
 const onSwitch = (e) => {
+  console.log(e.target.checked);
   visible = e.target.checked;
 };
 
 afterUpdate(() => {
-  if (visible && $filterWidget) {
+  if (visible && $shadowStrokeWidget) {
     onCreateShadow(shadowObj);
   } else {
     visible = false;
@@ -48,6 +53,10 @@ afterUpdate(() => {
         <div class="item-name">Blur:</div>
         <div class="input-wrap">
           <input
+            type="number"
+            value="{$selectedObj?.shadow?.blur}"
+            on:input="{(e) => (shadowObj.blur = e.target.value)}" />
+          <input
             type="range"
             min="{0}"
             max="{50}"
@@ -63,9 +72,9 @@ afterUpdate(() => {
           <input
             type="range"
             value="{$selectedObj?.shadow?.offsetX}"
-            min="{-50}"
+            min="{-100}"
             start="{0}"
-            max="{50}"
+            max="{100}"
             on:input="{(e) => (shadowObj.offsetX = e.target.value)}" />
         </div>
       </div>
@@ -75,9 +84,9 @@ afterUpdate(() => {
           <input
             type="range"
             value="{$selectedObj?.shadow?.offsetY}"
-            min="{-50}"
+            min="{-100}"
             start="{0}"
-            max="{50}"
+            max="{100}"
             on:input="{(e) => (shadowObj.offsetY = e.target.value)}" />
         </div>
       </div>
@@ -101,7 +110,7 @@ afterUpdate(() => {
 <style>
 main {
   width: 100%;
-  padding: 20px;
+  /* padding: 20px; */
 }
 .toggler {
   width: 100%;
