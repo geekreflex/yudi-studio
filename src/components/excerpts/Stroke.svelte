@@ -3,20 +3,34 @@ import Switch from "../addons/Switch.svelte";
 import { selectedObj, strokeColor } from "../../store/store";
 import { onStrokeChange, onStrokeWidth } from "../../functions/editorFunctions";
 import Color from "./Color.svelte";
-import { afterUpdate } from "svelte";
+import { beforeUpdate } from "svelte";
 
 let visible = false;
 
-const onSwitch = (e) => {
-  visible = e.target.checked;
+let strokeObj = {
+  color: $selectedObj?.stroke || "#000",
+  width: $selectedObj?.strokeWidth || 1,
 };
 
-afterUpdate(() => {
-  if ($selectedObj?.stroke === null) {
-    visible = true;
-    onStrokeChange("#000000");
+const onSwitch = (e) => {
+  visible = e.target.checked;
+  if ($selectedObj && !e.target.checked) {
+    onStrokeWidth(0);
   }
-});
+  if (e.target.checked && $selectedObj) {
+    onStrokeWidth(strokeObj.width);
+    onStrokeChange(strokeObj.color);
+  }
+};
+
+// beforeUpdate(() => {
+//   if (visible && $selectedObj) {
+//     onStrokeWidth(strokeObj.width);
+//     onStrokeChange(strokeObj.color);
+//   } else {
+//     visible = false;
+//   }
+// });
 </script>
 
 <main>

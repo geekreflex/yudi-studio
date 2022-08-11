@@ -84,7 +84,7 @@ export const addFreeDrawing = () => {
 export const onRemoveShadow = () => {
   let obj = canvas?.getActiveObject();
   if (obj) {
-    canvas.getActiveObject().set("shadow");
+    canvas.getActiveObject().shadow.color = "";
     canvas.renderAll();
   }
 };

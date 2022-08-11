@@ -11,7 +11,7 @@ import FilterWidget from "./components/widgets/FilterWidget.svelte";
 import ShadowStrokeWidget from "./components/widgets/ShadowStrokeWidget.svelte";
 import DownloadWidget from "./components/widgets/DownloadWidget.svelte";
 
-import { filterWidget, colorWidget } from "./store/store";
+import { filterWidget, colorWidget, shadowStrokeWidget } from "./store/store";
 </script>
 
 <main>
@@ -24,6 +24,6 @@ import { filterWidget, colorWidget } from "./store/store";
   <TextWidget />
   <UnfinishedModal />
   <svelte:component this="{$filterWidget && FilterWidget}" />
-  <ShadowStrokeWidget />
+  <svelte:component this="{$shadowStrokeWidget && ShadowStrokeWidget}" />
   <DownloadWidget />
 </main>

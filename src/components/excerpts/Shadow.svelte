@@ -1,12 +1,8 @@
 <script>
-import { afterUpdate } from "svelte";
+import { afterUpdate, beforeUpdate } from "svelte";
 
 import { onCreateShadow, onRemoveShadow } from "../../functions/addFunctions";
-import {
-  selectedObj,
-  shadowColor,
-  shadowStrokeWidget,
-} from "../../store/store";
+import { selectedObj, shadowColor } from "../../store/store";
 
 import Switch from "../addons/Switch.svelte";
 import Color from "./Color.svelte";
@@ -23,15 +19,19 @@ $: shadowObj = {
 $: shadowObj.color = $shadowColor;
 
 const onSwitch = (e) => {
-  console.log(e.target.checked);
   visible = e.target.checked;
+
+  if ($selectedObj && !e.target.checked) {
+    onRemoveShadow();
+  }
+  if ($selectedObj && e.target.checked) {
+    onCreateShadow(shadowObj);
+  }
 };
 
-afterUpdate(() => {
-  if (visible && $shadowStrokeWidget) {
+beforeUpdate(() => {
+  if (visible && $selectedObj?.shadow) {
     onCreateShadow(shadowObj);
-  } else {
-    visible = false;
   }
 });
 </script>
