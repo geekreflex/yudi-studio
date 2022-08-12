@@ -9,6 +9,8 @@ import ColorWidget from "./ColorWidget.svelte";
 let isPreview = false;
 let colorWidget = false;
 $: canvasBg = $editor?.backgroundColor;
+$: width = $editor?.getWidth();
+$: height = $editor?.getHeight();
 
 onMount(() => {
   if ($editor) {
@@ -26,7 +28,9 @@ const storeCanvasVals = () => {
 };
 
 const onUpdateCanvas = () => {
+  console.log(width, height);
   $editor.set("backgroundColor", canvasBg);
+  $editor.setDimensions({ width, height });
   $editor.renderAll();
   storeCanvasVals();
   onResizeWidget(false);
@@ -35,6 +39,7 @@ const onUpdateCanvas = () => {
 
 const onTogglePreview = (e) => {
   $editor.set("backgroundColor", canvasBg);
+  $editor.renderAll();
   isPreview = e.target.checked;
 };
 
@@ -58,13 +63,10 @@ const onCloseColor = () => {
   colorWidget = false;
 };
 
-const templateList = [
-  { name: "A4 Paper", alias: "a4p" },
-  { name: "Youtube Thumbnail", alias: "yt1" },
-  { name: "Facebook Cover Photo", alias: "fb-cp" },
-];
+const templateList = [];
 
 const onChange = (val) => {
+  canvasBg = val;
   if (isPreview) {
     $editor.set("backgroundColor", val);
     $editor.renderAll();
@@ -88,7 +90,7 @@ const onChange = (val) => {
       <label for="templates">Templates:</label>
       <select id="templates">
         {#each templateList as template}
-          <option value="{template.name}">{template.name}</option>
+          <option value="{template}">{template}</option>
         {/each}
       </select>
     </div>
@@ -98,11 +100,19 @@ const onChange = (val) => {
       <div class="item">
         <div class="input-wrap">
           <label for="width">Width:</label>
-          <input id="width" type="number" value="{$editor?.getWidth()}" />
+          <input
+            id="width"
+            type="number"
+            value="{width}"
+            on:input="{(e) => (width = parseInt(e.target.value, 10))}" />
         </div>
         <div class="input-wrap">
           <label for="height">Height:</label>
-          <input id="height" type="number" value="{$editor?.getHeight()}" />
+          <input
+            id="height"
+            type="number"
+            value="{height}"
+            on:input="{(e) => (height = parseInt(e.target.value, 10))}" />
         </div>
       </div>
     </div>
@@ -110,7 +120,7 @@ const onChange = (val) => {
     <div class="area size">
       <div class="name">Canvas Background</div>
       <div class="item">
-        <Color mode="canvasBg" val="{canvasBg}" onClick="{onShowColor}" />
+        <Color val="{canvasBg}" onClick="{onShowColor}" />
       </div>
     </div>
 
@@ -155,9 +165,11 @@ main {
   margin-bottom: 10px;
   flex-direction: row;
   align-items: center;
+  display: block;
 }
 .input-wrap label {
-  width: 100px;
+  width: 150px;
+  margin-right: 10px;
 }
 
 .btn-wrap {
