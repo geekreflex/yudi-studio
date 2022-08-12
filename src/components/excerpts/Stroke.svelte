@@ -1,13 +1,14 @@
 <script>
 import Switch from "../addons/Switch.svelte";
-import { selectedObj, strokeColor } from "../../store/store";
+import { selectedObj } from "../../store/store";
 import { onStrokeChange, onStrokeWidth } from "../../functions/editorFunctions";
 import Color from "./Color.svelte";
-import { beforeUpdate } from "svelte";
+import { afterUpdate } from "svelte";
+import ColorWidget from "../widgets/ColorWidget.svelte";
 
 let visible = false;
 
-let strokeObj = {
+$: strokeObj = {
   color: $selectedObj?.stroke || "#000",
   width: $selectedObj?.strokeWidth || 1,
 };
@@ -16,6 +17,7 @@ const onSwitch = (e) => {
   visible = e.target.checked;
   if ($selectedObj && !e.target.checked) {
     onStrokeWidth(0);
+    onStrokeChange(null);
   }
   if (e.target.checked && $selectedObj) {
     onStrokeWidth(strokeObj.width);
@@ -23,15 +25,38 @@ const onSwitch = (e) => {
   }
 };
 
-// beforeUpdate(() => {
-//   if (visible && $selectedObj) {
-//     onStrokeWidth(strokeObj.width);
-//     onStrokeChange(strokeObj.color);
-//   } else {
-//     visible = false;
-//   }
-// });
+afterUpdate(() => {
+  if ($selectedObj?.stroke) {
+    visible = true;
+    onStrokeWidth(strokeObj.width);
+    onStrokeChange(strokeObj.color);
+  } else {
+    visible = false;
+  }
+});
+
+let colorWidget = false;
+
+const onShowColor = () => {
+  colorWidget = true;
+  console.log("jsksks");
+};
+
+const onCloseColor = () => {
+  colorWidget = false;
+};
+
+const onChange = (val) => {
+  strokeObj.color = val;
+};
 </script>
+
+<ColorWidget
+  id="stroke-color-widget"
+  visible="{colorWidget}"
+  close="{onCloseColor}"
+  onChange="{onChange}"
+  value="{strokeObj.color}" />
 
 <main>
   <div class="toggler">
@@ -46,14 +71,14 @@ const onSwitch = (e) => {
           <input
             min="0"
             type="number"
-            value="{$selectedObj?.strokeWidth || 0}"
+            value="{strokeObj.width}"
             on:input="{(e) => onStrokeWidth(e.target.value)}" />
         </div>
       </div>
       <div class="item">
         <div class="item-name">Color:</div>
         <div class="item-data">
-          <Color mode="stroke" val="{$selectedObj?.stroke || $strokeColor}" />
+          <Color val="{strokeObj.color}" onClick="{onShowColor}" />
         </div>
       </div>
     </div>

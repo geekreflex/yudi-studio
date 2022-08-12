@@ -27,6 +27,7 @@ import {
 } from "../functions/addFunctions";
 import ResizeIcon from "../icons/ResizeIcon.svelte";
 import { onResizeWidget } from "../functions/clickFunctions";
+import EraserIcon from "../icons/EraserIcon.svelte";
 
 const addPicture = () => {
   let imgUploader = document.getElementById("image-upload");
@@ -58,26 +59,31 @@ const onChooseTemp = () => {
 </script>
 
 <main>
-  <input type="file" id="image-upload" on:change="{onImgUpload}" />
-  <!-- <button on:click="{onChooseTemp}">Choose template</button> -->
-  <button class="add-tool"><LabelsIcon /></button>
-  <button class="add-tool" on:click="{addTriangle}"> <TriangleIcon /> </button>
-  <button class="add-tool" on:click="{addText}">
-    <TextIcon />
-  </button>
-  <button class="add-tool" on:click="{addCircle}"> <CircleIcon /></button>
-  <button class="add-tool" on:click="{addRectangle}"> <SquareIcon /> </button>
-  <button class="add-tool" on:click="{addPicture}"> <PictureIcon /> </button>
-  <button class="add-tool" on:click="{addStar}"><StarIcon /></button>
-  <button class="add-tool" on:click="{addPolygon}"><PolygonIcon /></button>
-  <button
-    class="add-tool"
-    class:active="{$freeDrawingMode}"
-    on:click="{addFreeDrawing}"><PainBrushIcon /></button>
-  <button
-    class="add-tool"
-    class:active="{$resizeWidget}"
-    on:click="{() => onResizeWidget(true)}"><ResizeIcon /></button>
+  <div class="tools-wrap">
+    <input type="file" id="image-upload" on:change="{onImgUpload}" />
+    <!-- <button on:click="{onChooseTemp}">Choose template</button> -->
+    <button class="add-tool"><LabelsIcon /></button>
+    <button class="add-tool" on:click="{addTriangle}">
+      <TriangleIcon />
+    </button>
+    <button class="add-tool" on:click="{addText}">
+      <TextIcon />
+    </button>
+    <button class="add-tool" on:click="{addCircle}"> <CircleIcon /></button>
+    <button class="add-tool" on:click="{addRectangle}"> <SquareIcon /> </button>
+    <button class="add-tool" on:click="{addPicture}"> <PictureIcon /> </button>
+    <button class="add-tool" on:click="{addStar}"><StarIcon /></button>
+    <button class="add-tool" on:click="{addPolygon}"><PolygonIcon /></button>
+    <button
+      class="add-tool"
+      class:active="{$freeDrawingMode}"
+      on:click="{addFreeDrawing}"><PainBrushIcon /></button>
+    <button
+      class="add-tool"
+      class:active="{$resizeWidget}"
+      on:click="{() => onResizeWidget(true)}"><ResizeIcon /></button>
+    <!-- <button class="add-tool"><EraserIcon /></button> -->
+  </div>
 </main>
 
 <style>
@@ -88,9 +94,6 @@ const onChooseTemp = () => {
 main {
   position: fixed;
   top: 100px;
-  display: flex;
-  flex-direction: column;
-  width: 60px;
   left: 20px;
   background-color: #111111;
   padding: 10px 0;
@@ -98,6 +101,9 @@ main {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
   border: 1px solid #333;
   align-items: center;
+  max-height: 75vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 button {
@@ -117,6 +123,13 @@ button {
 
 button:hover {
   opacity: 0.5;
+}
+
+.tools-wrap {
+  width: 60px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .active {

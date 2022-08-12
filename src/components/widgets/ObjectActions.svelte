@@ -17,8 +17,6 @@ import {
   onFlipY,
   onRotate,
 } from "../../functions/editorFunctions";
-import UndoIcon from "../../icons/UndoIcon.svelte";
-import RedoIcon from "../../icons/RedoIcon.svelte";
 import { onSkewWidget } from "../../functions/clickFunctions";
 import ControlIcon from "../../icons/ControlIcon.svelte";
 import RotateRightIcon from "../../icons/RotateRightIcon.svelte";
@@ -99,13 +97,7 @@ const onLogObject = () => {
     title="Skew Tool: Shear selected object(s)">
     <ControlIcon />
   </button>
-  <div class="undo-redo">
-    <button class="action-btn"><UndoIcon /></button>
-    <button class="action-btn"><RedoIcon /></button>
-  </div>
-  <div class="widget-btns">
-    <!-- <button class="btn" on:click="{onLogObject}">Log Object</button> -->
-  </div>
+  <div class="widget-btns"></div>
 </main>
 
 <style>
@@ -121,20 +113,5 @@ main {
 .hidden {
   pointer-events: none;
   opacity: 0.5;
-}
-
-.widget-btns {
-  display: flex;
-  margin-left: 50px;
-  align-items: center;
-}
-
-.widget-btns button {
-  margin-right: 20px;
-}
-
-.undo-redo {
-  display: flex;
-  margin-left: 50px;
 }
 </style>

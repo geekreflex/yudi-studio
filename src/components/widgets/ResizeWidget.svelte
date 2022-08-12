@@ -1,11 +1,14 @@
 <script>
 import Draggable from "../Draggable.svelte";
-import { resizeWidget, editor, canvasBg } from "../../store/store";
+import { resizeWidget, editor } from "../../store/store";
 import { onResizeWidget } from "../../functions/clickFunctions";
-import { beforeUpdate, onMount } from "svelte";
+import { onMount } from "svelte";
 import Color from "../excerpts/Color.svelte";
+import ColorWidget from "./ColorWidget.svelte";
 
 let isPreview = false;
+let colorWidget = false;
+$: canvasBg = $editor?.backgroundColor;
 
 onMount(() => {
   if ($editor) {
@@ -22,22 +25,16 @@ const storeCanvasVals = () => {
   localStorage.setItem("canvas-initial-values", JSON.stringify(data));
 };
 
-beforeUpdate(() => {
-  if (isPreview) {
-    $editor.set("backgroundColor", $canvasBg);
-    $editor.renderAll();
-  }
-});
-
 const onUpdateCanvas = () => {
-  $editor.set("backgroundColor", $canvasBg);
+  $editor.set("backgroundColor", canvasBg);
   $editor.renderAll();
   storeCanvasVals();
   onResizeWidget(false);
+  colorWidget = false;
 };
 
 const onTogglePreview = (e) => {
-  console.log($editor.backgroundColor);
+  $editor.set("backgroundColor", canvasBg);
   isPreview = e.target.checked;
 };
 
@@ -53,12 +50,34 @@ const onResetCanvas = () => {
   $editor.renderAll();
 };
 
+const onShowColor = () => {
+  colorWidget = true;
+};
+
+const onCloseColor = () => {
+  colorWidget = false;
+};
+
 const templateList = [
   { name: "A4 Paper", alias: "a4p" },
   { name: "Youtube Thumbnail", alias: "yt1" },
   { name: "Facebook Cover Photo", alias: "fb-cp" },
 ];
+
+const onChange = (val) => {
+  if (isPreview) {
+    $editor.set("backgroundColor", val);
+    $editor.renderAll();
+  }
+};
 </script>
+
+<ColorWidget
+  id="resize-color-picker"
+  visible="{colorWidget}"
+  value="{canvasBg}"
+  close="{onCloseColor}"
+  onChange="{onChange}" />
 
 <Draggable
   title="Resize Canvas"
@@ -91,7 +110,7 @@ const templateList = [
     <div class="area size">
       <div class="name">Canvas Background</div>
       <div class="item">
-        <Color mode="canvasBg" val="{$canvasBg}" />
+        <Color mode="canvasBg" val="{canvasBg}" onClick="{onShowColor}" />
       </div>
     </div>
 

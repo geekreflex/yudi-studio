@@ -1,17 +1,11 @@
 <script>
-import { onMount } from "svelte";
-import filters from "../../functions/filters";
 import { onFilterWidget } from "../../functions/clickFunctions";
 import { filterWidget, selectedObj } from "../../store/store";
 import Draggable from "../Draggable.svelte";
 import Invert from "../filters/Invert.svelte";
 import Blur from "../filters/Blur.svelte";
 import Saturation from "../filters/Saturation.svelte";
-
-onMount(() => {
-  filters();
-  console.log("filter mounted");
-});
+import Brightness from "../filters/Brightness.svelte";
 </script>
 
 <Draggable
@@ -24,6 +18,8 @@ onMount(() => {
     <Blur />
     <div class="line"><span></span></div>
     <Saturation />
+    <div class="line"><span></span></div>
+    <Brightness />
   </main>
 </Draggable>
 

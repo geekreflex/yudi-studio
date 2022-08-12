@@ -19,10 +19,3 @@ export const freeDrawingMode = writable(false);
 export const unfinishedModal = writable(false);
 export const filterWidget = writable(false);
 export const shadowStrokeWidget = writable(false);
-export const fillMode = writable("fill");
-
-// fills and stroke
-export const shadowColor = writable("#000");
-export const strokeColor = writable("#000");
-export const canvasBg = writable("#fff");
-export const freeDrawingColor = writable("#000");

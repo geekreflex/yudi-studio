@@ -1,6 +1,6 @@
 <script>
+import { onFillChange } from "../../functions/editorFunctions";
 import { onTextWidget } from "../../functions/clickFunctions";
-
 import TextAlignBlockIcon from "../../icons/TextAlignBlockIcon.svelte";
 import TextAlignCenterIcon from "../../icons/TextAlignCenterIcon.svelte";
 import TextAlignLeftIcon from "../../icons/TextAlignLeftIcon.svelte";
@@ -11,6 +11,8 @@ import FontFamily from "../excerpts/FontFamily.svelte";
 import FontSize from "../excerpts/FontSize.svelte";
 import Opacity from "../excerpts/Opacity.svelte";
 import PostionSize from "../excerpts/PostionSize.svelte";
+
+export let onShowColor;
 
 const onAlignText = (pos) => {
   $editor.getActiveObject().set({ textAlign: pos });
@@ -24,7 +26,7 @@ const onAlignText = (pos) => {
   <div class="item">
     <div class="item-name">Color:</div>
     <div class="item-data">
-      <Color mode="fill" val="{$selectedObj?.fill}" />
+      <Color val="{$selectedObj?.fill}" onClick="{onShowColor}" />
     </div>
   </div>
   <Opacity />

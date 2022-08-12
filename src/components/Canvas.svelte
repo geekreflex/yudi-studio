@@ -1,15 +1,7 @@
 <script>
 import { fabric } from "fabric";
 import { onMount } from "svelte";
-import {
-  editor,
-  selectedObj,
-  items,
-  history,
-  historyMods,
-  unfinishedModal,
-  canvasBg,
-} from "../store/store";
+import { editor, selectedObj, items, unfinishedModal } from "../store/store";
 import Snippets from "./widgets/Snippets.svelte";
 
 onMount(() => {
@@ -18,12 +10,6 @@ onMount(() => {
     preserveObjectStacking: true,
   });
   editor.set(canvas);
-
-  const historyChanged = () => {
-    const canvasContents = $editor.toJSON();
-    $history.push(canvasContents);
-    $historyMods = 0;
-  };
 
   const saveCanvasToStorage = () => {
     const json = canvas.toJSON();
@@ -36,7 +22,6 @@ onMount(() => {
       $unfinishedModal = true;
       const json = localStorage.getItem("editor-state");
       canvas.loadFromJSON(JSON.parse(json), canvas.renderAll.bind(canvas));
-      $canvasBg = canvas.backgroundColor;
     }
   };
 
@@ -62,14 +47,9 @@ onMount(() => {
     saveCanvasToStorage();
   });
 
-  canvas.on("object:added", (e) => {
-    historyChanged();
-  });
   canvas.on("object:modified", (e) => {
-    historyChanged();
     resetFontSize(e);
   });
-  canvas.on("object:removed", historyChanged);
 
   canvas.on("before:render", () => {
     $selectedObj = $editor.getActiveObject();
@@ -107,5 +87,6 @@ main {
 .canvas-wrap {
   display: flex;
   position: relative;
+  border: 1px solid #444;
 }
 </style>

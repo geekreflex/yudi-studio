@@ -8,6 +8,8 @@ import Color from "../excerpts/Color.svelte";
 import Opacity from "../excerpts/Opacity.svelte";
 import PostionSize from "../excerpts/PostionSize.svelte";
 
+export let onShowColor;
+
 let renderPolySize = () => {
   if ($selectedObj?.name === "regpoly") {
     return $selectedObj?.points?.length;
@@ -23,7 +25,7 @@ let renderPolySize = () => {
   <div class="item">
     <div class="item-name">Color:</div>
     <div class="item-data">
-      <Color mode="fill" val="{$selectedObj?.fill}" />
+      <Color val="{$selectedObj?.fill}" onClick="{onShowColor}" />
     </div>
   </div>
   <Opacity />

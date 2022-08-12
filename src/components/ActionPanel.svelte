@@ -1,5 +1,4 @@
 <script>
-import { selectedObj } from "../store/store";
 import ToolsIcon from "../icons/ToolsIcon.svelte";
 import ToolOptions from "./ToolOptions.svelte";
 import CubeIcon from "../icons/CubeIcon.svelte";

@@ -120,18 +120,12 @@ export const onSendToBack = () => {
 };
 
 export const onFlipX = () => {
-  const objects = canvas.getActiveObjects();
-  objects.map((obj) => {
-    obj.toggle("flipX");
-  });
+  canvas.getActiveObject().toggle("flipX");
   canvas.requestRenderAll();
 };
 
 export const onFlipY = () => {
-  const objects = canvas.getActiveObjects();
-  objects.map((obj) => {
-    obj.toggle("flipY");
-  });
+  canvas.getActiveObject().toggle("flipY");
   canvas.requestRenderAll();
 };
 

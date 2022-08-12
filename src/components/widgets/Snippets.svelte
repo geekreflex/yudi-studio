@@ -3,6 +3,7 @@ import { selectedObj } from "../../store/store";
 import { afterUpdate } from "svelte";
 import { fontList } from "../../data/fontList";
 import {
+  onFillChange,
   onFontFamilyChange,
   onFontSize,
   onFontUnderline,
@@ -12,6 +13,10 @@ import BoldIcon from "../../icons/BoldIcon.svelte";
 import UnderlinedIcon from "../../icons/UnderlinedIcon.svelte";
 import ItalicIcon from "../../icons/ItalicIcon.svelte";
 import Color from "../excerpts/Color.svelte";
+import ColorWidget from "./ColorWidget.svelte";
+
+let colorWidget = false;
+$: textColor = $selectedObj?.fill;
 
 afterUpdate(() => {
   let snippetsWrap = document.getElementById("snippets-wrap");
@@ -25,8 +30,26 @@ afterUpdate(() => {
     snippetsWrap.style.marginTop = `${$selectedObj?.top - 100}px`;
   }
 });
+
+const onShowColor = () => {
+  colorWidget = true;
+};
+
+const onCloseColor = () => {
+  colorWidget = false;
+};
+
+const onChange = (val) => {
+  onFillChange(val);
+};
 </script>
 
+<ColorWidget
+  id="snippet-color-widget"
+  visible="{colorWidget}"
+  close="{onCloseColor}"
+  onChange="{onChange}"
+  value="{textColor}" />
 <main
   class:visible="{$selectedObj?.type === 'textbox'}"
   id="snippets-wrap"
@@ -63,7 +86,7 @@ afterUpdate(() => {
         class:activeBtn="{$selectedObj?.fontWeight === 'italic'}"
         class="action-btn"><ItalicIcon /></button>
     </div>
-    <Color mode="fill" val="{$selectedObj?.fill}" />
+    <Color val="{textColor}" onClick="{onShowColor}" />
   </div>
 </main>
 
@@ -99,10 +122,6 @@ main {
   display: flex;
 }
 
-/* .text-format button {
-  background-color: #333;
-} */
-
 .activeBtn {
   background-color: #333 !important;
 }
@@ -110,12 +129,5 @@ main {
 .select {
   width: 75%;
   margin-right: 10px;
-}
-
-.color-block {
-  width: 60px;
-  height: 30px;
-  border: 2px solid #666;
-  border-radius: 4px;
 }
 </style>

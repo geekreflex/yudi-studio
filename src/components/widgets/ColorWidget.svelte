@@ -1,24 +1,19 @@
 <script>
 import iro from "@jaames/iro";
-import { onFillChange, onStrokeChange } from "../../functions/editorFunctions";
 import { onMount } from "svelte";
-import {
-  colorWidget,
-  selectedObj,
-  fillMode,
-  canvasBg,
-  shadowColor,
-  strokeColor,
-  freeDrawingColor,
-} from "../../store/store";
 import Draggable from "../Draggable.svelte";
-import { onColorWidget } from "../../functions/clickFunctions";
 
 let colorList = [];
 let colorPicker;
 
+export let value;
+export let onChange;
+export let close;
+export let visible;
+export let id;
+
 onMount(() => {
-  colorPicker = new iro.ColorPicker("#picker", {
+  colorPicker = new iro.ColorPicker(`#${id}`, {
     width: 320,
     colors: ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)"],
     handleRadius: 9,
@@ -32,77 +27,38 @@ onMount(() => {
 
   colorPicker.on(["mount", "color:setActive", "color:change"], function () {
     const hexString = colorPicker.color.hexString;
-
-    if ($fillMode === "fill") {
-      onFillChange(hexString);
-    }
-
-    if ($fillMode === "stroke") {
-      onStrokeChange(hexString);
-      strokeColor.update(() => hexString);
-    }
-
-    if ($fillMode === "canvasBg") {
-      canvasBg.update(() => hexString);
-    }
-
-    if ($fillMode === "shadowColor") {
-      shadowColor.update(() => hexString);
-    }
-
-    if ($fillMode === "freeDrawing") {
-      freeDrawingColor.update(() => hexString);
-    }
+    value = hexString;
+    onChange(value);
   });
 });
 
 const setColor = (colorIndex) => {
-  // setActiveColor expects the color index!
   colorPicker.setActiveColor(colorIndex);
 };
 </script>
 
 <Draggable
-  zIndex="9999999"
-  visible="{$colorWidget}"
+  zIndex="{9999999}"
+  visible="{visible}"
   title="Color palette"
-  close="{() => onColorWidget(false)}">
+  close="{close}">
   <main>
     <div class="palette-main">
-      <div id="picker"></div>
+      <div id="{id}"></div>
       <div class="color-data">
         <div class="color-list">
           {#each colorList as color, index}
-            <div class="color" on:click="{() => setColor(index)}">
-              <div class="color-block" style="background:{color.hexString}">
-              </div>
-              <div class="color-hex">
-                {color.hexString}
-              </div>
+            <div
+              title="{color.hexString}"
+              class="color-block"
+              on:click="{() => setColor(index)}"
+              style="background:{color.hexString}">
             </div>
           {/each}
         </div>
         <div class="current-color">
           <span>Current:</span>
-          {#if $fillMode === "canvasBg"}
-            <div style="background: {$canvasBg}" class="current-block"></div>
-          {:else if $fillMode === "fill"}
-            <div style="background: {$selectedObj?.fill}" class="current-block">
-            </div>
-          {:else if $fillMode === "shadowColor"}
-            <div
-              style="background: {$selectedObj?.shadow?.color}"
-              class="current-block">
-            </div>
-          {:else if $fillMode === "freeDrawing"}
-            <div style="background: {$freeDrawingColor}" class="current-block">
-            </div>
-          {:else if $fillMode === "stroke"}
-            <div
-              style="background: {$selectedObj?.stroke || $strokeColor}"
-              class="current-block">
-            </div>
-          {/if}
+          <div style="background: {value}" class="current-block"></div>
         </div>
       </div>
     </div>
@@ -146,16 +102,10 @@ main {
 }
 
 .color-block {
-  width: 100%;
+  width: 60px;
   height: 30px;
   border-radius: 4px;
   border: 4px solid #333;
-}
-
-.color-hex {
-  font-size: 12px;
-  color: #fff;
-  /* display: none; */
 }
 
 .current-color {

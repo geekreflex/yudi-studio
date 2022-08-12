@@ -108,7 +108,6 @@ export default function () {
 
     if (canvas.freeDrawingBrush) {
       var brush = canvas.freeDrawingBrush;
-      brush.color = "#000";
       if (brush.getPatternSrc) {
         brush.source = brush.getPatternSrc.call(brush);
       }

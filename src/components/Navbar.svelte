@@ -8,6 +8,7 @@ import {
   downloadWidget,
 } from "../store/store";
 import NavList from "./NavList.svelte";
+import UndoRedo from "./UndoRedo.svelte";
 import ObjectActions from "./widgets/ObjectActions.svelte";
 
 const onPublish = () => {
@@ -24,6 +25,7 @@ const onDownloadBtn = () => {
   <div class="left">
     <NavList />
     <ObjectActions />
+    <UndoRedo />
   </div>
   <div class="right">
     <button class="btn primary" on:click="{onPublish}">Publish</button>

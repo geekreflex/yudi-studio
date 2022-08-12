@@ -1,14 +1,8 @@
 <script>
-import { onColorWidget } from "../../functions/clickFunctions";
-import { selectedObj, fillMode } from "../../store/store";
+import { selectedObj } from "../../store/store";
 
-export let mode = "fill";
+export let onClick;
 export let val = $selectedObj?.fill;
-
-const showColorWidget = () => {
-  $fillMode = mode;
-  onColorWidget(true);
-};
 </script>
 
 <main>
@@ -16,7 +10,7 @@ const showColorWidget = () => {
     for="fill-color"
     class="color-block"
     style="background: {val}"
-    on:click="{showColorWidget}">
+    on:click="{onClick}">
   </div>
 </main>
 

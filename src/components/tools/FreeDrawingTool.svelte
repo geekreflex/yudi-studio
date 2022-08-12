@@ -1,21 +1,24 @@
 <script>
-import { editor, freeDrawingColor } from "../../store/store";
+import { editor } from "../../store/store";
 import freeDrawing from "../../functions/freeDrawing";
 import { onMount } from "svelte";
-import { afterUpdate } from "svelte";
 import Color from "../excerpts/Color.svelte";
+import ColorWidget from "../widgets/ColorWidget.svelte";
+
+$: brushColor = $editor?.freeDrawingBrush?.color || "#000";
+let colorWidget = false;
 
 onMount(() => {
   freeDrawing();
 });
 
-afterUpdate(() => {
+function updateBrushColor(color) {
   var brush = $editor.freeDrawingBrush;
-  brush.color = $freeDrawingColor;
+  brush.color = color;
   if (brush.getPatternSrc) {
     brush.source = brush.getPatternSrc.call(brush);
   }
-});
+}
 
 const modes = [
   "Pencil",
@@ -28,21 +31,44 @@ const modes = [
   "diamond",
   "texture",
 ];
+
+const onShowColor = () => {
+  colorWidget = true;
+};
+
+const onCloseColor = () => {
+  colorWidget = false;
+};
+
+const onChange = (val) => {
+  brushColor = val;
+  updateBrushColor(val);
+};
 </script>
+
+<ColorWidget
+  id="brush-color-widget"
+  visible="{colorWidget}"
+  close="{onCloseColor}"
+  onChange="{onChange}"
+  value="{brushColor}" />
 
 <main>
   <div class="item">
     <div class="item-name">Color:</div>
     <div class="item-data">
-      <Color mode="freeDrawing" val="{$freeDrawingColor}" />
+      <Color val="{brushColor}" onClick="{onShowColor}" />
     </div>
   </div>
-  <input id="drawing-color" value="{$freeDrawingColor}" />
+  <input id="drawing-color" value="{brushColor}" />
   <div class="item">
     <div class="item-name">Mode:</div>
     <div class="item-data">
       <div class="input-wrap">
-        <select value="{modes[0]}" id="drawing-mode">
+        <select
+          value="{modes[0]}"
+          id="drawing-mode"
+          on:change="{() => updateBrushColor(brushColor)}">
           {#each modes as mode, index}
             <option value="{mode}">{mode}</option>
           {/each}

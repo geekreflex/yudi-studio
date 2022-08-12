@@ -1,10 +1,11 @@
 <script>
-import { afterUpdate, beforeUpdate } from "svelte";
+import { afterUpdate } from "svelte";
 
 import { onCreateShadow, onRemoveShadow } from "../../functions/addFunctions";
-import { selectedObj, shadowColor } from "../../store/store";
+import { selectedObj } from "../../store/store";
 
 import Switch from "../addons/Switch.svelte";
+import ColorWidget from "../widgets/ColorWidget.svelte";
 import Color from "./Color.svelte";
 let visible = false;
 
@@ -15,8 +16,6 @@ $: shadowObj = {
   blur: $selectedObj?.shadow?.blur || 0,
   opacity: $selectedObj?.shadow?.opacity || 1,
 };
-
-$: shadowObj.color = $shadowColor;
 
 const onSwitch = (e) => {
   visible = e.target.checked;
@@ -29,12 +28,37 @@ const onSwitch = (e) => {
   }
 };
 
-beforeUpdate(() => {
-  if (visible && $selectedObj?.shadow) {
+afterUpdate(() => {
+  if ($selectedObj?.shadow) {
     onCreateShadow(shadowObj);
+    visible = true;
+  } else {
+    visible = false;
   }
 });
+
+let colorWidget = false;
+
+const onShowColor = () => {
+  colorWidget = true;
+  console.log("jsksks");
+};
+
+const onCloseColor = () => {
+  colorWidget = false;
+};
+
+const onChange = (val) => {
+  shadowObj.color = val;
+};
 </script>
+
+<ColorWidget
+  id="shadow-color-widget"
+  visible="{colorWidget}"
+  close="{onCloseColor}"
+  onChange="{onChange}"
+  value="{shadowObj.color}" />
 
 <main>
   <div class="toggler">
@@ -46,7 +70,7 @@ beforeUpdate(() => {
       <div class="item">
         <div class="item-name">Color:</div>
         <div class="item-data">
-          <Color mode="shadowColor" val="{$selectedObj?.shadow?.color}" />
+          <Color onClick="{onShowColor}" val="{$selectedObj?.shadow?.color}" />
         </div>
       </div>
       <div class="item">

@@ -49,7 +49,7 @@ function onMouseUp() {
   flex-direction: column;
 }
 section {
-  position: absolute;
+  position: fixed;
   z-index: 99999998;
   background-color: #222;
   border-radius: 6px;
