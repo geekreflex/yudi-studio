@@ -7,10 +7,9 @@ import TriangleIcon from "../icons/TriangleIcon.svelte";
 import TextIcon from "../icons/TextIcon.svelte";
 import {
   editor,
-  templatesModal,
-  templates,
   freeDrawingMode,
   resizeWidget,
+  elementWidget,
 } from "../store/store";
 import StarIcon from "../icons/StarIcon.svelte";
 import PolygonIcon from "../icons/PolygonIcon.svelte";
@@ -28,6 +27,7 @@ import {
 import ResizeIcon from "../icons/ResizeIcon.svelte";
 import { onResizeWidget } from "../functions/clickFunctions";
 import MoreTool from "./MoreTool.svelte";
+import PictureIcon2 from "../icons/PictureIcon2.svelte";
 
 const addPicture = () => {
   remomveFreeDrawing();
@@ -48,41 +48,53 @@ const onImgUpload = (e) => {
   };
   reader.readAsDataURL(file);
 };
-
-const onChooseTemp = () => {
-  templatesModal.update(() => true);
-  fetch("http://localhost:8400/api/templates")
-    .then((res) => res.json())
-    .then((data) => {
-      $templates = data.payload;
-    });
-};
 </script>
 
 <main>
   <div class="tools-wrap">
     <input type="file" id="image-upload" on:change="{onImgUpload}" />
     <MoreTool />
-    <button class="add-tool" on:click="{addTriangle}">
+    <button class="add-tool" title="Add elements and icons">
       <TriangleIcon />
     </button>
-    <button class="add-tool" on:click="{addText}">
+    <button
+      class:active="{$elementWidget}"
+      class="add-tool"
+      on:click="{addTriangle}"
+      title="Create triangles">
+      <PictureIcon2 />
+    </button>
+    <button
+      class="add-tool"
+      on:click="{addText}"
+      title="Create and edit text objects">
       <TextIcon />
     </button>
-    <button class="add-tool" on:click="{addCircle}"> <CircleIcon /></button>
-    <button class="add-tool" on:click="{addRectangle}"> <SquareIcon /> </button>
-    <button class="add-tool" on:click="{addPicture}"> <PictureIcon /> </button>
-    <button class="add-tool" on:click="{addStar}"><StarIcon /></button>
-    <button class="add-tool" on:click="{addPolygon}"><PolygonIcon /></button>
+    <button class="add-tool" on:click="{addCircle}" title="Create circles">
+      <CircleIcon /></button>
     <button
+      class="add-tool"
+      on:click="{addRectangle}"
+      title="Create rectangles or squares">
+      <SquareIcon />
+    </button>
+    <button class="add-tool" on:click="{addPicture}" title="Upload images">
+      <PictureIcon />
+    </button>
+    <button class="add-tool" on:click="{addStar}" title="Create stars"
+      ><StarIcon /></button>
+    <button class="add-tool" on:click="{addPolygon}" title="Create polygons"
+      ><PolygonIcon /></button>
+    <button
+      title="Paintbrush: Free drawing and strokes"
       class="add-tool"
       class:active="{$freeDrawingMode}"
       on:click="{addFreeDrawing}"><PainBrushIcon /></button>
     <button
+      title="Resize canvas and background color"
       class="add-tool"
       class:active="{$resizeWidget}"
       on:click="{() => onResizeWidget(true)}"><ResizeIcon /></button>
-    <!-- <button class="add-tool"><EraserIcon /></button> -->
   </div>
 </main>
 
