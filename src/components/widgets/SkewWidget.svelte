@@ -23,8 +23,8 @@ const onResetSkew = () => {
 };
 </script>
 
-<Draggable visible="{$skewWidget}" left="{600}" title="Skew" close="{onClose}">
-  <main>
+<Draggable visible="{$skewWidget}" title="Skew" close="{onClose}">
+  <main class:active="{$selectedObj}">
     <div class="item-wrap">
       <div class="item">
         <div class="item-name">SkewX:</div>
@@ -63,6 +63,13 @@ const onResetSkew = () => {
 main {
   width: 300px;
   padding: 20px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.active {
+  opacity: 1;
+  pointer-events: visible;
 }
 
 .item-wrap {

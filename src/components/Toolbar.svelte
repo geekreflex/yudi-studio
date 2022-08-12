@@ -12,7 +12,6 @@ import {
   freeDrawingMode,
   resizeWidget,
 } from "../store/store";
-import LabelsIcon from "../icons/LabelsIcon.svelte";
 import StarIcon from "../icons/StarIcon.svelte";
 import PolygonIcon from "../icons/PolygonIcon.svelte";
 import PainBrushIcon from "../icons/PainBrushIcon.svelte";
@@ -24,12 +23,14 @@ import {
   addPolygon,
   addStar,
   addFreeDrawing,
+  remomveFreeDrawing,
 } from "../functions/addFunctions";
 import ResizeIcon from "../icons/ResizeIcon.svelte";
 import { onResizeWidget } from "../functions/clickFunctions";
-import EraserIcon from "../icons/EraserIcon.svelte";
+import MoreTool from "./MoreTool.svelte";
 
 const addPicture = () => {
+  remomveFreeDrawing();
   let imgUploader = document.getElementById("image-upload");
   imgUploader.click();
 };
@@ -61,8 +62,7 @@ const onChooseTemp = () => {
 <main>
   <div class="tools-wrap">
     <input type="file" id="image-upload" on:change="{onImgUpload}" />
-    <!-- <button on:click="{onChooseTemp}">Choose template</button> -->
-    <button class="add-tool"><LabelsIcon /></button>
+    <MoreTool />
     <button class="add-tool" on:click="{addTriangle}">
       <TriangleIcon />
     </button>
@@ -101,9 +101,9 @@ main {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
   border: 1px solid #333;
   align-items: center;
-  max-height: 75vh;
+  max-height: 85vh;
   overflow-y: auto;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 button {
@@ -133,6 +133,6 @@ button:hover {
 }
 
 .active {
-  background-color: #08080a;
+  background-color: #256141;
 }
 </style>

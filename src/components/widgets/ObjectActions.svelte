@@ -17,14 +17,8 @@ import {
   onFlipY,
   onRotate,
 } from "../../functions/editorFunctions";
-import { onSkewWidget } from "../../functions/clickFunctions";
-import ControlIcon from "../../icons/ControlIcon.svelte";
 import RotateRightIcon from "../../icons/RotateRightIcon.svelte";
 import RotateLeftIcon from "../../icons/RotateLeftIcon.svelte";
-
-const onLogObject = () => {
-  console.log($selectedObj.filters);
-};
 </script>
 
 <main class="{$selectedObj ? 'visible' : 'hidden'}">
@@ -91,13 +85,6 @@ const onLogObject = () => {
     on:click="{() => onRotate(90)}"
     ><RotateRightIcon />
   </button>
-  <button
-    class="action-btn"
-    on:click="{() => onSkewWidget(true)}"
-    title="Skew Tool: Shear selected object(s)">
-    <ControlIcon />
-  </button>
-  <div class="widget-btns"></div>
 </main>
 
 <style>

@@ -1,4 +1,6 @@
 <script>
+import FilePlusIcon from "../icons/FilePlusIcon.svelte";
+
 import DownloadIcon from "../icons/DownloadIcon.svelte";
 import {
   publishModal,
@@ -7,7 +9,6 @@ import {
   items,
   downloadWidget,
 } from "../store/store";
-import NavList from "./NavList.svelte";
 import UndoRedo from "./UndoRedo.svelte";
 import ObjectActions from "./widgets/ObjectActions.svelte";
 
@@ -23,7 +24,9 @@ const onDownloadBtn = () => {
 
 <main>
   <div class="left">
-    <NavList />
+    <button class="action-btn" title="New File">
+      <FilePlusIcon />
+    </button>
     <ObjectActions />
     <UndoRedo />
   </div>

@@ -1,7 +1,7 @@
 <script>
 import Paint2 from "../icons/Paint2.svelte";
-import FilePlusIcon from "../icons/FilePlusIcon.svelte";
 import { filterWidget, shadowStrokeWidget } from "../store/store";
+import { onSkewWidget } from "../functions/clickFunctions";
 
 let visible = false;
 
@@ -14,15 +14,17 @@ const onSSClick = () => {
   visible = false;
   $shadowStrokeWidget = true;
 };
+
+const onSkewClick = () => {
+  visible = false;
+  onSkewWidget(true);
+};
 </script>
 
 <main>
-  <button class="action-btn" title="New File">
-    <FilePlusIcon />
-  </button>
   <div class="filters">
     <button
-      class="action-btn"
+      class="add-tool"
       title="Filters and Shadows"
       on:click="{() => (visible = !visible)}">
       <Paint2 />
@@ -31,27 +33,36 @@ const onSSClick = () => {
       <ul>
         <li on:click="{onFilterClick}">Filters</li>
         <li on:click="{onSSClick}">Stroke and Shadow</li>
-        <li>Gradient</li>
+        <li on:click="{onSkewClick}">Skew</li>
       </ul>
     </div>
   </div>
 </main>
 
 <style>
-main {
+button {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  height: 48px;
+  width: 50px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 3px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-right: 50px;
 }
 
-.filters {
-  position: relative;
+button:hover {
+  opacity: 0.5;
 }
 
 .dropdown {
-  position: absolute;
-  top: 50px;
-  left: 0;
+  position: fixed;
+  top: 100px;
+  left: 100px;
   color: #fff;
   z-index: 9999;
   background-color: #222;
