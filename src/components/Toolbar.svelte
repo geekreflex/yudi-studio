@@ -48,21 +48,29 @@ const onImgUpload = (e) => {
   };
   reader.readAsDataURL(file);
 };
+
+const showElementWidget = () => {
+  $elementWidget = true;
+};
 </script>
 
 <main>
   <div class="tools-wrap">
     <input type="file" id="image-upload" on:change="{onImgUpload}" />
     <MoreTool />
-    <button class="add-tool" title="Add elements and icons">
-      <TriangleIcon />
-    </button>
-    <button
+
+    <!-- <button
       class:active="{$elementWidget}"
       class="add-tool"
-      on:click="{addTriangle}"
-      title="Create triangles">
+      on:click="{showElementWidget}"
+      title="Add elements and icons">
       <PictureIcon2 />
+    </button> -->
+    <button
+      on:click="{showElementWidget}"
+      class="add-tool"
+      title="Create triangles">
+      <TriangleIcon />
     </button>
     <button
       class="add-tool"

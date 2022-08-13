@@ -11,6 +11,7 @@ export let onChange;
 export let close;
 export let visible;
 export let id;
+export let title = "Color pallete";
 
 onMount(() => {
   colorPicker = new iro.ColorPicker(`#${id}`, {
@@ -40,7 +41,7 @@ const setColor = (colorIndex) => {
 <Draggable
   zIndex="{9999999}"
   visible="{visible}"
-  title="Color palette"
+  title="{title}"
   close="{close}">
   <main>
     <div class="palette-main">

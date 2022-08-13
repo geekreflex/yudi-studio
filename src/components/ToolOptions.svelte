@@ -31,6 +31,7 @@ const onChange = (val) => {
 </script>
 
 <ColorWidget
+  title="Change color of selected object"
   id="object-color-widget"
   visible="{colorWidget}"
   close="{onCloseColor}"

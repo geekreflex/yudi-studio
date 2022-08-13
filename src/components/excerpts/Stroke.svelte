@@ -52,6 +52,7 @@ const onChange = (val) => {
 </script>
 
 <ColorWidget
+  title="Stroke color"
   id="stroke-color-widget"
   visible="{colorWidget}"
   close="{onCloseColor}"

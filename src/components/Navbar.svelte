@@ -28,7 +28,7 @@ const onDownloadBtn = () => {
     <UndoRedo />
   </div>
   <div class="right">
-    <button class="btn primary" on:click="{onPublish}">Publish</button>
+    <!-- <button class="btn primary" on:click="{onPublish}">Publish</button> -->
     <button
       class:active-download="{$items.length}"
       class="download-btn btn btn-primary"

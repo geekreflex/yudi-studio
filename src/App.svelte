@@ -9,8 +9,9 @@ import UnfinishedModal from "./components/UnfinishedModal.svelte";
 import FilterWidget from "./components/widgets/FilterWidget.svelte";
 import ShadowStrokeWidget from "./components/widgets/ShadowStrokeWidget.svelte";
 import DownloadWidget from "./components/widgets/DownloadWidget.svelte";
+import ElementWidget from "./components/widgets/ElementWidget.svelte";
 
-import { filterWidget, shadowStrokeWidget } from "./store/store";
+import { filterWidget, shadowStrokeWidget, elementWidget } from "./store/store";
 </script>
 
 <main>
@@ -18,10 +19,11 @@ import { filterWidget, shadowStrokeWidget } from "./store/store";
   <TemplatesModal />
   <PublishModal />
   <SkewWidget />
-  <ResizeWidget />
+  <ResizeWidget />ShadowStrokeWidget
   <TextWidget />
   <UnfinishedModal />
   <svelte:component this="{$filterWidget && FilterWidget}" />
   <svelte:component this="{$shadowStrokeWidget && ShadowStrokeWidget}" />
+  <svelte:component this="{$elementWidget && ElementWidget}" />
   <DownloadWidget />
 </main>

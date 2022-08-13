@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
 *,
 *::after,
 *::before {
@@ -14,7 +16,7 @@ html {
 }
 
 body {
-  font-family: "Ubuntu";
+  font-family: "Lato", sans-serif;
 }
 
 svg {

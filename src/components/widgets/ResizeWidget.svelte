@@ -75,6 +75,7 @@ const onChange = (val) => {
 </script>
 
 <ColorWidget
+  title="Change background color"
   id="resize-color-picker"
   visible="{colorWidget}"
   value="{canvasBg}"

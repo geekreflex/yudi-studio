@@ -45,6 +45,7 @@ const onChange = (val) => {
 </script>
 
 <ColorWidget
+  title="Text color"
   id="snippet-color-widget"
   visible="{colorWidget}"
   close="{onCloseColor}"
@@ -93,7 +94,7 @@ const onChange = (val) => {
 <style>
 main {
   position: absolute;
-  z-index: 99999;
+  z-index: 9;
   background-color: rgba(0, 0, 0, 0.7);
   width: 450px;
   border-radius: 6px;

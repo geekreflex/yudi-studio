@@ -50,7 +50,7 @@ function onMouseUp() {
 }
 section {
   position: fixed;
-  z-index: 99999998;
+  z-index: 999999;
   background-color: #222;
   border-radius: 6px;
   box-shadow: 0 3px 13px rgba(0, 0, 0, 0.4);
@@ -66,7 +66,7 @@ nav {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  color: #fff;
+  color: #ccc;
   border-bottom: 1px solid #444;
 }
 

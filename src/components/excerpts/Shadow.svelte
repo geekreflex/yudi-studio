@@ -54,6 +54,7 @@ const onChange = (val) => {
 </script>
 
 <ColorWidget
+  title="Shadow color"
   id="shadow-color-widget"
   visible="{colorWidget}"
   close="{onCloseColor}"
