@@ -65,7 +65,7 @@ const onChange = (val) => {
         {/each}
       </select>
     </div>
-    <div class="input-wrap">
+    <div class="input-wrap font-size">
       <input
         type="number"
         value="{$selectedObj?.fontSize}"
@@ -130,5 +130,9 @@ main {
 .select {
   width: 75%;
   margin-right: 10px;
+}
+
+.font-size {
+  width: 130px;
 }
 </style>
