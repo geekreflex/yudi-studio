@@ -11,6 +11,10 @@ onMount(() => {
   });
   editor.set(canvas);
 
+  fabric.Object.prototype.cornerStyle = "circle";
+  fabric.Object.prototype.transparentCorners = false;
+  fabric.Object.prototype.cornerStrokeColor = "#08080a";
+
   const saveCanvasToStorage = () => {
     const json = canvas.toJSON();
     localStorage.setItem("editor-state", JSON.stringify(json));

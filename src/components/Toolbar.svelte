@@ -66,10 +66,7 @@ const showElementWidget = () => {
       title="Add elements and icons">
       <PictureIcon2 />
     </button> -->
-    <button
-      on:click="{showElementWidget}"
-      class="add-tool"
-      title="Create triangles">
+    <button on:click="{addTriangle}" class="add-tool" title="Create triangles">
       <TriangleIcon />
     </button>
     <button
