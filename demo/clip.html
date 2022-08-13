@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+    <style>
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        width: 80%;
+        height: 80vh;
+        border: 3px solid #111;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="canvas"></canvas>
+      <button id="add-button">Add Button</button>
+      <button id="new-d">New Dimensions Button</button>
+      <button id="json">JSON</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+    <script>
+      (function () {
+        var canvas = new fabric.Canvas("canvas", {
+          backgroundColor: "#eee",
+        });
+
+        let canvasWrap = document.querySelector(".container");
+        fabric.Object.prototype.cornerStyle = "circle";
+        fabric.Object.prototype.transparentCorners = false;
+        fabric.Object.prototype.cornerColor = "#030047";
+
+        const setCurrentDimensions = () => {
+          const newWidth = canvasWrap.clientWidth;
+          const newHeight = canvasWrap.clientHeight;
+
+          clipPath.left = newWidth / 2 - clipPath.width / 2;
+          clipPath.top = newHeight / 2 - clipPath.height / 2;
+
+          if (canvas.width != newWidth || canvas.height != newHeight) {
+            const scaleX = newWidth / canvas.width;
+            const scaleY = newHeight / canvas.height;
+            var objects = canvas.getObjects();
+            for (var i in objects) {
+              objects[i].scaleX = objects[i].scaleX * scaleX;
+              objects[i].scaleY = objects[i].scaleY * scaleY;
+              objects[i].left = objects[i].left * scaleX;
+              objects[i].top = objects[i].top * scaleY;
+              objects[i].setCoords();
+            }
+            var obj = canvas.backgroundImage;
+            if (obj) {
+              obj.scaleX = obj.scaleX * scaleX;
+              obj.scaleY = obj.scaleY * scaleY;
+            }
+
+            canvas.discardActiveObject();
+            canvas.setWidth(canvas.getWidth() * scaleX);
+            canvas.setHeight(canvas.getHeight() * scaleY);
+            canvas.renderAll();
+            canvas.calcOffset();
+          }
+        };
+
+        window.addEventListener("resize", setCurrentDimensions, false);
+
+        canvas.controlsAboveOverlay = true;
+        var clipPath = new fabric.Rect({
+          top: 0,
+          left: 0,
+          width: 500,
+          height: 500,
+        });
+
+        canvas.clipPath = clipPath;
+        canvas.clipPath.stroke = "red";
+        canvas.clipPath.strokeWidth = 5;
+
+        const addRect = () => {
+          const rect = new fabric.Rect({
+            width: 100,
+            height: 100,
+            fill: "green",
+          });
+          canvas.centerObject(rect).add(rect);
+        };
+
+        setCurrentDimensions();
+
+        document.getElementById("add-button").onclick = () => {
+          addRect();
+        };
+
+        document.getElementById("new-d").onclick = () => {
+          clipPath.width = 1800;
+          clipPath.height = 600;
+          setCurrentDimensions();
+          canvas.renderAll();
+        };
+
+        document.getElementById("json").onclick = () => {
+          const img = document.createElement("img");
+          img.src = canvas.toDataURL();
+          document.body.appendChild(img);
+          console.log(canvas.toJSON());
+        };
+      })();
+    </script>
+  </body>
+</html>
