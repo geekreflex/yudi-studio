@@ -53,7 +53,7 @@
             var objects = canvas.getObjects();
             for (var i in objects) {
               objects[i].scaleX = objects[i].scaleX * scaleX;
-              objects[i].scaleY = objects[i].scaleY * scaleY;
+              objects[i].scaleY = objects[i].scaleX * scaleY;
               objects[i].left = objects[i].left * scaleX;
               objects[i].top = objects[i].top * scaleY;
               objects[i].setCoords();
@@ -73,6 +73,16 @@
         };
 
         window.addEventListener("resize", setCurrentDimensions, false);
+        canvas.on("mouse:wheel", function (opt) {
+          var delta = opt.e.deltaY;
+          var zoom = canvas.getZoom();
+          zoom *= 0.999 ** delta;
+          if (zoom > 20) zoom = 20;
+          if (zoom < 0.01) zoom = 0.01;
+          canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+          opt.e.preventDefault();
+          opt.e.stopPropagation();
+        });
 
         canvas.controlsAboveOverlay = true;
         var clipPath = new fabric.Rect({
@@ -83,8 +93,6 @@
         });
 
         canvas.clipPath = clipPath;
-        canvas.clipPath.stroke = "red";
-        canvas.clipPath.strokeWidth = 5;
 
         const addRect = () => {
           const rect = new fabric.Rect({
