@@ -3,7 +3,7 @@ import ArrowIcon from "../../icons/ArrowIcon.svelte";
 import DoubleArrowAIcon from "../../icons/DoubleArrowAIcon.svelte";
 import CopyIcon from "../../icons/CopyIcon.svelte";
 import TrashIcon from "../../icons/TrashIcon.svelte";
-import { selectedObj } from "../../store/store";
+import { selectedObj, editor } from "../../store/store";
 import Horizontal from "../../icons/Horizontal.svelte";
 import VerticalIcon from "../../icons/VerticalIcon.svelte";
 import {
@@ -16,6 +16,7 @@ import {
   onFlipX,
   onFlipY,
   onRotate,
+  onGroup,
 } from "../../functions/editorFunctions";
 import RotateRightIcon from "../../icons/RotateRightIcon.svelte";
 import RotateLeftIcon from "../../icons/RotateLeftIcon.svelte";
@@ -85,6 +86,7 @@ import RotateLeftIcon from "../../icons/RotateLeftIcon.svelte";
     on:click="{() => onRotate(90)}"
     ><RotateRightIcon />
   </button>
+  <button on:click="{onGroup}">group</button>
 </main>
 
 <style>
