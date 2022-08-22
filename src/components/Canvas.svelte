@@ -1,7 +1,13 @@
 <script>
 import { fabric } from "fabric";
 import { onMount } from "svelte";
-import { editor, selectedObj, items, unfinishedModal } from "../store/store";
+import {
+  editor,
+  selectedObj,
+  items,
+  unfinishedModal,
+  state,
+} from "../store/store";
 import Snippets from "./widgets/Snippets.svelte";
 
 onMount(() => {
@@ -29,6 +35,13 @@ onMount(() => {
     }
   };
 
+  const updateModifications = (savehistory) => {
+    if (savehistory === true) {
+      const myjson = JSON.stringify(canvas);
+      $state.push(myjson);
+    }
+  };
+
   getCanvasFromStorage();
   canvas.setDimensions({ width: 500, height: 500 });
 
@@ -53,6 +66,11 @@ onMount(() => {
 
   canvas.on("object:modified", (e) => {
     resetFontSize(e);
+    updateModifications(true);
+  });
+
+  canvas.on("object:added", (e) => {
+    updateModifications(true);
   });
 
   canvas.on("before:render", () => {

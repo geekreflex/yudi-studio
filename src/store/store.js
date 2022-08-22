@@ -20,3 +20,5 @@ export const unfinishedModal = writable(false);
 export const filterWidget = writable(false);
 export const shadowStrokeWidget = writable(false);
 export const elementWidget = writable(false);
+export const state = writable([]);
+export const mods = writable(0);
