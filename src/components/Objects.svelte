@@ -23,6 +23,10 @@ import {
   onSendBackward,
 } from "../functions/editorFunctions";
 
+const onThumbnail = (index) => {
+  return $editor?.toDataURL();
+};
+
 const onObjectClick = (item) => {
   $editor.setActiveObject(item);
   $editor.renderAll();
@@ -72,7 +76,7 @@ const onLockObject = (e, item) => {
         </div>
         <div class="object-right-info">
           <div class="object-preview">
-            <img src="{$editor.toDataURL()}" alt="Preview" />
+            <img src="{onThumbnail(index)}" alt="Preview" />
           </div>
           <div class="object-name">Layer #{index + 1}- {item.type}</div>
         </div>

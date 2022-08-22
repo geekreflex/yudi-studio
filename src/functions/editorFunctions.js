@@ -256,3 +256,18 @@ export const onRotate = (angleOffset) => {
   object.rotate(angle).setCoords();
   canvas.renderAll();
 };
+
+export const onGroup = () => {
+  const objects = canvas.getActiveObjects();
+  const group = new fabric.Group(objects, {
+    // useSetOnGroup: false,
+    // left: 50,
+    // top: 50,
+  });
+  objects.map((obj) => {
+    canvas.remove(obj);
+  });
+  canvas.add(group);
+  group.setCoords();
+  canvas.renderAll();
+};

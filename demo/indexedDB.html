@@ -7,6 +7,19 @@
     <title>IndexDB</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      const request = window.indexedDB.open("MyTestDatabase", 3);
+      request.onerror = (event) => {
+        console.error("Why didn't you allow");
+      };
+      request.onsuccess = (event) => {
+        db = event.target.result;
+        console.log(db);
+      };
+      request.onupgradeneeded = (event) => {
+        const db = event.target.result;
+        const objectStore = db.createObjectStore("name", { keyPath: "myKey" });
+      };
+    </script>
   </body>
 </html>
